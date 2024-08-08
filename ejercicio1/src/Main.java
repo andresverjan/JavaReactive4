@@ -5,7 +5,9 @@ import java.util.function.Function;
 public class Main {
 
     private static String concatenarNombreApellido(Persona persona) {
-        return persona.getNombre() + " " + persona.getApellido();
+        String nuevoNombre = persona.getNombre() + " " + persona.getApellido();
+        String nuevoApellido = persona.getApellido() + " " + persona.getNombre();
+        return new Persona(nuevoNombre, nuevoApellido).toString();
     }
 
     private static String aplicarConcatenar(Persona persona,
