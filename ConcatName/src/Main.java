@@ -6,11 +6,12 @@ import java.util.function.Function;
 public class Main {
 
     private static Persona concat(Persona persona){
-        persona.setConcat(persona.getName() + " " + persona.getLastName());
-        return persona;
+        String concatName = persona.getName() + " " + persona.getLastName();
+        String concatLastName = persona.getName() + " " + persona.getLastName();
+        return new Persona(concatName, concatLastName);
     }
 
-    private static Persona fnApply(Persona persona, Function<Persona, Persona> fn) {
+    private static Persona fnApplyConcat(Persona persona, Function<Persona, Persona> fn) {
         return fn.apply(persona);
     }
 
@@ -20,9 +21,9 @@ public class Main {
         String username = scanner.next();
         System.out.print("Enter your last name: ");
         String lastName = scanner.next();
-        System.out.println("Your name concat is -> " + fnApply(
-                new Persona(username, lastName),
-                Main::concat).getConcat());
+        Persona newPerson = fnApplyConcat(new Persona(username, lastName), Main::concat);
+        System.out.println("Your name concat is -> " + newPerson.getName());
+        System.out.println("Your lastName concat is -> " + newPerson.getLastName());
     }
 }
 
