@@ -1,0 +1,11 @@
+
+]
+java:S1220""Move this file to a named package.8“Â®’“2J$c1814a73-d7f1-4ef9-91b1-f1d8583e9e57
+ƒ	java:S125"<This block of commented-out lines of code should be removed.(´ğµÿÿÿÿÿ8šÂ®’“2J$b30ddf78-079a-4a25-9c70-72bba5ba2bdc
+
+java:S1612
+"KReplace this lambda with method reference 'Main::concatenarNombreApellido'.(ÎÖĞ´8¼²·’“2J$1d61f250-a501-45c8-aced-d79a57179105
+r	java:S106"+Replace this use of System.out by a logger.(¹•¹ßÿÿÿÿÿ8œÂ®’“2J$8b0dd300-a7c3-4686-b0d0-df0f0b00b107
+r	java:S106"+Replace this use of System.out by a logger.(ÍÒ‰öüÿÿÿÿ8œÂ®’“2J$fbadfc88-aa7b-4e02-b773-4b8fd4acc382
+¤
+java:S4276"\Refactor this code to use the more specialised Functional Interface 'UnaryOperator<Persona>'(³ô·ğÿÿÿÿÿ8Â®’“2J$857feb32-adb0-499f-9f0e-eeac5e0e9054
