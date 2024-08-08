@@ -30,7 +30,11 @@ public class ConcatenarNombre {
     public static Persona concatenarNombreYApellido(Persona persona) {
         String nuevoNombre = persona.getNombre() + " " + persona.getApellido();
         String nuevoApellido = persona.getApellido() + " " + persona.getNombre();
-        return new Persona(nuevoNombre, nuevoApellido);
+        //return new Persona(nuevoNombre, nuevoApellido);
+        persona.nombre= nuevoNombre;
+        persona.apellido= nuevoApellido;
+        return persona;
+
     }
 
     // Función de orden superior que procesa la función pura sobre un objeto Persona
