@@ -13,6 +13,11 @@ public class Persona {
         return apellido;
     }
 
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre + " Apellido: " + apellido;
+    }
+
     String nombre;
     String apellido;
 }

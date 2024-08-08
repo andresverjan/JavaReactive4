@@ -14,8 +14,7 @@ public static Persona applyFunction(Persona persona, Function<Persona,Persona> f
 public static void main(String[] args) {
     Persona nicolas=new Persona("Nicolas","Quintero");
     Persona newPerson=applyFunction(nicolas, ConcatenarNombres::concatenar);
-    System.out.println("name: "+newPerson.getNombre());
-    System.out.println("lastname: "+newPerson.getApellido());
+    System.out.println(newPerson);
 
 }
 }
