@@ -51,7 +51,7 @@ public class Main {
         };
         //observador 3
         Observer<Integer> observer3 = new Observer<Integer>() {
-            String concatenar = "";
+            int suma = 0;
             @Override
             public void onSubscribe(Disposable d) {
                 System.out.println("Subscribed observer 3");
@@ -61,8 +61,8 @@ public class Main {
             public void onNext(Integer value) {
 
 
-                concatenar+=value;
-                System.out.println("Observer 3 Received: " + concatenar);
+                suma+=value;
+                System.out.println("Observer 3 Received value: "+value+" ->suma -> " + suma);
 
             }
 
