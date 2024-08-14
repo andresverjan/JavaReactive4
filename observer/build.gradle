@@ -1,0 +1,35 @@
+buildscript {
+    ext {
+        springBootVersion = '3.2.5'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+}
+
+repositories {
+    maven { url 'https://artifactory.apps.bancolombia.com/maven-bancolombia' }
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    implementation("io.reactivex.rxjava3:rxjava:3.1.8")
+
+}
+
+test {
+    useJUnitPlatform()
+}

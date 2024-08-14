@@ -1,0 +1,10 @@
+
+=
+src/Main.java,9\2\924f089edb4af5ee45c8a9d1129cd28e2b368138
+@
+src/Persona.java,b\5\b55544f87876a25acfb14aa22d21c5fa0706bb17
+9
+	readme.md,2\7\275d783e298228506068436512433d343feb52aa
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
