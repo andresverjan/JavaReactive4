@@ -1,2 +1,7 @@
 
-k	java:S106"+Replace this use of System.out by a logger.(‚ŞÏ¥ıÿÿÿÿJ$617ae169-0761-401e-b4ca-8fe0cda26d42
+r	java:S106"+Replace this use of System.out by a logger.(Ù¸Áıÿÿÿÿ8š»ñŒ•2J$372be289-ab77-44e7-9cd0-2e22fde72e88
+m	java:S106"+Replace this use of System.out by a logger.(üô“8Ÿ»ñŒ•2J$e9d8d77b-5e3c-4234-bf11-b6cd2128d14e
+~	java:S125"<This block of commented-out lines of code should be removed.(  Ã8ª»ñŒ•2J$287e1c04-2730-42b1-bb00-869b833bcde7
+m	java:S106'"+Replace this use of System.err by a logger.(˜ŸÚá8º»ñŒ•2J$ba8e9e3c-608d-422a-a6aa-158d0d51bfaf
+r	java:S1061"+Replace this use of System.out by a logger.(¹¸’Ëüÿÿÿÿ8½»ñŒ•2J$d02b7c47-34e7-4ba4-99cb-fe36a7a95abc
+~	java:S125;"<This block of commented-out lines of code should be removed.(æÜß×8¨ºòŒ•2J$e42b2820-26b9-4bb7-a25d-a61ceb6e2ae6
