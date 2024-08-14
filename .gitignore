@@ -1,0 +1,8 @@
+bin/
+tmp/
+*.tmp
+.idea/../gradle.xml
+.idea/../libraries
+out/
+.gradle/
+.build/
