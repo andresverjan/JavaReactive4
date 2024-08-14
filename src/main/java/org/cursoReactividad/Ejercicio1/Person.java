@@ -1,3 +1,4 @@
+package org.cursoReactividad.Ejercicio1;
 
 public class Person {
     public Person(String name, String lastname) {
