@@ -1,4 +1,4 @@
-package co.com.bancolombia;
+package co.com.bancolombia.actividad1;
 
 public class Persona {
     private String nombre;

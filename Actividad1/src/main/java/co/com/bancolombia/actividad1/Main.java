@@ -1,4 +1,4 @@
-package co.com.bancolombia;
+package co.com.bancolombia.actividad1;
 
 import java.util.function.Function;
 
