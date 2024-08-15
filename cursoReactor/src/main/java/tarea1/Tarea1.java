@@ -8,6 +8,6 @@ public class Tarea1 {
 
     public static void main(String[] args){
         Persona persona1 = new Persona("Sebastian", "Chavarria");
-        System.out.println(concatenar(persona1));
+        System.out.println("Nombre Concatenado: " + concatenar(persona1));
     }
 }
