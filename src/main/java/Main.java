@@ -16,4 +16,5 @@ public class Main {
         return funcion.apply(persona);
     }
 
+
 }
