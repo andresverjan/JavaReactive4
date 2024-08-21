@@ -1,4 +1,4 @@
-package org.cursoReactividad.Ejercicio1;
+package org.cursoReactividad.Exercise1;
 
 public class Person {
     public Person(String name, String lastname) {

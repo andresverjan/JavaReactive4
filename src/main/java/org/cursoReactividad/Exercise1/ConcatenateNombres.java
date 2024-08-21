@@ -1,4 +1,4 @@
-package org.cursoReactividad.Ejercicio1;
+package org.cursoReactividad.Exercise1;
 
 import java.util.function.Function;
 

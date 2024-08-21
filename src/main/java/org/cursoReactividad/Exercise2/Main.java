@@ -1,5 +1,4 @@
-package org.cursoReactividad.Ejercicio2;
-
+package org.cursoReactividad.Exercise2;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
