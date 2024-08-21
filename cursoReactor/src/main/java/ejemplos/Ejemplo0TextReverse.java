@@ -1,6 +1,6 @@
 package ejemplos;
 
-public class Ejemplo1 {
+public class Ejemplo0TextReverse {
     public static void main(String[] args) {
         String s = "hello";
         String sr = "";

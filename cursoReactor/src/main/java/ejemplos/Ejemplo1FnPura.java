@@ -1,2 +1,4 @@
-package ejemplos;public class Ejemplo1FnPura {
+package ejemplos;
+
+public class Ejemplo1FnPura {
 }

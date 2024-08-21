@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-public class Ejemplo2 {
+public class Ejemplo2Observer {
 
    public static void main(String[] args){
 
