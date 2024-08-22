@@ -2,9 +2,6 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 
-import java.util.Observable;
-import java.util.Observer;
-
 public class Observables {
     public static void main(String[] args) {
         Observable observable = Observable.range(1, 10);
