@@ -1,5 +1,6 @@
 package org.example;
 
+import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -7,6 +8,7 @@ import reactor.test.StepVerifier;
 public class Main {
     public static void main(String[] args) {
 
+/*
         Mono<String> helloMono = Mono.just("Hello");
         StepVerifier.create(helloMono)
                 .expectNext("Hello")
@@ -38,6 +40,22 @@ public class Main {
         );
 
 
+*/
+
+
+        System.out.println("MONO");
+        Mono<Integer> mono = Mono.just(1);
+
+        Disposable monoSuscriber1 = mono.subscribe(num -> System.out.println("Suscriber 1: Multiplica x 2 -> " + num * 2));
+        Disposable monoSuscriber2 = mono.subscribe(num -> System.out.println("Suscriber 2: Multiplica x 100 -> " + num * 100));
+        Disposable monoSuscriber3 = mono.subscribe(num -> System.out.println("Suscriber 3: Suma 50 -> " + num + 50));
+
+        System.out.println("FLUX");
+        Flux<Integer> flux = Flux.just(2,8,90,75,748,8,2356);
+
+        Disposable fluxSuscriber1 = flux.subscribe(num -> System.out.println("Suscriber 1: Multiplica x 2 -> " + num * 2));
+        Disposable fluxSuscriber2 = flux.subscribe(num -> System.out.println("Suscriber 2: Multiplica x 100 -> " + num * 100));
+        Disposable fluxSuscriber3 = flux.subscribe(num -> System.out.println("Suscriber 3: Suma 50 -> " + num + 50));
 
 
     }
