@@ -1,0 +1,6 @@
+package com.example.demo.drivenadapter.r2dbc.person;
+
+public class PersonAdapter{
+
+
+}

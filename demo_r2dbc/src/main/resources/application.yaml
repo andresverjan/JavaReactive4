@@ -1,0 +1,7 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/demo_reactive
+    username: postgres
+    password: postgres
+  application:
+    name: demo
