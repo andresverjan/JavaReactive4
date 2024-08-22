@@ -1,7 +1,18 @@
 
-r	java:S106"+Replace this use of System.out by a logger.(Ù¸Áıÿÿÿÿ8š»ñŒ•2J$372be289-ab77-44e7-9cd0-2e22fde72e88
-m	java:S106"+Replace this use of System.out by a logger.(üô“8Ÿ»ñŒ•2J$e9d8d77b-5e3c-4234-bf11-b6cd2128d14e
-~	java:S125"<This block of commented-out lines of code should be removed.(  Ã8ª»ñŒ•2J$287e1c04-2730-42b1-bb00-869b833bcde7
-m	java:S106'"+Replace this use of System.err by a logger.(˜ŸÚá8º»ñŒ•2J$ba8e9e3c-608d-422a-a6aa-158d0d51bfaf
-r	java:S1061"+Replace this use of System.out by a logger.(¹¸’Ëüÿÿÿÿ8½»ñŒ•2J$d02b7c47-34e7-4ba4-99cb-fe36a7a95abc
-~	java:S125;"<This block of commented-out lines of code should be removed.(æÜß×8¨ºòŒ•2J$e42b2820-26b9-4bb7-a25d-a61ceb6e2ae6
+
+java:S1192"KDefine a constant instead of duplicating this literal "Received: " 3 times.(üô“8…İ¯•2J$e4bf151f-304f-47cc-b160-4804a9a0b8e3
+‹
+java:S1192"HDefine a constant instead of duplicating this literal "Error: " 3 times.(˜ŸÚá8…İ¯•2J$790ed63e-fba0-4314-ae69-879d9b195668
+r	java:S106"+Replace this use of System.out by a logger.(åÇà‹ûÿÿÿÿ8™İ¯•2J$55f64a4a-1d05-4e40-8bf9-5302bd773770
+m	java:S106"+Replace this use of System.out by a logger.(üô“8šİ¯•2J$a8fd55b6-6415-4b55-9dbb-7480b97a7633
+m	java:S106"+Replace this use of System.err by a logger.(˜ŸÚá8›İ¯•2J$943583c1-34ab-4113-a75b-bdb3d64de59d
+m	java:S106!"+Replace this use of System.out by a logger.(Òğã¿8œİ¯•2J$66048514-dd26-41d0-ab55-e0bfea83a327
+r	java:S106*"+Replace this use of System.out by a logger.(ÍÒôÔşÿÿÿÿ8İ¯•2J$0813ca85-1abc-4b37-9194-05f6e961cf96
+m	java:S1061"+Replace this use of System.out by a logger.(ÚşÃ8İ¯•2J$9495922e-4c53-40d6-8c99-3ad7adcd74c1
+m	java:S1067"+Replace this use of System.err by a logger.(˜ŸÚá8İ¯•2J$f1b79a46-1480-458c-9ce8-d3e2949699c4
+r	java:S106="+Replace this use of System.out by a logger.(³ö³Üøÿÿÿÿ8İ¯•2J$9423cbae-fb24-41bb-8680-0a6cae892aad
+r	java:S106F"+Replace this use of System.out by a logger.(èĞÏ•ÿÿÿÿÿ8Ÿİ¯•2J$d0a7004e-d44f-4cc4-972e-1983e2bc8350
+r	java:S106L"+Replace this use of System.out by a logger.(Ñû²ıÿÿÿÿ8 İ¯•2J$1c598dff-9a30-4181-a4f2-d70030caaaea
+m	java:S106R"+Replace this use of System.err by a logger.(˜ŸÚá8¡İ¯•2J$dd0b18d9-3cfc-426a-b8fd-392f017d1a4c
+m	java:S106X"+Replace this use of System.out by a logger.(”ËÀ¢8¢İ¯•2J$d2428fff-97b0-47e9-80c7-872807572a22
+~	java:S125`"<This block of commented-out lines of code should be removed.(æÜß×8¤İ¯•2J$001191b6-efdd-4637-9867-36898eba8c43
