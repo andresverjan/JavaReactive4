@@ -12,11 +12,11 @@ public class MonoExample {
     public static void main(String[] args) {
         SpringApplication.run(MonoExample.class, args);
 
-        Mono<String> mono = Mono.just(new Random().nextInt(100)+1+"");
+        Mono<Integer> mono = Mono.just(new Random().nextInt(100)+1);
 
         mono.subscribe(
                 element -> {
-                    String result = Integer.parseInt(element) > 10 ? element + " es mayor a 10, raíz:"+ Math.sqrt(Double.parseDouble(element)) : "Elemento:" + element;
+                    String result = element > 10 ? element + " es mayor a 10, raíz: "+ Math.sqrt(element) : "Elemento:" + element;
                     System.out.println(result);
                 },
                 error -> System.err.println("Error: " + error.getMessage()),
@@ -25,7 +25,7 @@ public class MonoExample {
 
         mono.subscribe(
                 element -> {
-                    String result = Integer.parseInt(element) > 20 ? element + " es mayor a 20, raíz:"+ Math.sqrt(Double.parseDouble(element)) : "Elemento:" + element;
+                    String result = element > 20 ? element + " es mayor a 20, raíz: "+ Math.sqrt(element) : "Elemento:" + element;
                     System.out.println(result);
                 },
                 error -> System.err.println("Error: " + error.getMessage()),
