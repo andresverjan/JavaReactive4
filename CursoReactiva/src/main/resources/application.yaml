@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: CursoReactiva
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/d2b
+    username: postgres
+    password: postgres

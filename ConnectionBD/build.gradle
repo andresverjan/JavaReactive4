@@ -1,30 +1,29 @@
-buildscript {
-	ext {
-		springBootVersion = '3.2.5'
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.2'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
 
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version "${springBootVersion}"
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 repositories {
 	maven { url 'https://artifactory.apps.bancolombia.com/maven-bancolombia' }
 }
 
-group = 'org.example'
-version = '1.0-SNAPSHOT'
-
-repositories {
-	mavenCentral()
-}
-
 dependencies {
-	testImplementation 'org.junit.jupiter:junit-jupiter'
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
-	implementation("io.reactivex.rxjava3:rxjava:3.1.8")
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.kafka:spring-kafka'
@@ -35,8 +34,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'io.projectreactor:reactor-test'
 }
 
-test {
+tasks.named('test') {
 	useJUnitPlatform()
 }
