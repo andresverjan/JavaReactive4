@@ -1,2 +1,26 @@
 
-k	java:S106"+Replace this use of System.out by a logger.(‚ŞÏ¥ıÿÿÿÿJ$09a5ffab-d4a1-4011-9cc9-3bb146ad4537
+…
+java:S1854"BRemove this useless assignment to local variable "fluxSuscriber2".(¾Ä8 İ¡Ù—2J$1c82650d-4546-42c8-a845-6b2064c65c0a
+„
+java:S1854"BRemove this useless assignment to local variable "fluxSuscriber1".(ï¤Üd8¡İ¡Ù—2J$945347ad-332a-4f6e-a804-94ce2bdb871a
+…
+java:S1854"BRemove this useless assignment to local variable "monoSuscriber2".(Ş¹á8¡İ¡Ù—2J$0d0ed661-75e3-4a94-b449-1c8ba1d434e0
+…
+java:S1854"BRemove this useless assignment to local variable "monoSuscriber1".(ÿ€î8¡İ¡Ù—2J$47c60501-9d81-467a-be6a-f6f1033c37c7
+m	java:S106"+Replace this use of System.out by a logger.(¡Å»8¨İ¡Ù—2J$9d6dcbda-6488-4245-b119-4b9dcc1bb29c
+m	java:S106"+Replace this use of System.out by a logger.(”½‚ 8©İ¡Ù—2J$705cfd2f-6812-4c46-bc0e-a3930ae40e16
+m	java:S106"+Replace this use of System.out by a logger.(ÿ€î8ªİ¡Ù—2J$81edfe7d-75d8-4b50-9f40-fc3cd323e437
+v
+java:S1481"3Remove this unused "monoSuscriber1" local variable.(ÿ€î8«İ¡Ù—2J$4d5d3d51-fe8e-44ea-9029-ddc382f4aa88
+m	java:S106"+Replace this use of System.out by a logger.(Ş¹á8¬İ¡Ù—2J$7646220e-fd94-4f92-b1e8-51380ba4c314
+v
+java:S1481"3Remove this unused "monoSuscriber2" local variable.(Ş¹á8­İ¡Ù—2J$41d783fb-d496-484e-8905-4350327d5439
+r	java:S106"+Replace this use of System.out by a logger.(’™­¡øÿÿÿÿ8­İ¡Ù—2J$22a2da75-c07d-4f13-9053-71ddcd3369bf
+m	java:S106"+Replace this use of System.out by a logger.(Úåú8¯İ¡Ù—2J$d1a58bbd-17fd-4e9a-ae73-85a26cf02525
+u
+java:S1481"3Remove this unused "fluxSuscriber1" local variable.(ï¤Üd8¯İ¡Ù—2J$825b31af-57c7-420b-9d46-05aa01559797
+m	java:S106"+Replace this use of System.out by a logger.(˜ÕĞß8°İ¡Ù—2J$80bcedaf-090e-4ad7-8dbe-c795a2e0eeb3
+v
+java:S1481"3Remove this unused "fluxSuscriber2" local variable.(¾Ä8²İ¡Ù—2J$127a9c6b-9d90-4642-91e2-d511139aecac
+~
+java:S1128"6Remove this unused import 'reactor.test.StepVerifier'.(†ÄüÜıÿÿÿÿ8´İ¡Ù—2J$920d6286-3228-4e21-ae18-626409c6c33f
