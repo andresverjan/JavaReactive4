@@ -83,7 +83,7 @@ public class main {
     }
 
     public static Integer factorial(Integer n){
-        Integer count=1;
+        int count=1;
         for(int i=0;i<n;i++){
             count = count + count*i;
         }
