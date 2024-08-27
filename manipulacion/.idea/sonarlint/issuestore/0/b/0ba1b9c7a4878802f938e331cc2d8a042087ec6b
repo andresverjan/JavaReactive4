@@ -1,12 +1,12 @@
 
-i
-java:S3864"!Remove this use of "Stream.peek".(£ÑÖ“ÿÿÿÿÿ8ôç™2J$9b4a328a-d39a-4eed-81d7-76cd65f6f35d
-d
-java:S3864"!Remove this use of "Stream.peek".(³üÑ8 ôç™2J$6ddb953d-7b7e-403e-8b1d-edead9c3c83f
-d
-java:S3864"!Remove this use of "Stream.peek".(ÉÙªë8¢ôç™2J$7e2c93ae-c602-4519-a8da-204c732c1a91
-m	java:S106"+Replace this use of System.out by a logger.(ÉÙªë8Ÿ‚å™2J$f0445fe0-aa8c-4a48-a34c-8b19eeadd4b2
-m	java:S106"+Replace this use of System.out by a logger.(³üÑ8¨ôç™2J$a39576c5-5392-42d9-9dc5-deb1cfa0a9e9
-r	java:S106"+Replace this use of System.out by a logger.(£ÑÖ“ÿÿÿÿÿ8©ôç™2J$22964bad-d684-4e82-b48c-17d1a26fe42e
-r	java:S106"+Replace this use of System.out by a logger.(Ä®²¸ÿÿÿÿÿ8ªôç™2J$a9c51db6-21db-4817-a24a-f881f5fcdf42
-r	java:S106"+Replace this use of System.out by a logger.(¹¦…‡úÿÿÿÿ8¬ôç™2J$30d2bef1-3584-42d3-93ee-c9706a1c062c
+C
+java:S3864"!Remove this use of "Stream.peek".(£ÑÖ“ÿÿÿÿÿ8ñëãŸ™2
+>
+java:S3864"!Remove this use of "Stream.peek".(³üÑ8úëãŸ™2
+>
+java:S3864"!Remove this use of "Stream.peek".(ÉÙªë8…ìãŸ™2
+G	java:S106"+Replace this use of System.out by a logger.(ÉÙªë8ìãŸ™2
+G	java:S106"+Replace this use of System.out by a logger.(³üÑ8—ìãŸ™2
+L	java:S106"+Replace this use of System.out by a logger.(£ÑÖ“ÿÿÿÿÿ8¤ìãŸ™2
+L	java:S106"+Replace this use of System.out by a logger.(Ä®²¸ÿÿÿÿÿ8¨ìãŸ™2
+L	java:S106"+Replace this use of System.out by a logger.(¹¦…‡úÿÿÿÿ8¯ìãŸ™2
