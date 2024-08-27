@@ -41,8 +41,7 @@ public class Main {
 
         System.out.println("===================================================================");
         System.out.println("Mostrar el nombre y apellido de la persona del Mono utilizando flatMap() y subscribe().");
-        primeraPersona.flatMap(persona -> Stream.of(persona.getNombre(), persona.getApellido()))
-                .subscribe(System.out::println);
+        primeraPersona.map(persona -> Stream.of(persona.getNombre(), persona.getApellido())).().subscribe(System.out::println);
 
         System.out.println("===================================================================");
         System.out.println("Agrupar a las personas por signo del zodiaco utilizando groupBy(), flatMap() y collectList(). Luego, mostrar el signo y la cantidad de personas para cada grupo.");
