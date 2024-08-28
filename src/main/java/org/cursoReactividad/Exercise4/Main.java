@@ -24,9 +24,9 @@ public class Main {
         System.out.println("-------------------Group by-----------------");
         peopleFlux.groupBy(Person::getStarSign)
                 .flatMap(groupedFlux -> groupedFlux.collectList()
-                        .flatMapMany(personasDelSigno -> {
-                            System.out.println("Signo: " + groupedFlux.key() + " - Cantidad: " + personasDelSigno.size());
-                            return Flux.fromIterable(personasDelSigno);
+                        .flatMapMany(peopleforSigno -> {
+                            System.out.println("Signo: " + groupedFlux.key() + " - Cantidad: " + peopleforSigno.size());
+                            return Flux.fromIterable(peopleforSigno);
                         }))
                 .subscribe();
         System.out.println("------------------------------------------------");
