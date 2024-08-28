@@ -47,10 +47,10 @@ public class Person {
         this.starSign = starSign;
     }
 
-    public Person(String name, String lastname, String documentNumber, int age, String starSign) {
+    public Person(String name, String lastname, String phone, int age, String starSign) {
         this.name = name;
         this.lastname = lastname;
-        this.phone = documentNumber;
+        this.phone = phone;
         this.age = age;
         this.starSign = starSign;
     }
