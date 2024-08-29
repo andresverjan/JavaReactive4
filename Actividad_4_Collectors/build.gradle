@@ -1,0 +1,27 @@
+plugins {
+    id "java"
+    id 'org.springframework.boot' version '3.3.2'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'bancolombia.angel.java.reactiva'
+version = '1.0-SNAPSHOT'
+
+repositories {
+//    mavenCentral()
+    maven { url "https://artifactory.apps.bancolombia.com/maven-bancolombia/" }
+    maven { url "https://artifactory.apps.bancolombia.com/jcenter/" }
+    maven { url "https://artifactory.apps.bancolombia.com/common-maven/" }
+    maven { url "https://artifactory.apps.bancolombia.com/global-bancolombia/" }
+}
+
+dependencies {
+    implementation "io.reactivex.rxjava3:rxjava:3.1.8"
+    testImplementation platform("org.junit:junit-bom:5.10.0")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+}
+
+test {
+    useJUnitPlatform()
+}
