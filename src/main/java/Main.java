@@ -1,19 +1,19 @@
 public class Main {
     public static void main(String[] args) {
-        Persona persona = new Persona("Juan", "Pérez");
+        PersonaOne personaOne = new PersonaOne("Juan", "Pérez");
 
-        Persona personaProcesada = procesarPersona(persona, Main::concatenar);
-        System.out.println(personaProcesada);
+        PersonaOne personaOneProcesada = procesarPersona(personaOne, Main::concatenar);
+        System.out.println(personaOneProcesada);
     }
 
-    public static Persona concatenar(Persona persona) {
-        String nuevoNombre = persona.getNombre() + " " + persona.getApellidos();
-        String nuevoApellidos = persona.getApellidos() + " " + persona.getNombre();
-        return new Persona(nuevoNombre, nuevoApellidos);
+    public static PersonaOne concatenar(PersonaOne personaOne) {
+        String nuevoNombre = personaOne.getNombre() + " " + personaOne.getApellidos();
+        String nuevoApellidos = personaOne.getApellidos() + " " + personaOne.getNombre();
+        return new PersonaOne(nuevoNombre, nuevoApellidos);
     }
 
-    public static Persona procesarPersona(Persona persona, java.util.function.Function<Persona, Persona> funcion) {
-        return funcion.apply(persona);
+    public static PersonaOne procesarPersona(PersonaOne personaOne, java.util.function.Function<PersonaOne, PersonaOne> funcion) {
+        return funcion.apply(personaOne);
     }
 
 
