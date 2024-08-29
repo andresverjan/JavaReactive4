@@ -4,14 +4,14 @@ public class Persona {
 
     private String nombre;
     private String apellido;
-    private String numeroIdentificacion;
+    private String telefono;
     private Integer edad;
     private String signo;
 
     public Persona(String nombre, String apellido, String numeroIdentificacion, Integer edad, String signo) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.numeroIdentificacion = numeroIdentificacion;
+        this.telefono = numeroIdentificacion;
         this.edad = edad;
         this.signo = signo;
     }
@@ -24,8 +24,8 @@ public class Persona {
         return apellido;
     }
 
-    public String getNumeroIdentificacion() {
-        return numeroIdentificacion;
+    public String getTelefono() {
+        return telefono;
     }
 
     public Integer getEdad() {
