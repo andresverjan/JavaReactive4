@@ -1,8 +1,6 @@
 
 =
 src/Main.java,9\2\924f089edb4af5ee45c8a9d1129cd28e2b368138
-E
-src/Persona/Pers.java,4\3\430f87451c5d5c7068b1f2567553e36207b9222a
 H
 src/Persona/Persona.java,e\7\e76908c3e522ca3bec0babbdeb87c5d56a2833bf
 :
