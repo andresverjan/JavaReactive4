@@ -2,12 +2,11 @@ package ejemplos;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.test.StepVerifier;
 
 import static tarea2.Tarea2.factorial;
 import static tarea2.Tarea2.sumatoriaN;
 
-public class Ejmplo3MonoFlux {
+public class Ejemplo3MonoFlux {
     public static void main(String[] args){
         /*System.out.println("==========================================================");
         System.out.println("==============EJEMPLO DE MONO                 ============");

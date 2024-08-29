@@ -27,7 +27,7 @@ public class Tarea3MonoFlux {
         );
 
         //SUBSCRIBER 2
-        randomMono.filter( element -> element > 10)
+        randomMono.filter( element -> element > 20)
                 .subscribe(
                 element -> System.out.printf("La raiz cuadrada de %d es %f%n", element, Math.sqrt(element)),
                 error -> System.out.println("[Error Mono] No se puede calcular la raiz."),
