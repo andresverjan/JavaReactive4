@@ -11,5 +11,6 @@ public class Persona {
     private String documento;
     private int edad;
     private String signo;
+    private String telefono;
 
 }
