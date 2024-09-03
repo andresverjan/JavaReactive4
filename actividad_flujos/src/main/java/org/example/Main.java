@@ -1,7 +1,5 @@
 package org.example;
 
-import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -35,7 +33,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*
+
         System.out.println("===================================================================");
         System.out.println("Crear un Flux a partir de la lista de personas.");
         fluxPersonas.subscribe(System.out::println);
@@ -58,6 +56,9 @@ public class Main {
         System.out.println("Mostrar el nombre y apellido de la persona del Mono utilizando flatMap() y subscribe().");
         //primeraPersona.map(persona -> List.of(persona.getNombre(), persona.getApellido())).subscribe(System.out::println);
         primeraPersona.flatMap(persona -> Mono.just(persona.getNombre() + " " + persona.getApellido()))
+                .onErrorResume(err -> {
+                    System.out.println("Error ocurred: " + err.getMessage());
+                return Mono.just("");})
                 .subscribe(System.out::println);
 
         System.out.println("===================================================================");
@@ -93,9 +94,10 @@ public class Main {
                 "y la elimine de la lista de personas. Devolver un Mono con la persona eliminada.");
         Persona eliminarPersona = new Persona("Paola", "Giraldo", "1112233344", 30, "Sagitario");
         Disposable personaEliminada = eliminarPersona(nuevaPersona);
-*/
+    }
 
-        Mono<Integer> source = Mono.just("error")
+
+        /*Mono<Integer> source = Mono.just("error")
                 .map(Integer::parseInt)
                 .onErrorResume(error -> {
                     System.out.println("Error occurred: " + error.getMessage());
@@ -122,9 +124,9 @@ public class Main {
 
 
     }
+*/
 
-
-/*    public static Disposable obtenerPersonasPorEdad(int edad) {
+    public static Disposable obtenerPersonasPorEdad(int edad) {
         return fluxPersonas
                 .filter(persona -> persona.getEdad() == edad)
                 .collect(Collectors.toList()).flatMapMany(Flux::fromIterable)
@@ -153,7 +155,7 @@ public class Main {
     public static Disposable eliminarPersona(Persona persona) {
         listaPersonas.remove(persona);
         return Mono.just(persona).subscribe(System.out::println);
-    }*/
+    }
 
 
 
