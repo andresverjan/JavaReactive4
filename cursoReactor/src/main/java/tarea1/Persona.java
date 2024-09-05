@@ -1,5 +1,7 @@
 package tarea1;
 
+import java.util.Random;
+
 public class Persona {
     private String nombre;
     private String apellido;
@@ -8,8 +10,25 @@ public class Persona {
         this.nombre = nombre;
         this.apellido = apellido;
     }
+
+    public Persona(String nombre){
+        this.nombre = nombre;
+    }
     public String getNombre() {
         return nombre;
+    }
+
+    public int getSalary(){
+        //return new Random().nextInt(5000000);
+        return 5000000;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                '}';
     }
 
     public void setNombre(String nombre) {
