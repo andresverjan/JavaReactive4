@@ -67,14 +67,19 @@ public class PersonaService {
     public Flux<Persona> obtenerPersonasPorEdad(int edad) {
         return obtenerPersonas()
                 .filter(persona -> persona.getEdad() == edad)
-                .doOnNext(persona -> System.out.println("Persona encontrada: " + persona));
+                .doOnNext(persona -> System.out.println("Persona encontrada: " + persona))
+                .onErrorResume(error -> {
+                    System.err.println("Error: " + error.getMessage());
+                    return Flux.empty();
+                });
     }
 
     //Punto 8
     public Flux<Persona> obtenerPersonasPorSigno(String signo) {
         return obtenerPersonas()
                 .filter(persona -> persona.getSigno().equalsIgnoreCase(signo))
-                .doOnNext(persona -> System.out.println("Persona encontrada: " + persona));
+                .doOnNext(persona -> System.out.println("Persona encontrada: " + persona))
+                .onErrorReturn(new Persona("Error", "Error", "Error", 0, "Error"));
     }
 
     //Punto 9
@@ -83,6 +88,8 @@ public class PersonaService {
                 .filter(persona -> persona.getTelefono().equals(telefono))
                 .next()
                 .doOnNext(persona -> System.out.println("Persona encontrada: " + persona))
+                .onErrorReturn(new Persona("Error", "Error", "Error", 0, "Error"))
+                .doOnError(error -> System.err.println("Error: " + error.getMessage()))
                 .switchIfEmpty(Mono.empty());
     }
 

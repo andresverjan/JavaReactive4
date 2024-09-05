@@ -38,7 +38,24 @@ public class Main {
         // Eliminar persona
         System.out.println("\nEliminando persona:");
         service.eliminarPersona(nuevaPersona).subscribe();
+
+        // Pruebas de manejo de errores
+        System.out.println("\n----- Pruebas de manejo de errores:-----------");
+
+        // Provocar un error en obtenerPersonasPorEdad
+        System.out.println("\nIntentando obtener personas con edad -1 (provocará un error):");
+        service.obtenerPersonasPorEdad(-1).subscribe();
+
+        // Provocar un error en obtenerPersonasPorSigno
+        System.out.println("\nIntentando obtener personas con signo 'Error' (provocará un error):");
+        service.obtenerPersonasPorSigno("Error").subscribe();
+
+        // Provocar un error en obtenerPersonaPorTelefono
+        System.out.println("\nIntentando obtener persona con teléfono '000000000' (provocará un error):");
+        service.obtenerPersonaPorTelefono("000000000").subscribe();
     }
+
     }
+
 
 
