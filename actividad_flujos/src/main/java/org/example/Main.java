@@ -94,6 +94,8 @@ public class Main {
                 "y la elimine de la lista de personas. Devolver un Mono con la persona eliminada.");
         Persona eliminarPersona = new Persona("Paola", "Giraldo", "1112233344", 30, "Sagitario");
         Disposable personaEliminada = eliminarPersona(nuevaPersona);
+
+
     }
 
 
@@ -156,8 +158,6 @@ public class Main {
         listaPersonas.remove(persona);
         return Mono.just(persona).subscribe(System.out::println);
     }
-
-
 
 
 }

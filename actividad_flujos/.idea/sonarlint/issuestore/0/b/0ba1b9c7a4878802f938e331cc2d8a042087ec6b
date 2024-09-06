@@ -1,0 +1,73 @@
+
+Î
+java:S1192%"…Define a constant instead of duplicating this literal "===================================================================" 11 times.(¦©¤„ıÿÿÿÿ8Ğ©®’œ2J$1ad8bea2-0891-462c-a673-be1baf5742f2
+’
+java:S1192"JDefine a constant instead of duplicating this literal "Sagitario" 3 times.(çî¼…üÿÿÿÿ8Ğ©®’œ2J$3882cfb5-54fa-47cb-9da4-4a791c69ec78
+€
+java:S4973Œ"<Strings and Boxed types should be compared using "equals()".(€î÷8Ü©®’œ2J$02a7dda9-a18f-477b-8b0c-de887a8729bd
+…
+java:S4973“"<Strings and Boxed types should be compared using "equals()".(«¡Ö–úÿÿÿÿ8Ü©®’œ2J$ff9ae638-697f-47b0-89c5-42e97d9ab7d0
+Œ
+java:S1854`"DRemove this useless assignment to local variable "personaEliminada".(Ã³ŠÜûÿÿÿÿ8™ª®’œ2J$aed35e77-83b2-4e9c-ab3f-d5891f2e3c85
+‹
+java:S1854_"CRemove this useless assignment to local variable "eliminarPersona".(¡Ö‹¢ùÿÿÿÿ8šª®’œ2J$5f887111-dc70-43a5-b16b-93cce384e7ca
+‹
+java:S1854Y"CRemove this useless assignment to local variable "personaAgregada".(ø‚ı•üÿÿÿÿ8šª®’œ2J$d025346f-5382-4553-93d5-f428e6e40b15
+Š
+java:S1854S"GRemove this useless assignment to local variable "personasPorTelefono".(ğ†Çæ8šª®’œ2J$11866b59-33a9-492f-a749-5ed5553f5235
+Œ
+java:S1854M"DRemove this useless assignment to local variable "personasPorSigno".(Ş·ÔÉûÿÿÿÿ8šª®’œ2J$021b89e0-945d-479f-a7c0-b5c295938cd6
+‹
+java:S1854H"CRemove this useless assignment to local variable "personasPorEdad".(õ˜ãÓùÿÿÿÿ8šª®’œ2J$30fa48b5-8184-4320-bc33-8edf26a65d95
+†
+java:S1854C">Remove this useless assignment to local variable "fluxSignos".(ÇËÄŸùÿÿÿÿ8šª®’œ2J$3cb9cd11-8f7c-4a36-ab6a-0bf12945c6c8
+r	java:S106%"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8œª®’œ2J$c9a7bd05-e0bd-43a0-b590-a5b5dd4607d5
+r	java:S106&"+Replace this use of System.out by a logger.(ÿøÉøÿÿÿÿ8ª®’œ2J$9ef41853-af2b-47d5-a03d-06c9d968e9a2
+r	java:S106'"+Replace this use of System.out by a logger.(æï§Çùÿÿÿÿ8ª®’œ2J$b105c728-b9de-443a-872c-a6a590b58582
+r	java:S106)"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8ª®’œ2J$1057481d-951e-4342-9f79-89a5438b3ec5
+m	java:S106*"+Replace this use of System.out by a logger.(¬Ç²â8ª®’œ2J$1b7ff8b7-1593-4664-b5f7-c78e3ecd85f3
+r	java:S106,"+Replace this use of System.out by a logger.(ö áÄÿÿÿÿÿ8©ª®’œ2J$2a7b3072-9bcc-4b7f-8efe-b84139d2dd22
+r	java:S106."+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8©ª®’œ2J$b48a850d-9a39-4964-b447-f7b9ca0c653e
+r	java:S106/"+Replace this use of System.out by a logger.(òƒÁÎøÿÿÿÿ8©ª®’œ2J$f4c13c94-f306-4765-ae2c-a5bc8de50a23
+r	java:S1060"+Replace this use of System.out by a logger.(È¹öıÿÿÿÿ8ªª®’œ2J$76b73bc0-950d-4b3d-aac4-14db1a74c4c9
+r	java:S1062"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8ªª®’œ2J$507b9787-5a11-4755-a161-5570aa9be940
+m	java:S1063"+Replace this use of System.out by a logger.(ƒÛ—®8«ª®’œ2J$8db34fbd-d432-4b3d-8492-3ca0f04a4e18
+m	java:S1065"+Replace this use of System.out by a logger.(çˆ¦—8«ª®’œ2J$fa4a3456-68bf-4207-8298-e05f68f16591
+r	java:S1067"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8«ª®’œ2J$55947f03-4f28-4959-ac53-7e2cae5ddc14
+l	java:S1068"+Replace this use of System.out by a logger.(¡¶‰
+8¬ª®’œ2J$8bde77b9-85c2-4b92-b25d-03cce86d5dde
+ƒ	java:S1259"<This block of commented-out lines of code should be removed.(ÿçÅíşÿÿÿÿ8­ª®’œ2J$323e34ae-5dc9-4fb0-8ed7-825197ffe6de
+r	java:S106<"+Replace this use of System.out by a logger.(ŠÛ©Íúÿÿÿÿ8¸ª®’œ2J$a332f2ae-f0da-4935-9692-bf9a81c8981b
+m	java:S106>"+Replace this use of System.out by a logger.(² ö8¸ª®’œ2J$f0325045-77df-45db-b8be-608e8dac058b
+r	java:S106@"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8¹ª®’œ2J$43d0fef1-0572-4a72-857f-9a7e644146c7
+m	java:S106A"+Replace this use of System.out by a logger.(ÑØŞ8¹ª®’œ2J$62e74caa-90cc-43b9-9f8a-77af58ef384e
+w
+java:S1481C"/Remove this unused "fluxSignos" local variable.(ÇËÄŸùÿÿÿÿ8»ª®’œ2J$719c0ac9-5f8a-41ae-a526-cb236ac9ba13
+r	java:S106E"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8»ª®’œ2J$781c2c1e-44c5-4c25-af9a-919a04f27053
+r	java:S106F"+Replace this use of System.out by a logger.(ûºú½ùÿÿÿÿ8»ª®’œ2J$74d6c965-6cbb-4395-9bd3-c3a71d1a0b29
+|
+java:S1481H"4Remove this unused "personasPorEdad" local variable.(õ˜ãÓùÿÿÿÿ8½ª®’œ2J$0f258110-b1bd-4da8-8d85-5f110ae1cfc9
+r	java:S106J"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8½ª®’œ2J$a82a9127-ff69-4b53-9ae8-01a1bd43be1f
+r	java:S106K"+Replace this use of System.out by a logger.(ó¿Şùÿÿÿÿÿ8½ª®’œ2J$1501058f-df47-460e-a206-609b736b5bf7
+}
+java:S1481M"5Remove this unused "personasPorSigno" local variable.(Ş·ÔÉûÿÿÿÿ8Èª®’œ2J$2996aae4-2a04-4b55-b5f9-dfc92f6dc290
+r	java:S106O"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8Èª®’œ2J$6d522d88-a822-42d5-9e9e-be38f8e95cfa
+m	java:S106P"+Replace this use of System.out by a logger.(õ¯Š¬8Éª®’œ2J$ea91bd68-c4f3-4929-ba21-d03fd0b582bb
+{
+java:S1481S"8Remove this unused "personasPorTelefono" local variable.(ğ†Çæ8Êª®’œ2J$1d7607ee-095b-4bb6-90ae-542d1fe74890
+r	java:S106U"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8Êª®’œ2J$52d4659e-6ae3-4929-9cf6-f3b10c5a14c7
+r	java:S106V"+Replace this use of System.out by a logger.(•êæ®øÿÿÿÿ8Êª®’œ2J$9dd3dd11-d81d-4de7-9d2a-f7ba71caa6eb
+|
+java:S1481Y"4Remove this unused "personaAgregada" local variable.(ø‚ı•üÿÿÿÿ8Ëª®’œ2J$069380a2-7f4b-4005-9df0-bdefc39ad4d3
+r	java:S106\"+Replace this use of System.out by a logger.(¦©¤„ıÿÿÿÿ8Ëª®’œ2J$b91160c4-e61d-48fb-ac7b-ed85ba901c65
+r	java:S106]"+Replace this use of System.out by a logger.(ÁêØ¸ûÿÿÿÿ8Ìª®’œ2J$4583b236-4184-4f40-9ac4-38bfc942187b
+|
+java:S1481_"4Remove this unused "eliminarPersona" local variable.(¡Ö‹¢ùÿÿÿÿ8Ìª®’œ2J$c6a4370c-ce88-46fb-8ba3-01ec0ed70f6e
+}
+java:S1481`"5Remove this unused "personaEliminada" local variable.(Ã³ŠÜûÿÿÿÿ8Íª®’œ2J$1f716b19-ecc5-461f-a5e8-0c3887a1e5a8
+}	java:S125h"<This block of commented-out lines of code should be removed.(ÒÅ¦D8Üª®’œ2J$fd82941c-89f1-4f6b-8716-ec679a66408f
+n	java:S106‡"+Replace this use of System.out by a logger.(² ö8åª®’œ2J$aad015f7-b149-4730-ac6d-69cbefb412ea
+n	java:S106"+Replace this use of System.out by a logger.(² ö8èª®’œ2J$a3d9fe41-6195-45b9-8d0b-929367ee8d8a
+n	java:S106•"+Replace this use of System.out by a logger.(² ö8êª®’œ2J$b3a0262b-a38c-4ddf-aed5-abcf132c67fc
+s	java:S106š"+Replace this use of System.out by a logger.(·ÈÍôşÿÿÿÿ8ëª®’œ2J$792a8473-c2c6-4956-bcbf-46f9254314fc
+s	java:S106Ÿ"+Replace this use of System.out by a logger.(·ÈÍôşÿÿÿÿ8öª®’œ2J$a2c90cef-ffa9-4999-a777-68d7bffa1083

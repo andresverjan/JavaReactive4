@@ -60,3 +60,13 @@ w
 G.idea/sonarlint/issuestore/5/2/52d3db436cc65df173908a357c10e04b76674f34,d\1\d1574dcc6b180afdea21d864e15f280d67fc9be5
 w
 G.idea/sonarlint/issuestore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e,a\e\ae9ddf453f55affea2d6b9e3973cac1eb2efb4e1
+D
+flatmap/build.gradle,3\7\37fc010d98e1b1b63c6a1cc2faafef8b23e22783
+[
++flatmap/src/main/java/org/example/Main.java,6\b\6b34435c667e2f2365c666752e5b8b2358917a31
+]
+-flatmap/src/main/java/org/example/Modulo.java,5\c\5c12e12140123fbc28fd9c0f1fd8d6cd22caf2e9
+a
+1flatmap/src/main/java/org/example/Estudiante.java,f\1\f1396fe0ad42112df6783aaba8738fd03fb7541a
+\
+,flatmap/src/main/java/org/example/Curso.java,6\5\65e965f56d8584f91ac0f7add8a6c1adaf64118d
