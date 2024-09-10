@@ -17,7 +17,7 @@ public class PersonController {
     }
 
     @GetMapping("/list")
-    public Flux<PersonEntity> finById(){
+    public Flux<PersonEntity> finAll(){
         return this.personService.getAll();
     }
 
@@ -26,9 +26,14 @@ public class PersonController {
         return this.personService.getById(id);
     }
 
-    @PostMapping
+    @PostMapping()
     public Mono<PersonEntity> create(@RequestBody PersonEntity person){
         return this.personService.create(person);
+    }
+
+    @PutMapping("/actualizar")
+    public Mono<PersonEntity> update(@RequestBody PersonEntity person){
+        return this.personService.update(person);
     }
 
     @DeleteMapping("/id/{id}")

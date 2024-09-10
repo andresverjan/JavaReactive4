@@ -31,6 +31,11 @@ public class PersonService {
                 .doOnNext(p -> System.out.println("Persona creada, id: " + person.getId()));
     }
 
+    public Mono<PersonEntity> update(PersonEntity person){
+        return personRepository.save(person)
+                .doOnNext(p -> System.out.println("Persona actualizada, id: " + person.getId()));
+    }
+
     public Mono<Void> deleteById(Long id) {
         if(id == null){
             return Mono.empty();
