@@ -17,7 +17,7 @@ public class Main {
         peopleFlux
                 .filter(person -> person.getAge() > 30)
                 .map(Person::getName)
-                .subscribe(name -> System.out.println("Name greater than: " + name));
+                .subscribe(name -> System.out.println("Name greater than: " + name), error -> System.err.println("Error: " + error.getMessage()));
         Mono<Person> addPerson = addPerson(new Person("Nicolas", "Quintero", "3218310156", 27, "Capricornio"));
         addPerson.subscribe(person -> System.out.println("new Person: " + person.getName()));
 
@@ -27,11 +27,13 @@ public class Main {
                         .flatMapMany(peopleforSigno -> {
                             System.out.println("Signo: " + groupedFlux.key() + " - Cantidad: " + peopleforSigno.size());
                             return Flux.fromIterable(peopleforSigno);
+                        }).doOnError(error -> {
+                            System.err.println("An error occurred: " + error.getMessage());
                         }))
                 .subscribe();
         System.out.println("------------------------------------------------");
 
-        Mono<Person> personMono = Mono.just(peopleList.stream().findFirst().get());
+        Mono<Person> personMono = Mono.just(peopleList.stream().findFirst().get()).onErrorResume(error-> Mono.empty());
         personMono.subscribe(person -> System.out.println("List first: " + person.getName() + " " + person.getLastname()));
 
         Flux<Person> fluxAge = obtenerPersonasPorEdad(27);
@@ -66,27 +68,27 @@ public class Main {
 
     public static Flux<Person> obtenerPersonasPorEdad(int age) {
         List<Person> people = peopleList.stream().filter(person -> person.getAge() == age).collect(Collectors.toList());
-        return Flux.fromIterable(people);
+        return Flux.fromIterable(people).onErrorResume(error->Flux.empty());
     }
 
     public static Flux<Person> obtenerPersonasPorSigno(String signo) {
         List<Person> people = peopleList.stream().filter(person -> signo.equals(person.getStarSign())).collect(Collectors.toList());
-        return Flux.fromIterable(people);
+        return Flux.fromIterable(people).onErrorResume(error->Flux.empty());
     }
 
     public static Mono<Person> obtenerPersonaPorTelefono(String telefono) {
         Optional<Person> person = peopleList.stream().filter(persona -> telefono.equals(persona.getPhone())).findFirst();
-        return person.map(Mono::just).orElseGet(Mono::empty);
+        return person.map(Mono::just).orElseGet(Mono::empty).onErrorResume(error->Mono.empty());
     }
 
     public static Mono<Person> addPerson(Person person) {
         peopleList.add(person);
-        return Mono.just(person);
+        return Mono.just(person).doOnError(error-> System.out.println("Error"+error.getMessage()));
     }
 
     public static Mono<Person> deletePerson(Person person) {
         peopleList.remove(person);
-        return Mono.just(person);
+        return Mono.just(person).doOnError(error-> System.out.println("Error "+error.getMessage()));
     }
 
 }
