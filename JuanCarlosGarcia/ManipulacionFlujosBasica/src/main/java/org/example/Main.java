@@ -68,19 +68,31 @@ public class Main {
     // Función obtenerPersonasPorEdad
     public static Flux<Personas> obtenerPersonasPorEdad(int edad, List<Personas> personas) {
         Flux<Personas> personasFlux = Flux.fromIterable(personas);
-        return personasFlux.filter(persona -> persona.getEdad() == edad);
+        return personasFlux.filter(persona -> persona.getEdad() == edad)
+                .onErrorResume(error -> {
+                    System.out.println("Error occurred: " + error.getMessage());
+                    return Flux.empty();
+                });
     }
 
     // Función obtenerPersonasPorSigno
     public static Flux<Personas> obtenerPersonasPorSigno(String signo, List<Personas> personas) {
         Flux<Personas> personasFlux = Flux.fromIterable(personas);
-        return personasFlux.filter(persona -> persona.getSignoZodiacal().equals(signo));
+        return personasFlux.filter(persona -> persona.getSignoZodiacal().equals(signo))
+                .onErrorResume(error -> {
+                    System.out.println("Error occurred: " + error.getMessage());
+                    return Flux.empty();
+                });
     }
 
     // Función obtenerPersonaPorTelefono
     public static Mono<Personas> obtenerPersonaPorTelefono(String telefono) {
         Flux<Personas> personasFlux = Flux.fromIterable(personas);
-        return personasFlux.filter(persona -> persona.getTelefono().equals(telefono)).next();
+        return personasFlux.filter(persona -> persona.getTelefono().equals(telefono)).next()
+                .onErrorResume(error -> {
+                    System.out.println("Error occurred: " + error.getMessage());
+                    return Mono.empty();
+                });
     }
 
     // Función agregarPersona

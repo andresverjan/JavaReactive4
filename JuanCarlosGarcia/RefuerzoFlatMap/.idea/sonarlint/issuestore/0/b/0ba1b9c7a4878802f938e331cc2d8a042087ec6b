@@ -1,0 +1,16 @@
+
+m
+java:S2201"*The return value of "toList" must be used.(υή²ό8τ‹¬Ο2J$e7c1db0e-672a-436e-b500-7435d6366152
+d
+java:S3864"!Remove this use of "Stream.peek".(ί±φ8υ‹¬Ο2J$f800497a-4a15-4908-a0ef-69e81c1a7b8e
+m	java:S106"+Replace this use of System.out by a logger.(ί±φ8χ‹¬Ο2J$d7248d9a-a86c-44eb-9d1f-9116d7f9464c
+m
+java:S2201"*The return value of "toList" must be used.(υή²ό8Α±Ο2J$becc96b3-e4be-47d6-b167-b4a4e6296ab5
+i
+java:S3864"!Remove this use of "Stream.peek".(½λϊÿÿÿÿ8τ½²Ο2J$7d2b5760-a583-4560-a311-698641254c6f
+r	java:S106"+Replace this use of System.out by a logger.(½λϊÿÿÿÿ8Α±Ο2J$1f5b0c88-07df-4f76-8045-3f7b1e8407c9
+m
+java:S2201 "*The return value of "toList" must be used.(υή²ό8Ϋ­΄Ο2J$99151a0f-2da7-4dd5-8302-0e4ac53abdb5
+d
+java:S3864"!Remove this use of "Stream.peek".(ί±φ8Ϋ­΄Ο2J$0a0013ba-c3eb-422d-9e29-2f85ab48c77f
+m	java:S106"+Replace this use of System.out by a logger.(ί±φ8τ½²Ο2J$46e01eec-9e4f-49be-b60f-a4f55eaa290f
