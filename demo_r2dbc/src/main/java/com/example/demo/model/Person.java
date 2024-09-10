@@ -1,20 +1,34 @@
 package com.example.demo.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.UUID;
+import java.time.LocalDate;
 
-@Getter
-@Setter
-@Builder(toBuilder = true)
+@Table("PERSON")
+@ToString
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor // Genera un constructor por defecto
+@Data
 public class Person {
-    private UUID id;
+    @Id
+    private Long id;
+    @Column("name")
     private String name;
-    private String lastName;
+    @Column("age")
+    private Integer age;
+    @Column("gender")
+    private String gender;
+    @Column("date_of_birth")
+    private LocalDate dateOfBirth;
+    @Column("blood_type")
+    private String bloodType;
+
+    public Person(long id, String johnDoe, int age) {
+    }
 }
