@@ -1,11 +1,15 @@
 package com.example.demo;
 
+import com.example.demo.model.Course;
 import com.example.demo.model.Employee;
+import com.example.demo.model.Module;
 import com.example.demo.model.Person;
 import com.example.demo.model.Persona;
+import com.example.demo.model.Student;
 import org.reactivestreams.Subscriber;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
@@ -199,12 +203,21 @@ public class DemoApplication {
 		/**
 		 * * /2. Filtrar las personas mayores de 30 años utilizando filter().
 		 */
-		personFlux.filter(persona -> persona.getEdad()>30).doOnNext(System.out::println).subscribe();
+		personFlux.filter(persona -> persona.getEdad()>30)
+				.doOnNext(System.out::println)
+				.onErrorResume(error->{
+					System.out.println("Error occurred: "+error.getMessage());
+					return personFlux.single();
+				})
+				.subscribe();
 
 		/**
 		 * * 3. Mostrar los nombres de las personas mayores de 30 años utilizando map(), subscribe() y filter()
 		 */
-		personFlux.filter(persona -> persona.getEdad()>30).map(Persona::getNombre).subscribe(System.out::println);
+		personFlux.filter(persona -> persona.getEdad()>30)
+				.map(Persona::getNombre)
+				.onErrorReturn(persona1.getApellido())
+				.subscribe(System.out::println);
 
 		/**
 		 * * 4. Crear un Mono con la primera persona de la lista.
@@ -215,13 +228,24 @@ public class DemoApplication {
 		 * * 5. Mostrar el nombre y apellido de la persona del Mono utilizando flatMap() y subscribe().
 		 */
 		personaMono.map(Persona::getNombre).subscribe();
-		persona1.getDirecciones().stream().flatMap(p -> Arrays.stream(p.split(""))).collect(Collectors.toList());
+		persona1.getDirecciones()
+				.stream()
+				.flatMap(p -> Arrays.stream(p.split("")))
+				.collect(Collectors.toList());
 
 		/**
 		 * * 6. Agrupar a las personas por signo del zodiaco utilizando groupBy(), flatMap() y collectList(). Luego,
 		 * * mostrar el signo y la cantidad de personas para cada grupo.
 		 */
-		personFlux.groupBy(Persona::getSigno).flatMap(Flux::count).collectList().subscribe(System.out::println);
+		personFlux.groupBy(Persona::getSigno)
+				.flatMap(Flux::count)
+				.doOnError(error->{
+					System.err.println("An error occurred: " + error.getMessage());
+				})
+				.collectList()
+				.subscribe(System.out::println,
+						error-> System.err.println("Error: "+error.getMessage())
+						);
 
 
 		//Calls
@@ -231,6 +255,137 @@ public class DemoApplication {
 		obtenerPersonaPorTelefono("555444333").subscribe(p->System.out.println(p));
 		agregarPersona(new Persona("Jose","Hurtado","3015797824",26,"Sagitario", Arrays.asList("a","b","c"))).subscribe();
 		eliminarPersona(new Persona("Pablo", "Muñoz", "554433221", 38, "Piscis", Arrays.asList("a","b","c"))).subscribe();
+
+
+		//OnErrorResume
+		Mono<Integer> source = Mono.just("error")
+				.map(Integer::parseInt)
+				.onErrorResume(error -> {
+					System.out.println("Error occurred: " + error.getMessage());
+					return Mono.just(0); // Proporcionar un valor alternativo en caso de error
+				});
+
+		source.subscribe(System.out::println);
+/*
+		public Mono<ServerResponse> handleWithErrorReturn(ServerRequest request) {
+			return sayHello(request)
+					.onErrorReturn("Hello Stranger")
+					.flatMap(s -> ServerResponse.ok()
+							.contentType(MediaType.TEXT_PLAIN)
+							.bodyValue(s));
+		}
+
+		*/
+
+
+		Flux<Integer> numbersFlux = Flux.just(1, 2, 3, 4, 5);
+		Flux<Integer> transformedFlux = numbersFlux.map(number -> {
+			if (number == 8) {
+				throw new RuntimeException("Encountered an error processing element: " + number);
+			}
+			return number * 2;
+		});
+		transformedFlux.doOnError(error -> {
+			System.err.println("An error occurred: " + error.getMessage());
+		}).subscribe(
+				System.out::println,
+				// Handle errors emitted by the Flux
+				error -> System.err.println("Error: " + error.getMessage())
+		);
+
+
+		Flux<String> errorFlux = Flux.error(new RuntimeException("Simulated error"));
+
+
+
+		List<List<String>> listofListOfCities=Arrays.asList(Arrays.asList("Delhi","Mumbai"),
+				Arrays.asList("Beijing","Shanghai","Tianjin"),
+				Arrays.asList("Kathmandu","Lalitpur"),
+				Arrays.asList("Thimphu","Phuntsholing"));
+
+		List<String> listOfCitiesUppercase=listofListOfCities.stream()
+				.flatMap(citiesByCountries -> citiesByCountries.stream())
+				.filter(s -> s.startsWith("T"))
+				.peek(e->System.out.println(e))
+				.collect(Collectors.toList());
+		listOfCitiesUppercase.forEach(System.out::println);
+
+
+		/**
+		 * Punto #1 *
+		 */
+		List<Student> studentList = Arrays.asList(
+				Student.builder().name("Student #1 Juan ").courses(
+						Arrays.asList(Course.builder().name("Math").modules(
+								Arrays.asList(Module.builder().name("Modulo 1 M").Descripcion("Description 1").build(),
+										Module.builder().name("Modulo 2 M").Descripcion("Description 2").build(),
+										Module.builder().name("Modulo 3 M").Descripcion("Description 3").build()
+								)
+								).build(),
+								Course.builder().name("Spanish").modules(
+										Arrays.asList(Module.builder().name("Modulo 1 SP").Descripcion("Description 1 MS").build(),
+												Module.builder().name("Modulo 2 SP").Descripcion("Description 2 MS").build())
+								).build(),
+								Course.builder().name("English").modules(
+										Arrays.asList(Module.builder().name("Modulo 1 EG").Descripcion("Description 1 EG").build(),
+												Module.builder().name("Modulo 2 EG").Descripcion("Description 2 EG").build(),
+										Module.builder().name("Modulo 3 M").Descripcion("Description 3").build())
+								).build()
+						)
+						).build(),
+				Student.builder().name("Student #2 Pedro").courses(
+						Arrays.asList(Course.builder().name("Quimica").modules(
+										Arrays.asList(Module.builder().name("Modulo 1 Q").Descripcion("Description 1").build(),
+												Module.builder().name("Modulo 2 Q").Descripcion("Description 2").build(),
+												Module.builder().name("Modulo 3 M").Descripcion("Description 3").build())
+								).build(),
+								Course.builder().name("Literatura").modules(
+										Arrays.asList(Module.builder().name("Modulo 1 LT").Descripcion("Description 1 MS").build(),
+												Module.builder().name("Modulo 2 LT").Descripcion("Description 2 MS").build())
+								).build(),
+								Course.builder().name("Filosofia").modules(
+										Arrays.asList(Module.builder().name("Modulo 1 FL").Descripcion("Description 1 FL").build(),
+												Module.builder().name("Modulo 2 FL").Descripcion("Description 2 FL").build())
+								).build()
+						)
+				).build()
+				);
+
+
+		/**
+		 * Punto #2 *
+		 */
+		List<String>  moduleList = studentList.stream()
+				 				.flatMap(item -> item.getCourses().stream()
+										.flatMap(item1 -> item1.getModules().stream()
+												.filter(i -> i.getName().length()>3)
+												.map(e -> e.getName().toUpperCase())))
+								.peek(System.out::println)
+								.collect(Collectors.toList());
+		System.out.println("********************************");
+		moduleList.forEach(System.out::println);
+
+		/**
+		 * Punto #3 *
+		 */
+
+		List<String> courseList = studentList.stream()
+									.flatMap(item -> item.getCourses().stream()
+											.filter(i -> i.getModules().size()>2)
+													.map(i->i.getName())
+									).collect(Collectors.toList());
+		courseList.forEach(System.out::println);
+
+		/**
+		 * Punto #4 *
+		 */
+
+		List<String> studentListName = studentList.stream()
+											.map(i->i.getName())
+				                          .peek(System.out::println)
+										  .collect(Collectors.toList());
+
+
 	}
 
 
@@ -242,6 +397,9 @@ public class DemoApplication {
 
 		return Flux.fromIterable(personas)
 				.filter(persona -> persona.getEdad()==edad)
+				.onErrorResume(error->{System.out.println("Error occurred: " + error.getMessage());
+					return Mono.just(Persona.builder().build());
+				})
 				.doOnNext(System.out::println);
 
 	}
@@ -256,6 +414,7 @@ public class DemoApplication {
 	private static Flux<Persona> obtenerPersonasPorSigno(String signo){
 		return Flux.fromIterable(personas)
 				.filter(persona->persona.getSigno().equalsIgnoreCase(signo))
+				.onErrorReturn(Persona.builder().build())
 				.doOnNext(System.out::println);
 	}
 
@@ -272,6 +431,7 @@ public class DemoApplication {
 
 		return Flux.fromIterable(personas)
 				.filter(persona -> persona.getTelefono().equalsIgnoreCase(telefono))
+				.doOnError(error->{System.err.println("An error occurred: "+ error.getMessage());})
 				.singleOrEmpty();
 	}
 
@@ -288,7 +448,10 @@ public class DemoApplication {
 		return Mono.fromCallable(()->{
 			personaList.add(persona);
 			return persona;
-		}).doOnNext(p -> System.out.println("Persona a agregar: " + p));
+		}).doOnNext(p -> System.out.println("Persona a agregar: " + p))
+				.onErrorResume(throwable -> {System.out.println("Error occurred adding person: "+throwable.getMessage());
+				return Mono.just(persona);
+				});
 	}
 
 	//
@@ -306,6 +469,7 @@ public class DemoApplication {
 			boolean removed = personaList.remove(persona);
 			return removed? persona:null;
 		}).filter(personaEliminada -> personaEliminada!=null)
+				.onErrorReturn(persona)
 				.doOnNext(p->System.out.println("Persona eliminada de la lista: " + p));
 
 	}
