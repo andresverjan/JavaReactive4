@@ -46,15 +46,12 @@ public class Main {
         });
 
         // 3. Haciendo uso del FlatMap, listar todos los cursos del listado de estudiantes que tengan mas de  2 modulos.
-        System.out.println("\nCursos con más de 2 módulos por estudiante:");
-        students.forEach(student -> {
-            List<String> cursosConMasDeDosModulos = student.getCourses().stream()
-                    .filter(course -> course.getModules().size() > 2)
-                    .map(Course::getName)
-                    .collect(Collectors.toList());
-            System.out.println("Estudiante: " + student.getName());
-            cursosConMasDeDosModulos.forEach(System.out::println);
-        });
+        System.out.println("\nCursos con más de 2 módulos por estudiante (usando flatMap):");
+        students.stream()
+                .flatMap(student -> student.getCourses().stream()
+                        .filter(course -> course.getModules().size() > 2)
+                        .map(course -> "Estudiante: " + student.getName() + ", Curso: " + course.getName()))
+                .forEach(System.out::println);
 
         // 4. Haciendo uso del Map, listar todos los estudiantes.
         System.out.println("\nNombres de los estudiantes:");
