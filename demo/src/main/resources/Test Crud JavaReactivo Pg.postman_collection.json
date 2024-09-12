@@ -46,6 +46,26 @@
 			"response": []
 		},
 		{
+			"name": "Error al obtener una persona que no existe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personas/999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Crear Persona",
 			"request": {
 				"method": "POST",
@@ -53,6 +73,180 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"name\": \"Lucía García\",\n    \"age\": 28,\n    \"gender\": \"F\",\n    \"dateOfBirth\": \"1995-06-18\",\n    \"bloodType\": \"A+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Nombre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"L\",\n    \"age\": 28,\n    \"gender\": \"F\",\n    \"dateOfBirth\": \"1995-06-18\",\n    \"bloodType\": \"A+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Edad negativa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Lucía García\",\n    \"age\": -28,\n    \"gender\": \"F\",\n    \"dateOfBirth\": \"1995-06-18\",\n    \"bloodType\": \"A+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Edad mayor a 150",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Lucía García\",\n    \"age\": 160,\n    \"gender\": \"F\",\n    \"dateOfBirth\": \"1995-06-18\",\n    \"bloodType\": \"A+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gender (solo “M” o “F”)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Lucía García\",\n    \"age\": 28,\n    \"gender\": \"F\",\n    \"dateOfBirth\": \"1995-06-18\",\n    \"bloodType\": \"X+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dateOfBirth (debe ser una fecha pasada)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Lucía García\",\n    \"age\": 28,\n    \"gender\": \"F\",\n    \"dateOfBirth\": \"2050-06-18\",\n    \"bloodType\": \"A+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tipo de sangre no válido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Lucía García\",\n    \"age\": 28,\n    \"gender\": \"F\",\n    \"dateOfBirth\": \"1995-06-18\",\n    \"bloodType\": \"X+\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,6 +299,36 @@
 			"response": []
 		},
 		{
+			"name": "Error al actualizar una persona que no existe",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Pedro Gonzalez\",\n    \"age\": 30,\n    \"gender\": \"M\",\n    \"dateOfBirth\": \"1994-02-14\",\n    \"bloodType\": \"A+\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/update/999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"update",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Delete by ID",
 			"request": {
 				"method": "DELETE",
@@ -120,6 +344,27 @@
 						"personas",
 						"delete",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error al eliminar una persona que no existe",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personas/delete/999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"delete",
+						"999"
 					]
 				}
 			},

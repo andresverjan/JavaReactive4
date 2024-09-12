@@ -2,6 +2,8 @@ package com.example.demo.controler;
 
 import com.example.demo.model.Persona;
 import com.example.demo.service.PersonaService;
+import jakarta.validation.Valid;
+import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,17 +29,21 @@ public class PersonaController {
     }
 
     @PostMapping("/create")
-    public Mono<Persona> createPersona(@RequestBody Persona persona) {
+    public Mono<Persona> createPersona(@Valid @RequestBody Persona persona) {
         return service.createPersona(persona);
     }
 
     @PutMapping("/update/{id}")
     public Mono<Persona> updatePersona(@PathVariable Long id, @RequestBody Persona persona) {
-        return service.updatePersona(id, persona);
+        return service.getPersonaById(id)
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException("Persona no encontrada con el ID: " + id)))
+                .flatMap(existingPersona -> service.updatePersona(id, persona));
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public Mono<Void> deletePersona(@PathVariable Long id) {
-        return service.deletePersona(id);
+        return service.getPersonaById(id)
+                .switchIfEmpty(Mono.error(new ResourceNotFoundException("Persona no encontrada con el ID: " + id)))
+                .flatMap(persona -> service.deletePersona(id));
     }
 }

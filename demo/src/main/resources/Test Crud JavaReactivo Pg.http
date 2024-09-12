@@ -1,0 +1,138 @@
+# Test Crud JavaReactivo Pg
+
+###
+# @name Listado Total
+GET http://localhost:8080/personas
+
+###
+# @name Buscar por ID
+GET http://localhost:8080/personas/1
+
+###
+# @name Error al obtener una persona que no existe
+GET http://localhost:8080/personas/999
+
+###
+# @name Crear Persona
+POST http://localhost:8080/personas/create
+Content-Type: application/json
+
+{
+  "name": "Lucía García",
+  "age": 28,
+  "gender": "F",
+  "dateOfBirth": "1995-06-18",
+  "bloodType": "A+"
+}
+
+###
+# @name Test Nombre
+POST http://localhost:8080/personas/create
+Content-Type: application/json
+
+{
+  "name": "L",
+  "age": 28,
+  "gender": "F",
+  "dateOfBirth": "1995-06-18",
+  "bloodType": "A+"
+}
+
+###
+# @name Test Edad negativa
+POST http://localhost:8080/personas/create
+Content-Type: application/json
+
+{
+  "name": "Lucía García",
+  "age": -28,
+  "gender": "F",
+  "dateOfBirth": "1995-06-18",
+  "bloodType": "A+"
+}
+
+###
+# @name Test Edad mayor a 150
+POST http://localhost:8080/personas/create
+Content-Type: application/json
+
+{
+  "name": "Lucía García",
+  "age": 160,
+  "gender": "F",
+  "dateOfBirth": "1995-06-18",
+  "bloodType": "A+"
+}
+
+###
+# @name gender (solo “M” o “F”)
+POST http://localhost:8080/personas/create
+Content-Type: application/json
+
+{
+  "name": "Lucía García",
+  "age": 28,
+  "gender": "F",
+  "dateOfBirth": "1995-06-18",
+  "bloodType": "X+"
+}
+
+###
+# @name dateOfBirth (debe ser una fecha pasada)
+POST http://localhost:8080/personas/create
+Content-Type: application/json
+
+{
+  "name": "Lucía García",
+  "age": 28,
+  "gender": "F",
+  "dateOfBirth": "2050-06-18",
+  "bloodType": "A+"
+}
+
+###
+# @name Tipo de sangre no válido
+POST http://localhost:8080/personas/create
+Content-Type: application/json
+
+{
+  "name": "Lucía García",
+  "age": 28,
+  "gender": "F",
+  "dateOfBirth": "1995-06-18",
+  "bloodType": "X+"
+}
+
+###
+# @name Update ID
+PUT http://localhost:8080/personas/update/1
+Content-Type: application/json
+
+{
+  "name": "Pedro Gonzalez",
+  "age": 30,
+  "gender": "M",
+  "dateOfBirth": "1994-02-14",
+  "bloodType": "A+"
+}
+
+###
+# @name Error al actualizar una persona que no existe
+PUT http://localhost:8080/personas/update/999
+Content-Type: application/json
+
+{
+  "name": "Pedro Gonzalez",
+  "age": 30,
+  "gender": "M",
+  "dateOfBirth": "1994-02-14",
+  "bloodType": "A+"
+}
+
+###
+# @name Delete by ID
+DELETE http://localhost:8080/personas/delete/1
+
+###
+# @name Error al eliminar una persona que no existe
+DELETE http://localhost:8080/personas/delete/999
