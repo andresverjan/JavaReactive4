@@ -2,11 +2,9 @@ package org.example;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MonoFluxEjercicio {
@@ -20,10 +18,10 @@ public class MonoFluxEjercicio {
         monoaleatorio.subscribe(
                 element-> {
                     System.out.println("Monoaleatorio subscribe1 elemento recibido: " + element);
-                    if (element<=10){
-                        System.out.println("numero menor o igual a 10");
-                    }else {
+                    if (element> 10 && element <= 20){
                         System.out.println(element+" raiz cuadrada: "+Math.sqrt(element));
+                    }else {
+                        System.out.println("numero no esta en el rango mayor de 10 y menor a 20");
                     }
                 },
                 error-> System.out.println("Error: "+error.getMessage()),
@@ -76,5 +74,16 @@ public class MonoFluxEjercicio {
                 () -> System.out.println("Flex Subscribe 2 complete")
         );
 
+        // Crear un Mono que emite el valor actual del sistema cuando se suscribe
+        //Mono.fromCallable(() -> UUID.randomUUID().toString())
+                //.subscribeOn(Schedulers.boundedElastic());
+
+
+        //Mono<String> deferMono2 = Mono.fromCallable(()->);
+
+
+
+
     }
+
 }

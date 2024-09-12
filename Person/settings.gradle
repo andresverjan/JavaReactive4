@@ -1,0 +1,9 @@
+pluginManagement {
+    repositories {
+        //mavenLocal()
+        //maven { url '...' }
+        gradlePluginPortal()
+        maven { url "https://artifactory.apps.bancolombia.com/maven-bancolombia" }
+    }
+}
+rootProject.name = 'Person'
