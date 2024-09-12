@@ -1,11 +1,11 @@
 package reactor.controller;
 
-import com.reactorproject.bancolombiacurso.model.PersonEntity;
-import com.reactorproject.bancolombiacurso.service.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.model.PersonEntity;
+import reactor.service.PersonService;
 
 @RestController
 @RequestMapping("/personas")

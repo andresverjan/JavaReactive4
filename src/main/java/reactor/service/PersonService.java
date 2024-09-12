@@ -1,11 +1,11 @@
 package reactor.service;
 
-import com.reactorproject.bancolombiacurso.model.PersonEntity;
-import com.reactorproject.bancolombiacurso.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.model.PersonEntity;
+import reactor.repository.PersonRepository;
 
 @Service
 @AllArgsConstructor
