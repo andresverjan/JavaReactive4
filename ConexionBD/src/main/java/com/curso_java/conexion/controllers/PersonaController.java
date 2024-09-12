@@ -23,4 +23,19 @@ public class PersonaController {
     public Flux<Persona> getAllPersonas() {
         return service.getAllPersonas();
     }
+
+    @PostMapping("/create")
+    public Mono<Persona> createPersona(@RequestBody Persona persona) {
+        return service.createPersona(persona);
+    }
+
+    @PutMapping("/update/{id}")
+    public Mono<Persona> updatePersona(@PathVariable Long id, @RequestBody Persona persona) {
+        return service.updatePersona(id, persona);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public Mono<Void> deletePersona(@PathVariable Long id) {
+        return service.deletePersona(id);
+    }
 }

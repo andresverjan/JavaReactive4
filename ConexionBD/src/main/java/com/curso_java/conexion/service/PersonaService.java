@@ -20,4 +20,25 @@ public class PersonaService {
     public Flux<Persona> getAllPersonas() {
         return repository.findAll();
     }
+
+    public Mono<Persona> createPersona(Persona persona) {
+        return repository.save(persona);
+    }
+
+    public Mono<Persona> updatePersona(Long id, Persona persona) {
+
+        return repository.findById(id)
+                .flatMap(personaActualizar -> {
+                    personaActualizar.setName(persona.getName());
+                    personaActualizar.setAge(persona.getAge());
+                    personaActualizar.setGender(persona.getGender());
+                    personaActualizar.setDateOfBirth(persona.getDateOfBirth());
+                    personaActualizar.setBloodType(persona.getBloodType());
+                    return repository.save(personaActualizar);
+                });
+    }
+
+    public Mono<Void> deletePersona(Long id) {
+        return repository.deleteById(id);
+    }
 }
