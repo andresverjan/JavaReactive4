@@ -21,8 +21,8 @@ public class PersonService {
 
     public Mono<Person> getPersonById(Long id) {
         return personRepository.findById(id)
-                .switchIfEmpty(Mono.error(new PersonNotFoundException("Persona no encontrada con id:" + id)))
-                .onErrorResume(e -> Mono.error(new CustomServiceException("Service error")));
+                .switchIfEmpty(Mono.error(new PersonNotFoundException("Person Not Found:" + id)))
+                .onErrorResume(e -> Mono.error(new CustomServiceException("Error.....")));
     }
 
     public Mono<Person> createPerson(Person person) {
@@ -31,7 +31,7 @@ public class PersonService {
 
     public Mono<Person> updatePerson(Long id, Person updatedPerson) {
         return personRepository.findById(id)
-                .switchIfEmpty(Mono.error(new PersonNotFoundException("Persona no encontrada con id: " + id)))
+                .switchIfEmpty(Mono.error(new PersonNotFoundException("Person Not Found: " + id)))
                 .flatMap(existingPerson -> {
                     existingPerson.setName(updatedPerson.getName());
                     existingPerson.setAge(updatedPerson.getAge());
@@ -40,7 +40,7 @@ public class PersonService {
                     existingPerson.setBloodType(updatedPerson.getBloodType());
                     return personRepository.save(existingPerson);
                 })
-                .onErrorResume(e -> Mono.error(new CustomServiceException("Error actualizando persona")));
+                .onErrorResume(e -> Mono.error(new CustomServiceException("Error updating person")));
     }
 
     public Mono<Void> deletePerson(Long id) {
