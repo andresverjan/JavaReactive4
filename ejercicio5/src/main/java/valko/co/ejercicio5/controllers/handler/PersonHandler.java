@@ -21,7 +21,7 @@ public class PersonHandler {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(personService.listAllPersons(), Person.class)
                 .switchIfEmpty(ServerResponse.notFound().build())
-                .doOnSuccess(response -> System.out.println("Listado con exito: " + response));
+                .doOnSuccess(response -> System.out.println("Listado con exito"));
     }
 
     public Mono<ServerResponse> retrievePersonById(ServerRequest serverRequest) {
@@ -33,7 +33,7 @@ public class PersonHandler {
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(person))
                 .switchIfEmpty(ServerResponse.notFound().build())
-                .doOnSuccess(response -> System.out.println("Encontrado con exito: " + response));
+                .doOnSuccess(response -> System.out.println("Encontrado con exito"));
     }
 
     public Mono<ServerResponse> savePerson(ServerRequest serverRequest) {
@@ -43,7 +43,7 @@ public class PersonHandler {
                 .flatMap(person -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(person))
-                .doOnSuccess(response -> System.out.println("Salvado con exito: " + response));
+                .doOnSuccess(response -> System.out.println("Salvado con exito"));
     }
 
 
@@ -57,7 +57,7 @@ public class PersonHandler {
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(updatedPerson))
                 .switchIfEmpty(ServerResponse.notFound().build())
-                .doOnSuccess(response -> System.out.println("Actualizado con exito: " + response));
+                .doOnSuccess(response -> System.out.println("Actualizado con exito"));
     }
 
 
@@ -67,6 +67,6 @@ public class PersonHandler {
 
         return personService.deletePersonById(personId)
                 .then(ServerResponse.noContent().build())
-                .doOnSuccess(response -> System.out.println("Eliminado con exito: " + response));
+                .doOnSuccess(response -> System.out.println("Eliminado con exito"));
     }
 }
