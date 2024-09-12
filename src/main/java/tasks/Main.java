@@ -1,3 +1,5 @@
+package tasks;
+
 public class Main {
     public static void main(String[] args) {
         PersonaOne personaOne = new PersonaOne("Juan", "Pérez");

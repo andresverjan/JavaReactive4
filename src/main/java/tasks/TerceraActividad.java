@@ -1,3 +1,5 @@
+package tasks;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -30,7 +32,7 @@ public class TerceraActividad {
 
         personasFlux.filter(persona -> persona.getEdad() > 30)
                 .map(Persona::getNombre)
-                .subscribe(nombre -> System.out.println("Persona mayor de 30 años: " + nombre + "\n"));
+                .subscribe(nombre -> System.out.println("tasks.Persona mayor de 30 años: " + nombre + "\n"));
 
         Mono<Persona> primeraPersona = personasFlux.next();
         primeraPersona.flatMap(persona -> {
@@ -43,15 +45,15 @@ public class TerceraActividad {
                 .doOnNext(entry -> System.out.println("Signo: " + entry.getKey() + ", Cantidad: " + entry.getValue() + "\n"))
                 .subscribe();
 
-        obtenerPersonasPorEdad(32).subscribe(persona -> System.out.println("Persona con 32 años: " + persona.getNombre() + "\n"));
+        obtenerPersonasPorEdad(32).subscribe(persona -> System.out.println("tasks.Persona con 32 años: " + persona.getNombre() + "\n"));
 
-        obtenerPersonasPorSigno("Virgo").subscribe(persona -> System.out.println("Persona con signo Virgo: " + persona.getNombre() + "\n"));
+        obtenerPersonasPorSigno("Virgo").subscribe(persona -> System.out.println("tasks.Persona con signo Virgo: " + persona.getNombre() + "\n"));
 
-        obtenerPersonaPorTelefono("123456789").subscribe(persona -> System.out.println("Persona con tel\u00E9fono 123456789: " + persona.getNombre() + "\n"));
+        obtenerPersonaPorTelefono("123456789").subscribe(persona -> System.out.println("tasks.Persona con tel\u00E9fono 123456789: " + persona.getNombre() + "\n"));
 
-        agregarPersona(new Persona("Nuevo", "Usuario", "123123123", 30, "Aries")).subscribe(persona -> System.out.println("Persona agregada: " + persona.getNombre() + "\n"));
+        agregarPersona(new Persona("Nuevo", "Usuario", "123123123", 30, "Aries")).subscribe(persona -> System.out.println("tasks.Persona agregada: " + persona.getNombre() + "\n"));
 
-        eliminarPersona(personas.get(0)).subscribe(persona -> System.out.println("Persona eliminada: " + persona.getNombre() + "\n"));
+        eliminarPersona(personas.get(0)).subscribe(persona -> System.out.println("tasks.Persona eliminada: " + persona.getNombre() + "\n"));
     }
 
     private static Flux<Persona> obtenerPersonasPorEdad(int edad) {

@@ -1,3 +1,5 @@
+package tasks;
+
 class PersonaOne {
     private String nombre;
     private String apellidos;
@@ -17,6 +19,6 @@ class PersonaOne {
 
     @Override
     public String toString() {
-        return "Persona{nombre='" + nombre + "', apellidos='" + apellidos + "'}";
+        return "tasks.Persona{nombre='" + nombre + "', apellidos='" + apellidos + "'}";
     }
 }
