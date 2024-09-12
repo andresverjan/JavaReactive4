@@ -1,16 +1,19 @@
 
+m	java:S106"+Replace this use of System.out by a logger.(€ôË8÷‹¬Ï2J$7f527efd-a50c-4143-b62c-7fbeedcbe86a
 m
-java:S2201"*The return value of "toList" must be used.(õŞ²ü8ô‹¬Ï2J$e7c1db0e-672a-436e-b500-7435d6366152
+java:S2201"*The return value of "toList" must be used.(õŞ²ü8ô‹¬Ï2J$0e63d938-189a-4e88-8359-c0202e6799fe
 d
-java:S3864"!Remove this use of "Stream.peek".(ßˆ±ö8õ‹¬Ï2J$f800497a-4a15-4908-a0ef-69e81c1a7b8e
-m	java:S106"+Replace this use of System.out by a logger.(ßˆ±ö8÷‹¬Ï2J$d7248d9a-a86c-44eb-9d1f-9116d7f9464c
+java:S3864"!Remove this use of "Stream.peek".(ßˆ±ö8õ‹¬Ï2J$1cd12cf9-f859-4cc8-a9a6-f503932d7f82
+m	java:S106"+Replace this use of System.out by a logger.(ßˆ±ö8Áœ±Ï2J$5e0c2fa5-41cc-457c-8fc1-6b0ebaadf19f
+m	java:S106"+Replace this use of System.out by a logger.(£ŞâŒ8ô½²Ï2J$e9209b57-92e7-4a3d-8985-32280a812197
 m
-java:S2201"*The return value of "toList" must be used.(õŞ²ü8Áœ±Ï2J$becc96b3-e4be-47d6-b167-b4a4e6296ab5
+java:S2201"*The return value of "toList" must be used.(õŞ²ü8Áœ±Ï2J$bb3d330f-82ca-4178-965b-c0a130e5fcd9
 i
-java:S3864"!Remove this use of "Stream.peek".(½Šëšúÿÿÿÿ8ô½²Ï2J$7d2b5760-a583-4560-a311-698641254c6f
-r	java:S106"+Replace this use of System.out by a logger.(½Šëšúÿÿÿÿ8Áœ±Ï2J$1f5b0c88-07df-4f76-8045-3f7b1e8407c9
+java:S3864"!Remove this use of "Stream.peek".(½Šëšúÿÿÿÿ8ô½²Ï2J$172267f6-402f-4e53-a8f5-801ea2b55a15
+r	java:S106"+Replace this use of System.out by a logger.(½Šëšúÿÿÿÿ8ûòŞ2J$d40e229c-0899-413b-a3be-06c4bdee1e31
+r	java:S106"+Replace this use of System.out by a logger.(ßÍ¾¦şÿÿÿÿ8°˜ôŞ2J$1c36fde4-14a5-497f-bc01-885e66438356
 m
-java:S2201 "*The return value of "toList" must be used.(õŞ²ü8Û­´Ï2J$99151a0f-2da7-4dd5-8302-0e4ac53abdb5
+java:S2201#"*The return value of "toList" must be used.(õŞ²ü8Û­´Ï2J$21764c3a-6b87-402a-a131-d044952c275e
 d
-java:S3864"!Remove this use of "Stream.peek".(ßˆ±ö8Û­´Ï2J$0a0013ba-c3eb-422d-9e29-2f85ab48c77f
-m	java:S106"+Replace this use of System.out by a logger.(ßˆ±ö8ô½²Ï2J$46e01eec-9e4f-49be-b60f-a4f55eaa290f
+java:S3864""!Remove this use of "Stream.peek".(ßˆ±ö8Û­´Ï2J$f6de67a0-193f-4bd8-b47a-36437b7327b7
+G	java:S106""+Replace this use of System.out by a logger.(ßˆ±ö8êÅôŞ2

@@ -10,6 +10,7 @@ public class Main {
 
 //        2. Haciendo uso del FlatMap, listar todos los modulos del listado de estudiantes
 //        que tengan en su nombre una longitud mayor a 3 y retornar la propiedad name en Mayuscula.
+        System.out.println("Listado de modulos con nombre mayor a 3 caracteres y en mayuscula");
         students.stream()
                 .flatMap(student -> student.getCourses().stream())
                 .flatMap(course -> course.getModules().stream())
@@ -19,6 +20,7 @@ public class Main {
                 .toList();
 
 //        3. Haciendo uso del FlatMap, listar todos los cursos del listado de estudiantes que tengan mas de  2 modulos.
+        System.out.println("Listado de cursos con mas de 2 modulos");
         students.stream()
                 .flatMap(student -> student.getCourses().stream())
                 .filter(course -> course.getModules().size() > 2)
@@ -26,6 +28,7 @@ public class Main {
                 .toList();
 
 //        4. Haciendo uso del Map, listar todos los estudiantes.
+        System.out.println("Listado de estudiantes");
         students.stream()
                 .map(Student::getName)
                 .peek(System.out::println)
