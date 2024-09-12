@@ -32,7 +32,7 @@ public class PersonHandler {
                 .flatMap(person -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .bodyValue(person))
-                .switchIfEmpty(ServerResponse.notFound().build())
+                .onErrorResume(error -> ServerResponse.notFound().build())
                 .doOnSuccess(response -> System.out.println("Encontrado con exito"));
     }
 
