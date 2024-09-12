@@ -32,15 +32,15 @@ public class PersonService {
     public Mono<Person> updatePerson(Long id, Person updatedPerson) {
         return personRepository.findById(id)
                 .switchIfEmpty(Mono.error(new PersonNotFoundException("Person Not Found: " + id)))
-                .flatMap(existingPerson -> {
-                    existingPerson.setName(updatedPerson.getName());
-                    existingPerson.setAge(updatedPerson.getAge());
-                    existingPerson.setGender(updatedPerson.getGender());
-                    existingPerson.setDateOfBirth(updatedPerson.getDateOfBirth());
-                    existingPerson.setBloodType(updatedPerson.getBloodType());
-                    return personRepository.save(existingPerson);
+                .flatMap(person -> {
+                    person.setName(updatedPerson.getName());
+                    person.setAge(updatedPerson.getAge());
+                    person.setGender(updatedPerson.getGender());
+                    person.setDateOfBirth(updatedPerson.getDateOfBirth());
+                    person.setBloodType(updatedPerson.getBloodType());
+                    return personRepository.save(person);
                 })
-                .onErrorResume(e -> Mono.error(new CustomServiceException("Error updating person")));
+                .onErrorResume(e -> Mono.error(new CustomServiceException("Error updating person into BD")));
     }
 
     public Mono<Void> deletePerson(Long id) {
