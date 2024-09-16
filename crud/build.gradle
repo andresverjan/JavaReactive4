@@ -1,0 +1,37 @@
+buildscript {
+    ext {
+        springBootVersion = '3.2.5'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+}
+
+repositories {
+    maven { url 'https://artifactory.apps.bancolombia.com/maven-bancolombia' }
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.apache.kafka:kafka-streams'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'org.postgresql:r2dbc-postgresql'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+    implementation 'io.projectreactor:reactor-test:3.6.8'
+}
+
+test {
+    useJUnitPlatform()
+}

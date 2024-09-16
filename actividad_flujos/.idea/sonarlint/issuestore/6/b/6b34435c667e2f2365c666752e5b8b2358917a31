@@ -1,0 +1,41 @@
+
+
+java:S1192"GDefine a constant instead of duplicating this literal "curso2" 3 times.(Íéêúÿÿÿÿ8…Ê½Ìœ2J$398ae879-fc24-46c5-b57b-230a1a14b63d
+Š
+java:S1192"GDefine a constant instead of duplicating this literal "curso3" 3 times.(÷å›¢8†Ê½Ìœ2J$3efa8d64-b5bb-491a-9ff5-cc7cb0e1b2e3
+
+java:S1192"HDefine a constant instead of duplicating this literal "modulo1" 8 times.(½É½îøÿÿÿÿ8†Ê½Ìœ2J$aab64a1f-0f1d-4a06-848c-55f51baa728f
+
+java:S1192"GDefine a constant instead of duplicating this literal "curso1" 3 times.(’¸ùÿÿÿÿ8†Ê½Ìœ2J$ed12f132-3164-4a22-a1ce-d45663855da6
+
+java:S1192"HDefine a constant instead of duplicating this literal "modulo2" 7 times.(âş­ÿÿÿÿÿ8†Ê½Ìœ2J$455d5a63-450d-4866-9c79-8ae1e491e5cc
+“
+java:S1192"KDefine a constant instead of duplicating this literal "ewapjwaep" 13 times.(âş­ÿÿÿÿÿ8‡Ê½Ìœ2J$fb921906-0427-436c-99f8-fad1b0ca7a29
+˜
+java:S1192"PDefine a constant instead of duplicating this literal "aaaajsdajdaljda" 9 times.(½É½îøÿÿÿÿ8‡Ê½Ìœ2J$ba92dcbf-f81a-4ddd-bcf0-62726d879db7
+r	java:S1063"+Replace this use of System.out by a logger.(Ğ¨÷¯ıÿÿÿÿ8™Ê½Ìœ2J$c8fb8b73-dea6-4ea1-90b0-a214060b1df4
+m
+java:S2201:"*The return value of "toList" must be used.(õŞ²ü8šÊ½Ìœ2J$2df95636-45e5-4031-bf5b-35dae6c5c362
+d
+java:S38649"!Remove this use of "Stream.peek".(ßˆ±ö8›Ê½Ìœ2J$139919a6-4b4e-408f-9fda-c2b318de5ef6
+m	java:S1069"+Replace this use of System.out by a logger.(ßˆ±ö8Ê½Ìœ2J$dc1cc62e-7d08-4ea9-8b2a-d4ceb9d24067
+m	java:S106<"+Replace this use of System.out by a logger.(—ä¦Û8Ê½Ìœ2J$51e7bae2-e87a-4152-8a6c-68422ac2ee0f
+m
+java:S2201C"*The return value of "toList" must be used.(õŞ²ü8Ê½Ìœ2J$5b93deff-80ca-46c7-a160-f1cd56b7c0dd
+d
+java:S3864B"!Remove this use of "Stream.peek".(ßˆ±ö8Ê½Ìœ2J$03fd7f1b-2efc-44a7-96b6-6cd6ce3caad9
+}
+java:S1612A";Replace this lambda with method reference 'Curso::getName'.(Î£´\8 Ê½Ìœ2J$23082004-eaf5-44d0-9893-668702405343
+m	java:S106B"+Replace this use of System.out by a logger.(ßˆ±ö8 Ê½Ìœ2J$5b2088e5-7ed4-4856-b718-52d5a912da16
+m	java:S106E"+Replace this use of System.out by a logger.(û¹İâ8¡Ê½Ìœ2J$b884440f-c3ab-4a7e-96be-9588607de847
+m
+java:S2201I"*The return value of "toList" must be used.(õŞ²ü8 Ê½Ìœ2J$d93b76d1-750b-4b79-bf92-7179a88a8104
+d
+java:S3864H"!Remove this use of "Stream.peek".(ßˆ±ö8¡Ê½Ìœ2J$49c54c6d-d5ec-4be9-a339-4e7d0cb9cc6a
+ˆ
+java:S1612G"@Replace this lambda with method reference 'Estudiante::getName'.(îêèÄşÿÿÿÿ8¡Ê½Ìœ2J$12e10201-f242-4585-b7a8-4ca0f0b9cf01
+m	java:S106H"+Replace this use of System.out by a logger.(ßˆ±ö8Şï¾Ìœ2J$1eb44198-99ee-4462-a9f6-9aa4ba707558
+Z
+java:S1128"8Remove this unused import 'reactor.core.publisher.Flux'.(·äÍÆøÿÿÿÿ8¬¢ÕŞ2
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8®¢ÕŞ2
