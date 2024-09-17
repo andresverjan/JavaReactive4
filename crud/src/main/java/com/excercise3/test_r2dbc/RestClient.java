@@ -17,6 +17,7 @@ public class RestClient {
     }
     @GetMapping("/{id}")
     public Mono<Clases> getClass(@PathVariable Long id){
+        System.out.println(id);
         return connectionDb.findById(id);
     }
     @GetMapping("/all")
