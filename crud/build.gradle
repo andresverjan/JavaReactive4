@@ -30,6 +30,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     implementation 'io.projectreactor:reactor-test:3.6.8'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 test {
