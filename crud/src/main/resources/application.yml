@@ -1,0 +1,14 @@
+spring:
+    r2dbc:
+        url: r2dbc:postgresql://localhost:5432/reactive
+        username: postgres
+        password: 1234
+    application:
+        name: crud
+    sql:
+        init:
+            mode: always
+
+logging:
+    level:
+        org.springframework.r2dbc: DEBUG
