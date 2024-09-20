@@ -35,13 +35,13 @@ public class ProductController {
         return service.getAllProducts();
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping("/nombre/{name}")
     public Mono<Product> getProductByName(@PathVariable String name) {
         return service.getProductByName(name)
                 .switchIfEmpty(Mono.error(new NullPointerException(NOT_FOUND_MESSAGE)));
     }
 
-    @PostMapping("/create")
+    @PostMapping("/crear")
     public Mono<Product> createProduct(@RequestBody Product p) {
         return service.addProduct(p);
     }
