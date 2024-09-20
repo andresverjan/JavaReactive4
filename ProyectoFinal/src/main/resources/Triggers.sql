@@ -40,3 +40,33 @@ CREATE TRIGGER trigger_generar_orden_venta_id
 BEFORE INSERT ON tienda.OrdenesVentas
 FOR EACH ROW
 EXECUTE FUNCTION tienda.generar_orden_venta_id();
+
+
+
+CREATE OR REPLACE FUNCTION tienda.generar_orden_compra_id()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.id := 'OC_' || nextval('tienda.orden_compra_seq');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_generar_orden_compra_id
+BEFORE INSERT ON tienda.OrdenesCompras
+FOR EACH ROW
+EXECUTE FUNCTION tienda.generar_orden_compra_id();
+
+
+
+CREATE OR REPLACE FUNCTION tienda.generar_empresa_id()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.id := 'EM_' || nextval('tienda.empresa_seq');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_generar_empresa_id
+BEFORE INSERT ON tienda.Empresas
+FOR EACH ROW
+EXECUTE FUNCTION tienda.generar_empresa_id();
