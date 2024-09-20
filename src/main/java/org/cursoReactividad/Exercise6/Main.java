@@ -11,8 +11,8 @@ public class Main {
         List<Student> studentList = Arrays.asList(new Student("Nicolas", Arrays.asList(new Course("Matematicas",
                 Arrays.asList(new Module("Geometria", "descripcion"), new Module("Estadistica", "descripcion")
                         , new Module("Algebra", "descripcion"))))), new Student("Pepito",
-                Arrays.asList(new Course("Ciencias Naturales", Arrays.asList(new Module("Biologia", "descripcion"), new Module("Quimica", "descripcion"),
-                        new Module("Fisica", "descripcion"))))), new Student("Maria", Arrays.asList(new Course("Ingles", Arrays.asList(new Module("Reading", "descripcion"),
+                List.of(new Course("Ciencias Naturales", Arrays.asList(new Module("Biologia", "descripcion"), new Module("Quimica", "descripcion"),
+                        new Module("Fisica", "descripcion"))))), new Student("Maria", List.of(new Course("Ingles", Arrays.asList(new Module("Reading", "descripcion"),
                 new Module("Grammar", "descripcion"), new Module("Listening", "descripcion"))))));
         System.out.println("-----------------------------");
         System.out.println("EJERCICIO 2");
