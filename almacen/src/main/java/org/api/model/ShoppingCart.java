@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+import reactor.core.publisher.Mono;
 
 import java.util.Map;
 
@@ -21,16 +22,12 @@ public class ShoppingCart {
     @Column("items")
     private Map<Long, Integer> items;
     @Column("total")
-    private Double total;
-    @Column("orden_compra")
-    private Map<String, String> ordenCompra;
+    @Builder.Default
+    private Double total = 0.0;
 
-
-
-
-
-    public void agregarProducto(Long productoId, int cantidad) {
+    public Mono<Object> agregarProducto(Long productoId, int cantidad) {
         items.put(productoId, items.getOrDefault(productoId, 0) + cantidad);
+        return null;
     }
 
     public void eliminarProducto(Long productoId) {
@@ -38,17 +35,16 @@ public class ShoppingCart {
     }
 
     public void actualizarCantidad(Long productoId, Integer cantidad) {
+        if(items.containsKey(productoId)){
         if (cantidad <= 0) {
             eliminarProducto(productoId);
         } else {
             items.put(productoId, cantidad);
-        }
+        }}
     }
 
     public void vaciar() {
         items.clear();
     }
-
-
 
 }

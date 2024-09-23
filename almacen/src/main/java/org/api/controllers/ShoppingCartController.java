@@ -1,5 +1,6 @@
 package org.api.controllers;
 
+import org.api.model.Product;
 import org.api.model.ShoppingCart;
 import org.api.service.ProductService;
 import org.api.service.ShoppingCartService;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/carro")
 public class ShoppingCartController {
@@ -27,13 +30,14 @@ public class ShoppingCartController {
 
 
     @PostMapping("/{userId}/agregar")
-    public Mono<ShoppingCart> agregarAlCarrito(@PathVariable String userId, @RequestParam Long productoId, @RequestParam int cantidad) {
+    public Mono<Map<Long, Integer>> agregarAlCarrito(@PathVariable String userId, @RequestParam Long productoId, @RequestParam int cantidad) {
         return service.agregarAlCarrito(userId, productoId, cantidad);
     }
 
     @GetMapping("/{userId}")
     public Mono<ShoppingCart> obtenerContenidoCarrito(@PathVariable String userId) {
-        return service.obtenerContenidoCarrito(userId);
+        return service.obtenerContenidoCarrito(userId)
+                .switchIfEmpty(Mono.error(new NullPointerException("El carrito no existe")));
     }
 
     @DeleteMapping("/{userId}/eliminar/{productoId}")
@@ -51,9 +55,9 @@ public class ShoppingCartController {
         return service.vaciarCarrito(userId);
     }
 
-    @GetMapping("/{userId}/total")
+    /*@GetMapping("/{userId}/total")
     public Mono<Double> calcularTotal(@PathVariable String userId) {
-        return service.calcularTotal(userId);
-    }
+        return service.devolverTotal(userId);
+    }*/
 
 }
