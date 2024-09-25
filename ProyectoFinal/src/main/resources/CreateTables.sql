@@ -1,6 +1,6 @@
 CREATE SCHEMA tienda AUTHORIZATION root;
 
-CREATE TABLE tienda.Usuarios (
+CREATE TABLE tienda.Usuario (
     id VARCHAR(15) PRIMARY KEY, -- Campo id ingresado manualmente por cada usuario (número de cédula)
     nombre VARCHAR(255) NOT NULL, -- Nombre completo del usuario
     email VARCHAR(255) UNIQUE NOT NULL, -- Email único del usuario
@@ -9,7 +9,7 @@ CREATE TABLE tienda.Usuarios (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha de última actualización
 );
 
-CREATE TABLE tienda.Productos (
+CREATE TABLE tienda.Producto (
     id VARCHAR(10) PRIMARY KEY, -- ID personalizado con el formato PR_1, PR_2, etc.
     nombre VARCHAR(255) NOT NULL, -- Nombre del producto
     precio DECIMAL(10, 2) NOT NULL, -- Precio del producto
@@ -20,14 +20,14 @@ CREATE TABLE tienda.Productos (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha de última actualización
 );
 
-CREATE TABLE tienda.CarritoCompras (
+CREATE TABLE tienda.CarritoCompra (
     id VARCHAR(10) PRIMARY KEY, -- ID personalizado con el formato CA_1, CA_2, etc.
     usuario_id VARCHAR(15) UNIQUE REFERENCES tienda.usuarios(id), -- Relación de uno a uno con el usuario
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Fecha de creación del carrito
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha de última modificación
 );
 
-CREATE TABLE tienda.CarritoProductos (
+CREATE TABLE tienda.CarritoProducto (
     carrito_id VARCHAR(10) REFERENCES tienda.CarritoCompras(id) ON DELETE CASCADE, -- Relación con el carrito
     producto_id VARCHAR(10) REFERENCES tienda.Productos(id), -- Relación con el producto
     cantidad INT NOT NULL, -- Cantidad del producto en el carrito
@@ -36,7 +36,7 @@ CREATE TABLE tienda.CarritoProductos (
     PRIMARY KEY (carrito_id, producto_id) -- Clave primaria compuesta
 );
 
-CREATE TABLE tienda.OrdenesVentas (
+CREATE TABLE tienda.OrdenVenta (
     id VARCHAR(10) PRIMARY KEY, -- ID personalizado con el formato OV_1, OV_2, etc.
     usuario_id VARCHAR(15) REFERENCES tienda.Usuarios(id), -- Relación con el usuario
     total DECIMAL(10, 2) NOT NULL, -- Total de la orden
@@ -45,7 +45,7 @@ CREATE TABLE tienda.OrdenesVentas (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha de última actualización
 );
 
-CREATE TABLE tienda.OrdenesVentasProductos (
+CREATE TABLE tienda.OrdenVentaProducto (
     orden_id VARCHAR(10) REFERENCES tienda.OrdenesVentas(id) ON DELETE CASCADE, -- Relación con la orden
     producto_id VARCHAR(10) REFERENCES tienda.Productos(id), -- Relación con el producto
     cantidad INT NOT NULL, -- Cantidad del producto en la orden
@@ -55,20 +55,20 @@ CREATE TABLE tienda.OrdenesVentasProductos (
     PRIMARY KEY (orden_id, producto_id) -- Clave primaria compuesta
 );
 
-CREATE TABLE tienda.Empresas (
+CREATE TABLE tienda.Empresa (
     id VARCHAR(10) PRIMARY KEY, -- ID personalizado con el formato EM_1, EM_2, etc.
     nombre VARCHAR(255) NOT NULL, -- Nombre de la empresa
     direccion VARCHAR(255), -- Dirección de la empresa
     telefono VARCHAR(20) -- Teléfono de contacto
 );
 
-CREATE TABLE tienda.VendedoresEmpresas (
+CREATE TABLE tienda.VendedorEmpresa (
     vendedor_id VARCHAR(15) REFERENCES tienda.Usuarios(id), -- El vendedor es un usuario
     empresa_id VARCHAR(10) REFERENCES tienda.Empresas(id), -- Empresa para la que trabaja el vendedor
     PRIMARY KEY (vendedor_id, empresa_id) -- Clave primaria compuesta
 );
 
-CREATE TABLE tienda.OrdenesCompras (
+CREATE TABLE tienda.OrdeneCompra (
     id VARCHAR(10) PRIMARY KEY, -- ID personalizado con el formato OC_1, OC_2, etc.
     empresa_id VARCHAR(10) REFERENCES tienda.Empresas(id), -- Relación con la empresa que vende productos
     vendedor_id VARCHAR(15) REFERENCES tienda.Usuarios(id), -- Vendedor que gestionó la compra
