@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Table;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Table("persona")

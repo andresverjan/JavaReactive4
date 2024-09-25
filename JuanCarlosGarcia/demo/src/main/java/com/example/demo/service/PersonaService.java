@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.CustomException;
 import com.example.demo.model.Persona;
 import com.example.demo.repository.PersonaRepository;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class PersonaService {
 
     public Mono<Persona> getPersonaId(Integer id) {
         return personaRepository.findById(id)
-                .switchIfEmpty(Mono.error(new Exception("Persona no encontrada")));
+                .switchIfEmpty(Mono.error(new CustomException("Persona no encontrada")));
     }
 
     public Mono<Persona> save(Persona persona) {
@@ -29,7 +30,7 @@ public class PersonaService {
 
     public Mono<Persona> update(Integer id, Persona persona) {
         return personaRepository.findById(id)
-                .switchIfEmpty(Mono.error(new Exception("Persona no encontrada")))
+                .switchIfEmpty(Mono.error(new CustomException("Persona no encontrada")))
                 .flatMap(existingPersona -> {
                     existingPersona.setPrimerNombre(persona.getPrimerNombre());
                     existingPersona.setSegundoNombre(persona.getSegundoNombre());
@@ -43,7 +44,7 @@ public class PersonaService {
 
     public Mono<String> delete(Integer id) {
         return personaRepository.findById(id)
-                .switchIfEmpty(Mono.error(new Exception("Persona no encontrada")))
+                .switchIfEmpty(Mono.error(new CustomException("Persona no encontrada")))
                 .flatMap(persona -> personaRepository.delete(persona)
                         .then(Mono.just("Persona eliminada con éxito")));
     }
