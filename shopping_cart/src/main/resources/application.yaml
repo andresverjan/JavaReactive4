@@ -1,0 +1,5 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/shopping_cart_api
+    username: usuariocnx
+    password: 123456
