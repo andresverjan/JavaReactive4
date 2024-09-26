@@ -1,7 +1,6 @@
 package com.angel.react.api.shop.service;
 
 import com.angel.react.api.shop.model.ClientEntity;
-import com.angel.react.api.shop.model.PersonEntity;
 import com.angel.react.api.shop.repository.ClientRepository;
 import com.angel.react.api.shop.repository.PersonRepository;
 import lombok.AllArgsConstructor;

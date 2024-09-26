@@ -52,14 +52,4 @@ public class ClientController {
                 .doOnError(e -> System.out.println("error"))
                 .then(Mono.empty());
     }
-
-    // Manejo de excepciones global
-    @ExceptionHandler
-    public Mono<String> handleValidationException(MethodArgumentNotValidException ex) {
-        String errors = ex.getBindingResult().getFieldErrors()
-                .stream()
-                .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                .collect(Collectors.joining(", "));
-        return Mono.just("Errores de validación: " + errors);
-    }
 }

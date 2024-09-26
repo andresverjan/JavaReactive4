@@ -1,9 +1,9 @@
 package com.angel.react.api.shop.repository;
 
-import com.angel.react.api.shop.model.SupplierEntity;
+import com.angel.react.api.shop.model.ProductEntity;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SupplierRepository extends R2dbcRepository<SupplierEntity, Long> {
+public interface ProductRepository extends R2dbcRepository<ProductEntity, Long> {
 }
