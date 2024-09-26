@@ -1,0 +1,32 @@
+En una consola correr
+
+./gradlew build
+./gradlew bootRun --info
+
+
+Sobre la carpeta resources correr
+
+docker-compose up
+
+Para las pruebas en la carpeta resources se tiene la coleccion de postman
+con peticiones correctas y que generan el error controlado.
+
+
+
+
+
+Validar tablas
+
+    docker ps
+    docker exec -it postgres-db /bin/bash
+    psql -U admin -d todolist
+
+    mostrar las tablas
+    \dt
+    consultar tablas de una tabla
+    SELECT * FROM producto;
+
+    salir
+    \q
+    exit
+

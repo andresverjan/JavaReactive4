@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todolist
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d/
+    networks:
+      - mynetwork
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com  # Correo para acceder a pgAdmin
+      PGADMIN_DEFAULT_PASSWORD: admin         # Contraseña para acceder a pgAdmin
+    ports:
+      - "5050:80"  # Exponer pgAdmin en el puerto 5050
+    depends_on:
+      - postgres   # Asegurar que PostgreSQL esté levantado antes de iniciar pgAdmin
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  postgres-data:
