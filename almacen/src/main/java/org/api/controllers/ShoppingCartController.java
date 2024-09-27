@@ -23,10 +23,6 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService service;
 
-    @Autowired
-    private ProductService productService;
-
-
     @PostMapping("/{userId}/agregar")
     public Mono<Product> agregarAlCarrito(@PathVariable String userId, @RequestParam Long productoId, @RequestParam int cantidad) {
         return service.getProductById(userId, productoId, cantidad);
