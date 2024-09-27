@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,7 @@ public class VentaService {
     private OrdenProductoRepository ordenProductoRepository;
 
     public Mono<OrdenVenta> crearOrden(OrdenVenta orden) {
+        orden.setCreatedAt(LocalDateTime.now());
         return ordenRepository.save(orden)
                 .flatMap(savedOrden -> {
                     List<Mono<OrdenProducto>> relaciones = orden.getProductos().stream()
