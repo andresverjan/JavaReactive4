@@ -1,7 +1,7 @@
 package org.api.controllers;
 
-import org.api.model.OrdenCompra;
-import org.api.service.CompraService;
+import org.api.model.PurchaseOrder;
+import org.api.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,19 +13,19 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/compras")
-public class ComprasController {
+public class PurchaseController {
 
      @Autowired
-    private CompraService ordenCompraService;
+    private PurchaseService ordenPurchaseService;
 
 
     @PostMapping
-    public Mono<OrdenCompra> crearOrdenCompra(@RequestBody OrdenCompra ordenCompra) {
-        return ordenCompraService.crearOrdenCompra(ordenCompra);
+    public Mono<PurchaseOrder> crearOrdenCompra(@RequestBody PurchaseOrder ordenCompra) {
+        return ordenPurchaseService.crearOrdenCompra(ordenCompra);
     }
 
     @GetMapping
-    public Flux<OrdenCompra> listarOrdenes() {
-        return ordenCompraService.listarOrdenes();
+    public Flux<PurchaseOrder> listarOrdenes() {
+        return ordenPurchaseService.listarOrdenes();
     }
 }

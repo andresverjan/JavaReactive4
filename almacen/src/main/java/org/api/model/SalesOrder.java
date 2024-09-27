@@ -14,7 +14,7 @@ import java.util.List;
 @Table("api.ventas")
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrdenVenta {
+public class SalesOrder {
 
     @Id
     private Long id;
@@ -23,6 +23,6 @@ public class OrdenVenta {
     private String estado;
 
     @ReadOnlyProperty
-    private List<OrdenProducto> productos;
+    private List<SaleProduct> productos;
 
 }

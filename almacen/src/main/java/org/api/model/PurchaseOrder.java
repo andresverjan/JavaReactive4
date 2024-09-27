@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @Table("api.ordenes_compras")
-public class OrdenCompra {
+public class PurchaseOrder {
 
     @Id
     private Long id;
@@ -19,5 +19,5 @@ public class OrdenCompra {
     private String estado;
 
     @ReadOnlyProperty
-    private List<OrdenCompraProducto> productos;
+    private List<PurchaseProduct> productos;
 }

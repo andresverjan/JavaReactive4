@@ -1,11 +1,11 @@
 package org.api.service;
 
-import org.api.model.OrdenProducto;
-import org.api.model.OrdenVenta;
-import org.api.model.VentaDto;
-import org.api.repository.OrdenProductoRepository;
-import org.api.repository.ProductRepository;
-import org.api.repository.VentasRepository;
+import org.api.model.SaleProduct;
+import org.api.model.SalesOrder;
+import org.api.model.SaleDto;
+import org.api.repository.PurchaseProductRepository;
+import org.api.repository.SaleProductRepository;
+import org.api.repository.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -16,25 +16,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class VentaService {
+public class SaleService {
 
     @Autowired
-    private VentasRepository ordenRepository;
+    private SalesRepository ordenRepository;
 
     @Autowired
-    private ProductRepository productoRepository;
+    private SaleProductRepository productoRepository;
 
     @Autowired
-    private OrdenProductoRepository ordenProductoRepository;
+    private PurchaseProductRepository purchaseProductRepository;
 
-    public Mono<OrdenVenta> crearOrden(OrdenVenta orden) {
+    public Mono<SalesOrder> crearOrden(SalesOrder orden) {
         orden.setCreatedAt(LocalDateTime.now());
         return ordenRepository.save(orden)
                 .flatMap(savedOrden -> {
-                    List<Mono<OrdenProducto>> relaciones = orden.getProductos().stream()
+                    List<Mono<SaleProduct>> relaciones = orden.getProductos().stream()
                             .map(producto -> {
-                                OrdenProducto ordenProducto = new OrdenProducto(savedOrden.getId(), producto.getProductoId(), producto.getCantidad());
-                                return ordenProductoRepository.save(ordenProducto);
+                                SaleProduct saleProduct = new SaleProduct(savedOrden.getId(), producto.getProductoId(), producto.getCantidad());
+                                return purchaseProductRepository.save(saleProduct);
                             })
                             .collect(Collectors.toList());
                     return Mono.when(relaciones);
@@ -42,7 +42,7 @@ public class VentaService {
                 .then(Mono.just(orden));
     }
 
-    public Mono<OrdenVenta> editarOrden(Long id, OrdenVenta ordenActualizada) {
+    public Mono<SalesOrder> editarOrden(Long id, SalesOrder ordenActualizada) {
         return ordenRepository.findById(id)
                 .flatMap(existingOrden -> {
                     existingOrden.setProductos(ordenActualizada.getProductos());
@@ -59,11 +59,11 @@ public class VentaService {
                 }).then();
     }
 
-    public Flux<OrdenVenta> listarOrdenes() {
+    public Flux<SalesOrder> listarOrdenes() {
         return ordenRepository.findAll();
     }
 
-    public Flux<VentaDto> listarOrdenesPorProducto(Long productoId) {
-        return ordenProductoRepository.findOrdenesByProductoId(productoId);
+    public Flux<SaleDto> listarOrdenesPorProducto(Long productoId) {
+        return purchaseProductRepository.findOrdenesByProductoId(productoId);
     }
 }

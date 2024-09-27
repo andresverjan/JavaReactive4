@@ -1,7 +1,7 @@
 package org.api.service;
 
 import org.api.model.Product;
-import org.api.repository.ProductRepository;
+import org.api.repository.SaleProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 public class ProductService {
 
     @Autowired
-    private ProductRepository repository;
+    private SaleProductRepository repository;
 
     public Mono<Product> getProductById(Long id) {
         return repository.findById(id);

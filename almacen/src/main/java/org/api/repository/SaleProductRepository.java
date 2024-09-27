@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface ProductRepository extends ReactiveCrudRepository<Product, Long> {
+public interface SaleProductRepository extends ReactiveCrudRepository<Product, Long> {
     Mono<Product> findByName(String name);
 }

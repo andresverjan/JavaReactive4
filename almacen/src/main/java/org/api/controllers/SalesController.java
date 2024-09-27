@@ -1,9 +1,9 @@
 package org.api.controllers;
 
 
-import org.api.model.OrdenVenta;
-import org.api.model.VentaDto;
-import org.api.service.VentaService;
+import org.api.model.SalesOrder;
+import org.api.model.SaleDto;
+import org.api.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,19 +18,19 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/ventas")
-public class VentasController {
+public class SalesController {
 
     @Autowired
-    private VentaService ordenService;
+    private SaleService ordenService;
 
 
     @PostMapping
-    public Mono<OrdenVenta> crearOrden(@RequestBody OrdenVenta orden) {
+    public Mono<SalesOrder> crearOrden(@RequestBody SalesOrder orden) {
         return ordenService.crearOrden(orden);
     }
 
     @PutMapping("/{id}")
-    public Mono<OrdenVenta> editarOrden(@PathVariable Long id, @RequestBody OrdenVenta orden) {
+    public Mono<SalesOrder> editarOrden(@PathVariable Long id, @RequestBody SalesOrder orden) {
         return ordenService.editarOrden(id, orden);
     }
 
@@ -40,12 +40,12 @@ public class VentasController {
     }
 
     @GetMapping
-    public Flux<OrdenVenta> listarOrdenes() {
+    public Flux<SalesOrder> listarOrdenes() {
         return ordenService.listarOrdenes();
     }
 
     @GetMapping("/producto/{productoId}")
-    public Flux<VentaDto> listarOrdenesPorProducto(@PathVariable Long productoId) {
+    public Flux<SaleDto> listarOrdenesPorProducto(@PathVariable Long productoId) {
         return ordenService.listarOrdenesPorProducto(productoId);
     }
 }
