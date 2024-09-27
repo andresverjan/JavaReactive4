@@ -3,7 +3,6 @@ package org.api.controllers;
 import org.api.model.Product;
 import org.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +24,7 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping("/{id}")
-    public Mono<Product> getProductById(@PathVariable Long id) {
+     public Mono<Product> getProductById(@PathVariable Long id) {
         return service.getProductById(id)
                 .switchIfEmpty(Mono.error(new NullPointerException(NOT_FOUND_MESSAGE)));
     }
@@ -47,7 +46,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Product>> update(@PathVariable Long id, @RequestBody Product producto) {
+    public Mono<Product> update(@PathVariable Long id, @RequestBody Product producto) {
         return service.getProductById(id)
                 .flatMap(existingProduct -> {
                     existingProduct.setName(producto.getName());
@@ -55,8 +54,7 @@ public class ProductController {
                     existingProduct.setPrice(producto.getPrice());
                     return service.addProduct(existingProduct);
                 })
-                .switchIfEmpty(Mono.error(new NullPointerException(NOT_FOUND_MESSAGE)))
-                .map(ResponseEntity::ok);
+                .switchIfEmpty(Mono.error(new NullPointerException(NOT_FOUND_MESSAGE)));
     }
 
     @DeleteMapping("/{id}")

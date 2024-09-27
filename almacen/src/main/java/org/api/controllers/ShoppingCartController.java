@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-import java.util.Map;
-
 @RestController
 @RequestMapping("/api/carro")
 public class ShoppingCartController {
@@ -30,8 +28,8 @@ public class ShoppingCartController {
 
 
     @PostMapping("/{userId}/agregar")
-    public Mono<Map<Long, Integer>> agregarAlCarrito(@PathVariable String userId, @RequestParam Long productoId, @RequestParam int cantidad) {
-        return service.agregarAlCarrito(userId, productoId, cantidad);
+    public Mono<Product> agregarAlCarrito(@PathVariable String userId, @RequestParam Long productoId, @RequestParam int cantidad) {
+        return service.getProductById(userId, productoId, cantidad);
     }
 
     @GetMapping("/{userId}")
@@ -46,7 +44,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/{userId}/actualizar/{productoId}")
-    public Mono<ShoppingCart> actualizarCantidad(@PathVariable String userId, @PathVariable Long productoId, @RequestParam int cantidad) {
+    public Mono<Product> actualizarCantidad(@PathVariable String userId, @PathVariable Long productoId, @RequestParam int cantidad) {
         return service.actualizarCantidad(userId, productoId, cantidad);
     }
 
@@ -55,9 +53,5 @@ public class ShoppingCartController {
         return service.vaciarCarrito(userId);
     }
 
-    /*@GetMapping("/{userId}/total")
-    public Mono<Double> calcularTotal(@PathVariable String userId) {
-        return service.devolverTotal(userId);
-    }*/
 
 }
