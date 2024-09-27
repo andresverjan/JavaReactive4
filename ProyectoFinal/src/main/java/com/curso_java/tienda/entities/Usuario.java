@@ -6,15 +6,16 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
-@Table("usuario")
 @AllArgsConstructor
 @NoArgsConstructor
+@Table("usuario")
 public class Usuario {
 
     @Id
     private String id; // número de cédula
     private String nombre;
     private String email;
+    private String rol;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -40,6 +41,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public LocalDateTime getCreatedAt() {
