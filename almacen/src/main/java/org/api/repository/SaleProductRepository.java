@@ -1,11 +1,11 @@
 package org.api.repository;
 
-import org.api.model.Product;
+import org.api.model.SaleDto;
+import org.api.model.SaleProduct;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
-@Repository
-public interface SaleProductRepository extends ReactiveCrudRepository<Product, Long> {
-    Mono<Product> findByName(String name);
+public interface SaleProductRepository extends ReactiveCrudRepository<SaleProduct, Long> {
+    Flux<SaleDto> findOrdenesByProductoId(Long productoId);
+
 }

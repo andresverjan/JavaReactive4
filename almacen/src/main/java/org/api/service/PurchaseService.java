@@ -1,29 +1,32 @@
 package org.api.service;
 
+import org.api.model.PurchaseDto;
 import org.api.model.PurchaseOrder;
 import org.api.model.PurchaseProduct;
+import org.api.repository.PurchaseProductRepository;
 import org.api.repository.PurchaseRepository;
-import org.api.repository.OrdenVentaProductoRepository;
-import org.api.repository.SaleProductRepository;
+import org.api.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 @Service
 public class PurchaseService {
 
     @Autowired
-    private PurchaseRepository ordenCompraRepository;
+    private PurchaseRepository purchaseRepository;
 
     @Autowired
-    private OrdenVentaProductoRepository ordenProductoRepository;
+    private PurchaseProductRepository purchaseProductRepository;
 
     @Autowired
-    private SaleProductRepository saleProductRepository;
+    private ProductRepository productRepository;
 
     public Mono<PurchaseOrder> crearOrdenCompra(PurchaseOrder ordenCompra) {
-        return ordenCompraRepository.save(ordenCompra)
+        return purchaseRepository.save(ordenCompra)
                 .flatMap(savedOrden -> {
                     return Flux.fromIterable(savedOrden.getProductos())
                             .flatMap(producto -> {
@@ -32,23 +35,28 @@ public class PurchaseService {
                                 ordenProducto.setOrdenId(savedOrden.getId());
                                 ordenProducto.setProductoId(producto.getProductoId());
                                 ordenProducto.setCantidad(producto.getCantidad());
-                                Mono<PurchaseProduct> saveProducts = ordenProductoRepository.save(ordenProducto);
+                                Mono<PurchaseProduct> saveProducts = purchaseProductRepository.save(ordenProducto);
                                 return stockUpdate.then(saveProducts);
                             })
-                            .then(Mono.just(savedOrden)); // Devuelve la orden guardada
+                            .then(Mono.just(savedOrden));
                 });
     }
 
     private Mono<Void> actualizarStock(Long productoId, Integer cantidad) {
-        return saleProductRepository.findById(productoId)
+        return productRepository.findById(productoId)
                 .flatMap(producto -> {
                     producto.setStock(producto.getStock() + cantidad);
-                    return saleProductRepository.save(producto);
+                    return productRepository.save(producto);
                 })
                 .then();
     }
 
     public Flux<PurchaseOrder> listarOrdenes() {
-        return ordenCompraRepository.findAll();
+        return purchaseRepository.findAll();
     }
+
+    public Flux<PurchaseOrder> obtenerReportesCompras(LocalDateTime startDate, LocalDateTime endDate) {
+        return purchaseRepository.findAllByCreatedAtBetween(startDate, endDate);
+    }
+
 }

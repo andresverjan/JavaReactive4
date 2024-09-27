@@ -2,7 +2,7 @@ package org.api.service;
 
 import org.api.model.Product;
 import org.api.model.ShoppingCart;
-import org.api.repository.SaleProductRepository;
+import org.api.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +18,17 @@ public class ShoppingCartService {
     private final ConcurrentHashMap<String, ShoppingCart> carritos = new ConcurrentHashMap<>();
 
     @Autowired
-    private SaleProductRepository saleProductRepository;
+    private ProductRepository productRepository;
 
 
     public Mono<Product> getProductById(String userId, Long productoId, Integer cantidad) {
 
-        return saleProductRepository.findById(productoId)
+        return productRepository.findById(productoId)
                 .flatMap(producto -> {
                     if (producto.getStock() >= cantidad) {
                         agregarAlCarrito(userId,productoId,cantidad);
                         producto.setStock(producto.getStock() - cantidad);
-                        return saleProductRepository.save(producto);
+                        return productRepository.save(producto);
                     } else {
                         return Mono.error(new IllegalArgumentException("Stock insuficiente"));
                     }
@@ -70,12 +70,12 @@ public class ShoppingCartService {
         ShoppingCart carrito = carritos.get(userId);
 
         if (carrito != null) {
-            return saleProductRepository.findById(productoId)
+            return productRepository.findById(productoId)
                     .flatMap(producto -> {
                         if (producto.getStock() >= cantidad) {
                             carrito.actualizarCantidad(productoId,cantidad);
                             producto.setStock(producto.getStock() - cantidad);
-                            return saleProductRepository.save(producto);
+                            return productRepository.save(producto);
                         } else {
                             return Mono.error(new IllegalArgumentException("Stock insuficiente"));
                         }
@@ -93,7 +93,7 @@ public class ShoppingCartService {
 
 
     private Mono<Double> obtenerPrecioProducto(Long productoId) {
-        return saleProductRepository.findById(productoId).map(Product::getPrice);
+        return productRepository.findById(productoId).map(Product::getPrice);
     }
 
 }

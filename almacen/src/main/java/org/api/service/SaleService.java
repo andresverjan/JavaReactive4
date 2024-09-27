@@ -3,7 +3,7 @@ package org.api.service;
 import org.api.model.SaleProduct;
 import org.api.model.SalesOrder;
 import org.api.model.SaleDto;
-import org.api.repository.PurchaseProductRepository;
+import org.api.repository.ProductRepository;
 import org.api.repository.SaleProductRepository;
 import org.api.repository.SalesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,10 @@ public class SaleService {
     private SalesRepository ordenRepository;
 
     @Autowired
-    private SaleProductRepository productoRepository;
+    private ProductRepository productoRepository;
 
     @Autowired
-    private PurchaseProductRepository purchaseProductRepository;
+    private SaleProductRepository saleProductRepository;
 
     public Mono<SalesOrder> crearOrden(SalesOrder orden) {
         orden.setCreatedAt(LocalDateTime.now());
@@ -34,7 +34,7 @@ public class SaleService {
                     List<Mono<SaleProduct>> relaciones = orden.getProductos().stream()
                             .map(producto -> {
                                 SaleProduct saleProduct = new SaleProduct(savedOrden.getId(), producto.getProductoId(), producto.getCantidad());
-                                return purchaseProductRepository.save(saleProduct);
+                                return saleProductRepository.save(saleProduct);
                             })
                             .collect(Collectors.toList());
                     return Mono.when(relaciones);
@@ -64,6 +64,6 @@ public class SaleService {
     }
 
     public Flux<SaleDto> listarOrdenesPorProducto(Long productoId) {
-        return purchaseProductRepository.findOrdenesByProductoId(productoId);
+        return saleProductRepository.findOrdenesByProductoId(productoId);
     }
 }

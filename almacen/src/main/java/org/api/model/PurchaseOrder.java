@@ -1,5 +1,6 @@
 package org.api.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.ReadOnlyProperty;
@@ -18,6 +19,6 @@ public class PurchaseOrder {
     private LocalDateTime updatedAt;
     private String estado;
 
-    @ReadOnlyProperty
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private List<PurchaseProduct> productos;
 }

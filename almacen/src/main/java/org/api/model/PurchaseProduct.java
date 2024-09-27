@@ -1,5 +1,6 @@
 package org.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.relational.core.mapping.InsertOnlyProperty;
 import org.springframework.data.relational.core.mapping.Table;
@@ -8,6 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("api.orden_compra_producto")
 public class PurchaseProduct {
     @InsertOnlyProperty
+    @JsonIgnore
     private Long ordenId;
     private Long productoId;
     private Integer cantidad;
