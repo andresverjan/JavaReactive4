@@ -6,31 +6,28 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Data
-@Table(name = "product")
-public class ProductEntity {
+@Table(name = "sales_order")
+public class SalesOrderEntity {
     @Id
     private Long id;
-    private String name;
-    private String description;
     private String reference;
-    private int stock;
-    private Float price;
-    @Column("priceiva")
-    private Float priceIva;
+    private String status;
+    @Column("idclient")
+    private int idClient;
+    @Column("nameclient")
+    private String nameClient;
+    private int items;
+    private Float total;
     private Float iva;
     @Column("ivarate")
     private int ivaRate;
-    @Column("imageurl")
-    private String imageUrl;
-    @Column("createdat")
-    private LocalDate createdAt;
-    @Column("updatedat")
-    private LocalDate updatedAt;
+    @Column("totaliva")
+    private Float totalIva;
+    private LocalDate date;
 }

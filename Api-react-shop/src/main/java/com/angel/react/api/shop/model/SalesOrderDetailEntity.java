@@ -5,32 +5,28 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Data
-@Table(name = "product")
-public class ProductEntity {
+@Table(name = "sales_order_detail")
+public class SalesOrderDetailEntity {
     @Id
     private Long id;
-    private String name;
-    private String description;
+    @Column("idproduct")
+    private Long idProduct;
+    @Column("nameproduct")
+    private String nameProduct;
+    @Column("idsalesorder")
+    private Long idSalesOrder;
     private String reference;
-    private int stock;
+    private int quantity;
     private Float price;
-    @Column("priceiva")
-    private Float priceIva;
+    private Float total;
     private Float iva;
     @Column("ivarate")
     private int ivaRate;
-    @Column("imageurl")
-    private String imageUrl;
-    @Column("createdat")
-    private LocalDate createdAt;
-    @Column("updatedat")
-    private LocalDate updatedAt;
+    @Column("totaliva")
+    private Float totalIva;
 }

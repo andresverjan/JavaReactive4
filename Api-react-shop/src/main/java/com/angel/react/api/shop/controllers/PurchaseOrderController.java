@@ -29,11 +29,6 @@ public class PurchaseOrderController {
         return this.purchaseOrderService.getAll();
     }
 
-    @GetMapping("/{id}")
-    public Mono<PurchaseOrderEntity> finById(@PathVariable Long id){
-        return this.purchaseOrderService.getById(id);
-    }
-
     @GetMapping("/details/reference/{reference}")
     public Mono<PurchaseOrderFull> finByReference(@PathVariable String reference){
         return this.purchaseOrderService.getDetailsByReference(reference);
@@ -54,8 +49,8 @@ public class PurchaseOrderController {
         return this.purchaseOrderService.update(purchaseOrderEntity);
     }
 
-    @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<String>> deleteUserById(@PathVariable Long id){
-        return purchaseOrderService.deleteById(id);
+    @DeleteMapping("/{reference}")
+    public Mono<ResponseEntity<String>> deleteByReference(@PathVariable String reference){
+        return purchaseOrderService.deleteByReference(reference);
     }
 }

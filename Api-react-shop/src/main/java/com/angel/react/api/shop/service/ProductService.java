@@ -1,13 +1,17 @@
 package com.angel.react.api.shop.service;
 
-import com.angel.react.api.shop.model.PersonEntity;
 import com.angel.react.api.shop.model.ProductEntity;
 import com.angel.react.api.shop.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.text.ParseException;
+import java.time.LocalDate;
+
+@Slf4j
 @Service
 @AllArgsConstructor
 public class ProductService {
@@ -24,17 +28,20 @@ public class ProductService {
         }
 
         return productRepository.findById(id)
-                .doOnNext(p -> System.out.println("Persona encontrada, id: " + id));
+                .doOnNext(p -> log.info("Product found, id: {}", id));
     }
 
     public Mono<ProductEntity> create(ProductEntity product){
+        product.setCreatedAt(LocalDate.now());
+        product.setUpdatedAt(LocalDate.now());
         return productRepository.save(product)
-                .doOnNext(p -> System.out.println("product creada, id: " + product.getId()));
+                .doOnNext(p -> log.info("Product created, id: {}", product.getId()));
     }
 
-    public Mono<ProductEntity> update(ProductEntity person){
-        return productRepository.save(person)
-                .doOnNext(p -> System.out.println("Persona actualizada, id: " + person.getId()));
+    public Mono<ProductEntity> update(ProductEntity product) throws ParseException {
+        product.setUpdatedAt(LocalDate.now());
+        return productRepository.save(product)
+                .doOnNext(p -> log.info("Product update, id: {}", product.getId()));
     }
 
     public Mono<Void> deleteById(Long id) {
@@ -43,6 +50,6 @@ public class ProductService {
         }
 
         return productRepository.deleteById(id)
-                .doOnNext(p -> System.out.println("Persona eliminada, id: " + id));
+                .doOnNext(p -> log.info("Product deleted, id: {}", id));
     }
 }

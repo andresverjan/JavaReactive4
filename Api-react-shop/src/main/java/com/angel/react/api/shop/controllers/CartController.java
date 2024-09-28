@@ -1,6 +1,7 @@
 package com.angel.react.api.shop.controllers;
 
 import com.angel.react.api.shop.model.CartEntity;
+import com.angel.react.api.shop.model.CartSummaryEntity;
 import com.angel.react.api.shop.model.SupplierEntity;
 import com.angel.react.api.shop.service.CartService;
 import com.angel.react.api.shop.service.SupplierService;
@@ -24,13 +25,18 @@ public class CartController {
     }
 
     @GetMapping("/retrieve")
-    public Flux<CartEntity> finAll(){
+    public Flux<CartEntity> findAll(){
         return this.cartService.getAll();
     }
 
     @GetMapping("/client/{idCliente}")
-    public Flux<CartEntity> finById(@PathVariable Long idCliente){
+    public Flux<CartEntity> findById(@PathVariable Long idCliente){
         return this.cartService.getByClient(idCliente);
+    }
+
+    @GetMapping("/summary/client/{idCliente}")
+    public Mono<CartSummaryEntity> findSummaryById(@PathVariable Long idCliente){
+        return this.cartService.getSummaryByClient(idCliente);
     }
 
     @PostMapping()

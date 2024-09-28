@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.text.ParseException;
+
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductController {
@@ -34,7 +36,7 @@ public class ProductController {
     }
 
     @PutMapping()
-    public Mono<ProductEntity> update(@RequestBody ProductEntity product){
+    public Mono<ProductEntity> update(@RequestBody ProductEntity product) throws ParseException {
         return this.productService.update(product);
     }
 

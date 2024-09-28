@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
+@Setter
 @Getter
 public class PurchaseOrderFull {
     @JsonProperty("purchaseOrderInfo")
