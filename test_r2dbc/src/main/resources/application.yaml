@@ -1,0 +1,10 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/cursodb
+    username: reactiveuser
+    password: 1234
+  logging:
+    level:
+      org.springframework.data.r2dbc: DEBUG
+      io.r2dbc.spi: DEBUG
+      io.r2dbc.postgresql: DEBUG

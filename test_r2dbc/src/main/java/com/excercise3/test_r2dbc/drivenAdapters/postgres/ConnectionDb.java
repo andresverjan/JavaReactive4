@@ -1,5 +1,6 @@
-package com.excercise3.test_r2dbc.drivenAdapters;
+package com.excercise3.test_r2dbc.drivenAdapters.postgres;
 
+import com.excercise3.test_r2dbc.drivenAdapters.postgres.iPostgres.ClasesRepository;
 import com.excercise3.test_r2dbc.entities.Clases;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
