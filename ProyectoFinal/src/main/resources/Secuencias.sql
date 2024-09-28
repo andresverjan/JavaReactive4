@@ -3,3 +3,7 @@ CREATE SEQUENCE tienda.carrito_seq START 1;
 CREATE SEQUENCE tienda.orden_venta_seq START 1;
 CREATE SEQUENCE tienda.orden_compra_seq START 1;
 CREATE SEQUENCE tienda.empresas_seq START 1;
+CREATE SEQUENCE tienda.carrito_producto_seq START 1;
+CREATE SEQUENCE tienda.orden_venta_producto_seq START 1;
+CREATE SEQUENCE tienda.vendedor_empresa_seq START 1;
+CREATE SEQUENCE tienda.orden_compra_producto_seq START 1;
