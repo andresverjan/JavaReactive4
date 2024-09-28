@@ -1,0 +1,19 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/comercio
+    database: "comercio"
+    username: "postgres"
+    password:
+    schema: "comercio"
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
