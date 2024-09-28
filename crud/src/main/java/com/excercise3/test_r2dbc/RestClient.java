@@ -1,4 +1,4 @@
-/*package com.excercise3.test_r2dbc;
+package com.excercise3.test_r2dbc;
 
 import com.excercise3.test_r2dbc.drivenAdapters.postgres.ConnectionDb;
 import com.excercise3.test_r2dbc.entities.Clases;
@@ -17,7 +17,7 @@ public class RestClient {
     }
     @GetMapping("/{id}")
     public Mono<Clases> getClass(@PathVariable Long id){
-        System.out.
+        System.out.println(id);
         return connectionDb.findById(id);
     }
     @GetMapping("/all")
@@ -30,4 +30,3 @@ public class RestClient {
         return vari;
     }
 }
-*/

@@ -2,49 +2,48 @@ package com.reactiveCourse.streamReactive;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public class StreamReactiveApplication {
 
 	public static void main(String[] args) {
-		Flux<Integer> numbers = Flux.just(1, 2, 0, 4, 5)
-
-				.map(n -> {
-
-					if (n == 0) {
-
-						throw new ArithmeticException("Division by zero");
-
-					}
-
-					return 10 / n;
-
+		GeneradorPersonas personas = new GeneradorPersonas();
+		personas.crearListaPersonas();
+		personas.obtenerPersonas("Filtro de personas mayores de 30")
+				.filter(p -> p.getEdad() > 30)
+				.subscribe(System.out::println);
+		personas.obtenerPersonas("filtro de personas mayores de 30 con nombre y apellido")
+				.filter(p -> p.getEdad() > 30)
+				.map(p -> p.getNombre())
+				.subscribe(System.out::println);
+		personas.obtenerPersonas("Mono de primer usuario")
+				.next()
+				.flatMap(p -> {
+					return Mono.just(p.getNombre() + " " + p.getApellido());
 				})
-
-				.doOnError(e -> System.out.println("Error occurred: " + e.getMessage()))
-
-				.onErrorResume(e -> {
-
-					System.out.println("Handling error: " + e.getMessage());
-
-					return Flux.just(-1, -2, -3);
-
-				})
-
-				.onErrorReturn(
-						99
-				);
-
-		numbers.subscribe(
-
-				value -> System.out.println("Received: " + value),
-
-				error -> System.out.println("Error in subscription: " + error.getMessage()),
-
-				() -> System.out.println("Completed")
-
-		);
+				.subscribe(System.out::println);
+		personas.obtenerPersonas("Agrupacion por signo")
+				.groupBy(Persona::getSigno)
+				.flatMap(group ->
+						group.collectList()
+								.map(personasEnGrupo ->
+										"Signo: " + group.key() + " Personas en grupo: " + personasEnGrupo.size()
+								)
+				)
+				.subscribe();
+		personas.obtenerPersonasPorEdad(30)
+				.subscribe();
+		personas.obtenerPersonasPorSigno("Cancer")
+				.subscribe();
+		personas.obtenerPersonasPorTelefono("998877665")
+				.subscribe();
+		personas.eliminarPersona(Persona.builder()//persona 12
+				.nombre("Rosa")
+				.apellido("Jimenez")
+				.telefono("998877665")
+				.edad(29)
+				.signo("Sagitario")
+				.build());
 	}
 
 }

@@ -1,4 +1,4 @@
-/*package com.excercise3.test_r2dbc.drivenAdapters.postgres;
+package com.excercise3.test_r2dbc.drivenAdapters.postgres;
 
 import com.excercise3.test_r2dbc.drivenAdapters.postgres.iPostgres.ClasesRepository;
 import com.excercise3.test_r2dbc.entities.Clases;
@@ -23,4 +23,3 @@ public class ConnectionDb {
     }
 
 }
-*/
