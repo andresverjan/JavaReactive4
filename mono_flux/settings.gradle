@@ -1,0 +1,9 @@
+pluginManagement {
+    repositories {
+        maven {
+            url 'https://artifactory.apps.bancolombia.com/maven-bancolombia'
+        }
+    }
+}
+rootProject.name = "mono_flux"
+
