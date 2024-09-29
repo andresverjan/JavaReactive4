@@ -1,8 +1,7 @@
 package com.programacion.reactiva.trabajo_final.controllers;
 
 import com.programacion.reactiva.trabajo_final.model.CarritoProducto;
-import com.programacion.reactiva.trabajo_final.model.dto.CarritoComprasDTO;
-import com.programacion.reactiva.trabajo_final.model.dto.CarritoProductoDTO;
+import com.programacion.reactiva.trabajo_final.model.dto.*;
 import com.programacion.reactiva.trabajo_final.service.CarritoService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -41,4 +40,15 @@ public class CarritoController {
     public Mono<Void> eliminarProductoCarrito(@RequestParam Long carritoId, @RequestParam Long productoId){
         return carritoService.eliminarProductoCarrito(carritoId, productoId);
     }
+
+    @PostMapping("/checkout")
+    public Mono<ValorTotalDTO> checkout(@RequestParam Long carritoId,  @RequestParam double envio){
+        return carritoService.obtenerValorTotalCarrito(carritoId, envio);
+    }
+
+    @PostMapping("/compra")
+    public Mono<VentaDTO> comprar(@RequestParam Long carritoId, @RequestParam double envio){
+        return carritoService.registrarOrdenVenta(carritoId, envio);
+    }
+
 }
