@@ -4,11 +4,13 @@ import lombok.Builder;
 
 @Builder
 public record ReportItem(
-        String itemName,
-        int quantity,
+        Integer orderId,
+        Integer productId,
         double totalAmount) {
 
-    public ReportItem(String itemName, int quantity) {
-        this(itemName, quantity, 0);
+    public ReportItem(Integer orderId, Integer productId, double totalAmount) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.totalAmount = totalAmount;
     }
 }

@@ -3,68 +3,48 @@ package valko.co.cartmanagament.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import valko.co.cartmanagament.model.buy.PurchaseOrder;
-import valko.co.cartmanagament.model.products.Product;
+
 import valko.co.cartmanagament.model.report.Report;
+import valko.co.cartmanagament.model.report.Report5;
 import valko.co.cartmanagament.model.report.ReportItem;
-import valko.co.cartmanagament.model.sale.SaleOrder;
-import valko.co.cartmanagament.repository.purchaseorder.PurchaseOrderRepository;
-import valko.co.cartmanagament.repository.sales.SaleOrderRepository;
+
+import valko.co.cartmanagament.model.report.ReportTop5;
+import valko.co.cartmanagament.repository.product.ProductRepository;
+import valko.co.cartmanagament.repository.sales.SaleOrderDetailRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ReportService {
 
-    private final PurchaseOrderRepository purchaseOrderRepository;
-    private final SaleOrderRepository saleOrderRepository;
+    private final ProductRepository productRepository;
+    private final SaleOrderDetailRepository saleOrderDetailRepository;
 
-    public Mono<Report> generatePurchaseReport(LocalDateTime startDate, LocalDateTime endDate) {
-        return purchaseOrderRepository.findAll()
-                .filter(order -> isWithinDateRange(order.creationDate(), startDate, endDate))
-                .flatMap(this::toReportItem)
+    public Mono<Report> generateSalesReport(LocalDateTime startDate, LocalDateTime endDate) {
+        return saleOrderDetailRepository.findOrderDetailsByDateRange(startDate, endDate)
                 .collectList()
-                .map(items -> new Report("Purchase Report", startDate, endDate, items));
+                .map(saleOrderDetails -> {
+
+                    List<ReportItem> reportItems = saleOrderDetails.stream()
+                            .map(saleOrderDetail -> new ReportItem(
+                                    saleOrderDetail.saleOrderId(),
+                                    saleOrderDetail.productId(),
+                                    saleOrderDetail.amount()))
+                            .collect(Collectors.toList());
+
+                    return new Report("Sales Report", startDate, endDate, reportItems);
+                });
     }
 
-//    public Mono<Report> generateSalesReport(LocalDateTime startDate, LocalDateTime endDate) {
-//        return saleOrderRepository.findAll()
-//                .filter(order -> isWithinDateRange(order.creationDate(), startDate, endDate))
-//                .flatMap(this::toReportItem)
-//                .collectList()
-//                .map(items -> new Report("Sales Report", startDate, endDate, items));
-//    }
-
-//    public Mono<Report> generateTop5SalesReport(LocalDateTime startDate, LocalDateTime endDate) {
-//        return saleOrderRepository.findAll()
-//                .filter(order -> isWithinDateRange(order.creationDate(), startDate, endDate))
-//                .flatMapIterable(SaleOrder::userId)
-//                .groupBy(Product::id)
-//                .flatMap(group -> group.collectList()
-//                        .map(products -> new ReportItem(products.get(0).name(), products.size())))
-//                .sort((item1, item2) -> Integer.compare(item2.quantity(), item1.quantity()))
-//                .take(5)
-//                .collectList()
-//                .map(items -> new Report("Top 5 Sold Products", startDate, endDate, items));
-//    }
-
-    private boolean isWithinDateRange(LocalDateTime date,
-                                      LocalDateTime startDate,
-                                      LocalDateTime endDate) {
-        return !date.isBefore(startDate) && !date.isAfter(endDate);
+    public Mono<Report5> generateTop5SalesReport(LocalDateTime startDate, LocalDateTime endDate) {
+        return saleOrderDetailRepository.findTop5ProductsByDateRange(startDate, endDate)
+                .flatMap(topProduct -> productRepository.findById(topProduct.productId())
+                        .map(product -> new ReportTop5(product.name(), product.price(), topProduct.totalAmount())))
+                .collectList()
+                .map(items -> new Report5("Top 5 Sold Products", startDate, endDate, items));
     }
-
-    private Mono<ReportItem> toReportItem(PurchaseOrder order) {
-        return Mono.just(new ReportItem("Purchase Order #" + order.id(),
-                order.products().size(),
-                order.total()));
-    }
-
-//    private Mono<ReportItem> toReportItem(SaleOrder order) {
-//        return Mono.just(new ReportItem("Sale Order #" + order.id(),
-//                order.products().size(),
-//                order.total()));
-//    }
 
 }

@@ -19,9 +19,8 @@ public class ReportRouterRest {
     @Bean
     public RouterFunction<ServerResponse> reportRoutes() {
         return route()
-                .GET(BASE_PATH.concat("/buys"), reportHandler::generatePurchaseReport)
-//                .GET(BASE_PATH.concat("/sales"), reportHandler::generateSalesReport)
-//                .GET(BASE_PATH.concat("/sales/top5"), reportHandler::generateTop5SalesReport)
+                .GET(BASE_PATH.concat("/sales"), reportHandler::generateSalesReport)
+                .GET(BASE_PATH.concat("/sales/top5"), reportHandler::generateTop5SalesReport)
                 .build();
     }
 }
