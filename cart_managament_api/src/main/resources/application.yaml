@@ -1,0 +1,9 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: cart-management-api
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/demo
+    username: postgres
+    password: root
