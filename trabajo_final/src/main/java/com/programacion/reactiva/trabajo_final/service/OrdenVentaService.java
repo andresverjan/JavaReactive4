@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -16,6 +19,8 @@ public class OrdenVentaService {
     private final OrdenVentaRepository ordenVentaRepository;
     private final OrdenVentaProductoRepository ordenVentaProductoRepository;
     private final ProductoService productoService;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
 
 
     public OrdenVentaService(OrdenVentaRepository ordenVentaRepository,
@@ -39,6 +44,51 @@ public class OrdenVentaService {
                         )
                 );
     }
+
+    public Flux<OrdenVentaDTO> listarOrdenesVentaEntreFechas(String fechaInicio, String fechaFin) {
+        LocalDateTime startDate = LocalDateTime.parse(fechaInicio, formatter);
+        LocalDateTime endDate = LocalDateTime.parse(fechaFin, formatter);
+        return ordenVentaRepository.findAllByUpdatedAtBetween(startDate, endDate)
+                .flatMap(ordenVenta -> obtenerDetalleVenta(ordenVenta.getId())
+                        .map(detalleVenta -> OrdenVentaDTO.builder()
+                                .ordenVentaId((long) ordenVenta.getId())
+                                .estado(ordenVenta.getEstado())
+                                .detalleCompras(detalleVenta)
+                                .valorTotal(ValorTotalDTO.builder()
+                                        .valorTotal(ordenVenta.getTotal())
+                                        .build())
+                                .build()
+                        )
+                );
+    }
+
+    public Flux<OrdenVentaDTO> listarTop5VentasEntreFechas(String fechaInicio, String fechaFin) {
+        LocalDateTime startDate = LocalDateTime.parse(fechaInicio, formatter);
+        LocalDateTime endDate = LocalDateTime.parse(fechaFin, formatter);
+
+        return ordenVentaRepository.findAllByUpdatedAtBetween(startDate, endDate)
+                .flatMap(ordenVenta -> ordenVentaProductoRepository.findByOrdenVentaId((long) ordenVenta.getId())
+                        .collectList()
+                        .map(productos -> new ProductoCantidadDTO(ordenVenta.getId(), productos.stream()
+                                .mapToInt(OrdenVentaProducto::getCantidad).sum()))
+                )
+                .sort(Comparator.comparingInt(ProductoCantidadDTO::getCantidad).reversed())
+                .take(5)
+                .flatMap(productoCantidadDTO ->
+                        ordenVentaRepository.findById((long) productoCantidadDTO.getProductoId())
+                                .flatMap(ordenVenta -> obtenerDetalleVenta(ordenVenta.getId())
+                                        .map(detalleVenta -> OrdenVentaDTO.builder()
+                                                .ordenVentaId((long) ordenVenta.getId())
+                                                .estado(ordenVenta.getEstado())
+                                                .detalleCompras(detalleVenta)
+                                                .valorTotal(ValorTotalDTO.builder()
+                                                        .valorTotal(ordenVenta.getTotal())
+                                                        .build())
+                                                .build())
+                                )
+                );
+    }
+
 
     public Mono<OrdenVentaDTO> obtenerOrdenVentaPorId(Long ordenVentaId){
         return ordenVentaRepository.findById(ordenVentaId)
@@ -98,7 +148,7 @@ public class OrdenVentaService {
                         .flatMap(ordenVenta -> actualizarStockProductos(productos)
                                 .thenMany(crearOrdenVentaProducto(productos, ordenVenta.getId()))
                                 .collectList()
-                                .flatMap(ordenVentaProducto -> productoService.mapearItemsCompras(productos)
+                                .flatMap(ordenVentaProducto -> productoService.mapearItemsVentas(productos)
                                         .map(comprasDTO -> ventaResponse(ordenVenta, comprasDTO, valorTotal))
                                 )
                         )
@@ -167,6 +217,6 @@ public class OrdenVentaService {
                                 .build())
                 )
                 .collectList()
-                .flatMap(productoService::mapearItemsCompras);
+                .flatMap(productoService::mapearItemsVentas);
     }
 }

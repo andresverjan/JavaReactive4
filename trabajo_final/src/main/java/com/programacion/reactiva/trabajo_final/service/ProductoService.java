@@ -1,5 +1,6 @@
 package com.programacion.reactiva.trabajo_final.service;
 
+import com.programacion.reactiva.trabajo_final.exceptions.BusinessException;
 import com.programacion.reactiva.trabajo_final.model.Producto;
 import com.programacion.reactiva.trabajo_final.model.dto.*;
 import com.programacion.reactiva.trabajo_final.repository.ProductoRepository;
@@ -27,11 +28,8 @@ public class ProductoService {
 
     public Mono<Producto> crearProducto(Producto producto) {
         return productoRepository.save(producto)
-                .doOnNext(product -> System.out.println("Producto creado: " + producto));
+                .doOnNext(product -> logger.info("Producto creado: " + producto));
     }
-
-
-
 
 
     public Mono<Producto> editarProducto(Long id, Producto producto) {
@@ -48,11 +46,11 @@ public class ProductoService {
 
     public Mono<Producto> consultarStockProducto(Long productId, int cantidad) {
         return productoRepository.findById(productId)
-                .switchIfEmpty(Mono.error(new Exception("Producto no encontrado")))
+                .switchIfEmpty(Mono.error(new BusinessException(404,"Producto no encontrado")))
                 .flatMap(producto -> {
                     if (producto.getStock() < cantidad) {
                         logger.error("No hay stock suficiente para el producto: {}", producto);
-                        return Mono.error(new Exception("No hay stock suficiente para el producto seleccionado. Stock actual: " + producto.getStock()));
+                        return Mono.error(new BusinessException(400, "No hay stock suficiente para el producto seleccionado. Stock actual: " + producto.getStock()));
                     }
                     return Mono.just(producto);
                 });
@@ -110,7 +108,7 @@ public class ProductoService {
                                 .build());
     }
 
-    public Mono<CarritoComprasDTO> mapearItemsCompras(List<ProductoCantidadDTO> productos) {
+    public Mono<CarritoComprasDTO> mapearItemsVentas(List<ProductoCantidadDTO> productos) {
         return Flux.fromIterable(productos)
                 .flatMap(this::obtenerCarritoProductoDTO)
                 .collectList()
@@ -120,6 +118,29 @@ public class ProductoService {
                                 .build());
     }
 
+    public Mono<OrdenCompraProductoDTO> obtenerCompraProductoDTO(ProductoCantidadDTO productoCantidadDTO) {
+        return productoRepository.findById((long) productoCantidadDTO.getProductoId())
+                .map(producto ->
+                        OrdenCompraProductoDTO.builder()
+                                .producto(ProductoDTO.builder()
+                                        .id(producto.getId())
+                                        .name(producto.getName())
+                                        .price(producto.getPrice())
+                                        .description(producto.getDescription())
+                                        .imageUrl(producto.getImageUrl())
+                                        .build())
+                                .cantidad(productoCantidadDTO.getCantidad())
+                                .build());
 
+    }
 
+    public Mono<OrdenCompraDTO> mapearItemsCompras(List<ProductoCantidadDTO> productos) {
+        return Flux.fromIterable(productos)
+                .flatMap(this::obtenerCompraProductoDTO)
+                .collectList()
+                .map(compraProductosDTO ->
+                        OrdenCompraDTO.builder()
+                                .items(compraProductosDTO)
+                                .build());
+    }
 }

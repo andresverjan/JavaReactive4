@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class OrdenVentaRequestDTO {
+public class OrdenCompraRequestDTO {
     private List<ProductoCantidadDTO> productos;
-    private Double envio;
+    private double total;
 }

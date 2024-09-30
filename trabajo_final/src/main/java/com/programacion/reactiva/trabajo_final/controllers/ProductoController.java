@@ -34,7 +34,6 @@ public class ProductoController {
 
     @PostMapping
     public Mono<Producto> crearProducto(@RequestBody Producto Producto){
-        System.out.println("Creando producto");
         return productoService.crearProducto(Producto);
     }
 

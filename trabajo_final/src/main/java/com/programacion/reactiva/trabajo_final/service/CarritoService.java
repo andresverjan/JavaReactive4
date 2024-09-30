@@ -1,5 +1,6 @@
 package com.programacion.reactiva.trabajo_final.service;
 
+import com.programacion.reactiva.trabajo_final.exceptions.BusinessException;
 import com.programacion.reactiva.trabajo_final.model.*;
 import com.programacion.reactiva.trabajo_final.model.dto.*;
 import com.programacion.reactiva.trabajo_final.repository.*;
@@ -48,7 +49,7 @@ public class CarritoService {
 
     public Mono<Carrito> validarCarritoCompra(Long carritoId) {
         return (carritoId == 0 ? Mono.defer(() -> carritoRepository.save(new Carrito())) : carritoRepository.findById(carritoId))
-                .switchIfEmpty(Mono.error(new Exception("Carrito no encontrado")));
+                .switchIfEmpty(Mono.error(new BusinessException(404, "Carrito no encontrado")));
     }
 
     public Mono<CarritoProductoDTO> guardarProductoCarrito(CarritoProducto carritoProducto, Producto producto, int cantidad) {
@@ -77,7 +78,7 @@ public class CarritoService {
                 .collectList()
                 .flatMapMany(validarCarrito -> {
                     if (validarCarrito.isEmpty()) {
-                        return Flux.error(new Exception("No hay productos en el carrito"));
+                        return Flux.error(new BusinessException(400, "No hay productos en el carrito"));
                     }
                     List<ProductoCantidadDTO> productos = validarCarrito.stream()
                             .map(carritoProducto -> ProductoCantidadDTO.builder()
@@ -85,7 +86,7 @@ public class CarritoService {
                                     .cantidad(carritoProducto.getCantidad())
                                     .build())
                             .collect(Collectors.toList());
-                    return productoService.mapearItemsCompras(productos)
+                    return productoService.mapearItemsVentas(productos)
                             .flux();
                 });
     }
@@ -127,7 +128,7 @@ public class CarritoService {
                 .collectList()
                 .flatMap(carritoProductos -> {
                     if (carritoProductos.isEmpty()) {
-                        return Mono.error(new Exception("No hay productos en el carrito, no se puede calcular el total"));
+                        return Mono.error(new BusinessException(400,"No hay productos en el carrito, no se puede calcular el total"));
                     }
                     List<ProductoCantidadDTO> productos = carritoProductos.stream()
                             .map(carritoProducto -> ProductoCantidadDTO.builder()
@@ -145,7 +146,7 @@ public class CarritoService {
                 .collectList()
                 .flatMap(carritoProductos -> {
                     if (carritoProductos.isEmpty()) {
-                        return Mono.error(new Exception("No hay productos en el carrito, no se puede realizar la compra"));
+                        return Mono.error(new BusinessException(404,"No hay productos en el carrito, no se puede realizar la compra"));
                     }
                     List<ProductoCantidadDTO> productos = carritoProductos.stream()
                             .map(carritoProducto -> ProductoCantidadDTO.builder()
@@ -159,7 +160,7 @@ public class CarritoService {
                                             .flatMap(ordenVentaGuardada ->
                                                     ordenVentaService.crearOrdenVentaProducto(productos, ordenVentaGuardada.getId())
                                                             .collectList()
-                                                            .flatMap(items -> productoService.mapearItemsCompras(productos))
+                                                            .flatMap(items -> productoService.mapearItemsVentas(productos))
                                                             .flatMap(carritoComprasDTO -> eliminarCarrito(carritoId)
                                                                     .thenReturn(ordenVentaService.ventaResponse(ordenVentaGuardada, carritoComprasDTO, valorTotal))
                                                             )

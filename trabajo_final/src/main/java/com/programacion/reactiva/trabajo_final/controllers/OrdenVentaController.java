@@ -1,14 +1,12 @@
 package com.programacion.reactiva.trabajo_final.controllers;
 
-import com.programacion.reactiva.trabajo_final.model.OrdenVentaRequest;
+import com.programacion.reactiva.trabajo_final.model.dto.OrdenVentaRequestDTO;
 import com.programacion.reactiva.trabajo_final.model.dto.OrdenVentaDTO;
 import com.programacion.reactiva.trabajo_final.model.dto.VentaDTO;
 import com.programacion.reactiva.trabajo_final.service.OrdenVentaService;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/venta")
@@ -20,7 +18,7 @@ public class OrdenVentaController {
     }
 
     @PostMapping
-    public Mono<VentaDTO> registrarOrdenVenta(@RequestBody OrdenVentaRequest ordenVentaRequest){
+    public Mono<VentaDTO> registrarOrdenVenta(@RequestBody OrdenVentaRequestDTO ordenVentaRequest){
        return ordenVentaService.crearOrdenVentaDirecta(ordenVentaRequest.getProductos(), ordenVentaRequest.getEnvio());
     }
 
@@ -42,5 +40,15 @@ public class OrdenVentaController {
     @PutMapping("/{ordenVentaId}")
     public Mono<OrdenVentaDTO> cambiarEstadoOrdenVenta(@PathVariable Long ordenVentaId, @RequestParam String estado){
         return ordenVentaService.cambiarEstadoOrdenVenta(ordenVentaId, estado);
+    }
+
+    @GetMapping("/reporte/fecha")
+    public Flux<OrdenVentaDTO> listarOrdenesVentaEntreFechas(@RequestParam String fechaInicio, @RequestParam String fechaFin){
+        return ordenVentaService.listarOrdenesVentaEntreFechas(fechaInicio, fechaFin);
+    }
+
+    @GetMapping("/reporte/top5")
+    public Flux<OrdenVentaDTO> listarTop5OrdenesVenta(@RequestParam String fechaInicio, @RequestParam String fechaFin){
+        return ordenVentaService.listarTop5VentasEntreFechas(fechaInicio, fechaFin);
     }
 }
