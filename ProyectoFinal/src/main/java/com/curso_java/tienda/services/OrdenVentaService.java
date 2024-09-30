@@ -346,7 +346,7 @@ public class OrdenVentaService {
      * @param orden La entidad OrdenVenta que se desea convertir a DTO.
      * @return Una nueva instancia de OrdenVentaDTO que contiene los datos de la entidad OrdenVenta.
      */
-    private OrdenVentaDTO toOrdenVentaDTO(OrdenVenta orden) {
+    public OrdenVentaDTO toOrdenVentaDTO(OrdenVenta orden) {
         // Crear y retornar una nueva instancia de OrdenVentaDTO con los datos de la entidad OrdenVenta
         return new OrdenVentaDTO(orden.getId(), orden.getUsuarioId(), orden.getTotal(), orden.getEstado());
     }
@@ -357,7 +357,7 @@ public class OrdenVentaService {
      * @param ordenVentaProducto La entidad OrdenVentaProducto que se desea convertir a DTO.
      * @return Una nueva instancia de OrdenVentaProductoDTO que contiene los datos de la entidad OrdenVentaProducto.
      */
-    private OrdenVentaProductoDTO toOrdenVentaProductoDTO(OrdenVentaProducto ordenVentaProducto) {
+    public OrdenVentaProductoDTO toOrdenVentaProductoDTO(OrdenVentaProducto ordenVentaProducto) {
         // Crear y retornar una nueva instancia de OrdenVentaProductoDTO con los datos de la entidad OrdenVentaProducto
         return new OrdenVentaProductoDTO(ordenVentaProducto.getProductoId(), ordenVentaProducto.getCantidad(), ordenVentaProducto.getPrecioUnitario());
     }

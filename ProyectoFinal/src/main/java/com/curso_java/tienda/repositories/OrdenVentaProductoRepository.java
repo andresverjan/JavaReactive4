@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 @Repository
 public interface OrdenVentaProductoRepository extends ReactiveCrudRepository<OrdenVentaProducto, String> {
 
@@ -14,5 +16,7 @@ public interface OrdenVentaProductoRepository extends ReactiveCrudRepository<Ord
     Mono<OrdenVentaProducto> findByOrdenIdAndProductoId(String ordenId, String productoId);
 
     Flux<OrdenVentaProducto> findAllByOrdenId(String ordenId);
+
+    Flux<OrdenVentaProducto> findAllByCreatedAtBetween(LocalDateTime fechaInicio, LocalDateTime fechaFin);
 }
 

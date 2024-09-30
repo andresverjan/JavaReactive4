@@ -183,7 +183,7 @@ public class OrdenCompraService {
      * @param ordenCompraProducto La entidad OrdenCompraProducto a convertir.
      * @return El DTO OrdenCompraProductoDTO correspondiente a la entidad proporcionada.
      */
-    private OrdenCompraProductoDTO toOrdenCompraProductoDTO(OrdenCompraProducto ordenCompraProducto) {
+    public OrdenCompraProductoDTO toOrdenCompraProductoDTO(OrdenCompraProducto ordenCompraProducto) {
         // Crear y devolver un OrdenCompraProductoDTO con los datos de la entidad OrdenCompraProducto
         return new OrdenCompraProductoDTO(ordenCompraProducto.getId(), ordenCompraProducto.getOrdenId(), ordenCompraProducto.getProductoId(), ordenCompraProducto.getCantidad());
     }
@@ -194,7 +194,7 @@ public class OrdenCompraService {
      * @param ordenCompra La entidad OrdenCompra a convertir.
      * @return El DTO OrdenCompraDTO correspondiente a la entidad proporcionada.
      */
-    private OrdenCompraDTO toOrdenCompraDTO(OrdenCompra ordenCompra) {
+    public OrdenCompraDTO toOrdenCompraDTO(OrdenCompra ordenCompra) {
         // Crear y devolver un OrdenCompraDTO con los datos de la entidad OrdenCompra
         return new OrdenCompraDTO(ordenCompra.getId(), ordenCompra.getEmpresaId(), ordenCompra.getVendedorId(), ordenCompra.getTotal());
     }
