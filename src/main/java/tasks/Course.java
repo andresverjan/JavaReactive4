@@ -13,5 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 public class Course {
     private String name;
-    private List<java.lang.Module> modules;
+    private List<Module> modules;
 }
