@@ -11,6 +11,9 @@ import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 
+/**
+ * Servicio para gestionar usuarios.
+ */
 @Service
 public class UsuarioService {
 
@@ -20,10 +23,14 @@ public class UsuarioService {
     @Autowired
     private R2dbcEntityTemplate r2dbcEntityTemplate;
 
-
-    // Crear o actualizar un usuario
+    /**
+     * Crea o actualiza un usuario.
+     *
+     * @param usuario El usuario a crear o actualizar.
+     * @return Un Mono que emite el DTO del usuario creado o un error si el ID del usuario ya existe.
+     */
     public Mono<UsuarioDTO> saveUsuario(Usuario usuario) {
-        var fechaCreacion= LocalDateTime.now();
+        var fechaCreacion = LocalDateTime.now();
         usuario.setCreatedAt(fechaCreacion);
         usuario.setUpdatedAt(fechaCreacion);
 
@@ -32,22 +39,40 @@ public class UsuarioService {
                     if (existe) {
                         return Mono.error(new IllegalArgumentException("El ID del usuario ya existe"));
                     } else {
-                        return r2dbcEntityTemplate.insert(Usuario.class).using(usuario).map(usuarioGuardado -> toUsuarioDTO(usuarioGuardado)); // Devuelve el DTO del usuario guardado // Realiza la inserción
+                        return r2dbcEntityTemplate.insert(Usuario.class).using(usuario)
+                                .map(usuarioGuardado -> toUsuarioDTO(usuarioGuardado));
                     }
                 });
     }
 
-    // Obtener todos los usuarios
+    /**
+     * Obtiene todos los usuarios.
+     *
+     * @return Un Flux que emite los DTOs de todos los usuarios.
+     */
     public Flux<UsuarioDTO> getAllUsuarios() {
-        return usuarioRepository.findAll().flatMap(usuario -> Flux.just(toUsuarioDTO(usuario))); // Devuelve un Flux de DTOs de usuarios
+        return usuarioRepository.findAll()
+                .flatMap(usuario -> Flux.just(toUsuarioDTO(usuario)));
     }
 
-    // Obtener un usuario por ID
+    /**
+     * Obtiene un usuario por su ID.
+     *
+     * @param id El ID del usuario.
+     * @return Un Mono que emite el DTO del usuario encontrado o vacío si no se encuentra.
+     */
     public Mono<UsuarioDTO> getUsuarioById(String id) {
-        return usuarioRepository.findById(id).map(usuario -> toUsuarioDTO(usuario)); // Devuelve el DTO del usuario encontrado
+        return usuarioRepository.findById(id)
+                .map(usuario -> toUsuarioDTO(usuario));
     }
 
-    // Actualizar un producto
+    /**
+     * Actualiza un usuario por su ID.
+     *
+     * @param id El ID del usuario a actualizar.
+     * @param usuario Los datos del usuario a actualizar.
+     * @return Un Mono que emite el DTO del usuario actualizado o vacío si no se encuentra.
+     */
     public Mono<UsuarioDTO> updateUsuario(String id, Usuario usuario) {
         return usuarioRepository.findById(id)
                 .flatMap(u -> {
@@ -55,20 +80,28 @@ public class UsuarioService {
                     u.setEmail(usuario.getEmail());
                     u.setUpdatedAt(LocalDateTime.now());
                     return usuarioRepository.save(u);
-                }).map(usuarioActualizado -> toUsuarioDTO(usuarioActualizado)); // Devuelve el DTO del usuario actualizado
+                }).map(usuarioActualizado -> toUsuarioDTO(usuarioActualizado));
     }
 
-    // Eliminar un usuario
+    /**
+     * Elimina un usuario por su ID.
+     *
+     * @param id El ID del usuario a eliminar.
+     * @return Un Mono que emite el DTO del usuario eliminado o vacío si no se encuentra.
+     */
     public Mono<UsuarioDTO> deleteUsuario(String id) {
         return usuarioRepository.findById(id)
-                .flatMap(
-                        usuario -> usuarioRepository.delete(usuario)
-                        .then(Mono.just(toUsuarioDTO(usuario))
-                ) // Devuelve el DTO del usuario eliminado
-                .switchIfEmpty(Mono.empty())); // No devuelve nada si no se encuentra el usuario
+                .flatMap(usuario -> usuarioRepository.delete(usuario)
+                        .then(Mono.just(toUsuarioDTO(usuario))))
+                .switchIfEmpty(Mono.empty());
     }
 
-    // Convertir un Usuario a UsuarioDTO
+    /**
+     * Convierte un Usuario a UsuarioDTO.
+     *
+     * @param usuario El usuario a convertir.
+     * @return El DTO del usuario.
+     */
     private UsuarioDTO toUsuarioDTO(Usuario usuario) {
         return new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getEmail(), usuario.getRol());
     }
