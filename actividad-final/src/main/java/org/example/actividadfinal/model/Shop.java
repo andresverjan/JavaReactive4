@@ -33,6 +33,9 @@ public class Shop {
     @Column(value = "fk_id_usuario")
     private Long fkIdUser;
 
+    @Column(value = "tipo")
+    private String type;
+
     @Column(value = "fecha_creacion")
     private LocalDateTime createdAt;
 }

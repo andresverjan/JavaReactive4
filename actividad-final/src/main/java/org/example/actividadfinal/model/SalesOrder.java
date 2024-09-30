@@ -11,11 +11,11 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 
 @Data
-@Table(name = "ordenes_compra")
+@Table(name = "ordenes_venta")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class PurchaseOrder {
+public class SalesOrder {
 
     @Id
     @Column(value = "id_orden")
@@ -30,7 +30,9 @@ public class PurchaseOrder {
     @Column(value = "fecha")
     private LocalDateTime date;
 
+    @Column(value = "total")
+    private Double total;
+
     @Column(value = "estado")
     private String state;
-
 }
