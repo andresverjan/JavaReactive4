@@ -40,7 +40,7 @@ CREATE TABLE tienda.OrdenVenta (
     id VARCHAR(10) PRIMARY KEY, -- ID personalizado con el formato OV_1, OV_2, etc.
     usuario_id VARCHAR(15) REFERENCES tienda.Usuario(id), -- Relación con el usuario
     total DECIMAL(10, 2) NOT NULL, -- Total de la orden
-    estado VARCHAR(50) NOT NULL CHECK (estado IN ('Creada', 'Editada', 'Cancelada')), -- Estado de la orden
+    estado VARCHAR(50) CHECK (estado IN ('Creada', 'Editada', 'Cancelada')), -- Estado de la orden
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Fecha de creación de la orden
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Fecha de última actualización
 );

@@ -37,7 +37,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_generar_orden_venta_id
-BEFORE INSERT ON tienda.OrdenesVentas
+BEFORE INSERT ON tienda.OrdenVenta
 FOR EACH ROW
 EXECUTE FUNCTION tienda.generar_orden_venta_id();
 
