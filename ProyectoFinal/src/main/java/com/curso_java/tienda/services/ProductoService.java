@@ -24,21 +24,32 @@ public class ProductoService {
     private R2dbcEntityTemplate r2dbcEntityTemplate;
 
     /**
-     * Crea o actualiza un producto.
+     * Crea un nuevo producto o lanza un error si el producto ya existe en la base de datos.
      *
-     * @param producto El producto a crear o actualizar.
-     * @return Un Mono que emite el DTO del producto creado o un error si el ID del producto ya existe.
+     * @param producto El producto a crear.
+     * @return Un Mono que emite el DTO del producto creado o un error si el producto ya existe.
      */
-    public Mono<ProductoDTO> saveProducto(Producto producto) {
-        var fechaCreacion = LocalDateTime.now();
-        producto.setCreatedAt(fechaCreacion);
-        producto.setUpdatedAt(fechaCreacion);
+    public Mono<ProductoDTO> createProducto(Producto producto) {
 
-        return productoRepository.existsById(producto.getId())
-                .flatMap(existe -> {
-                    if (existe) {
-                        return Mono.error(new IllegalArgumentException("El ID del producto ya existe"));
+        // Verifica si ya existe un producto con los mismos atributos en la base de datos
+        return productoRepository.findAll()
+                .filter(existingProducto -> existingProducto.getNombre().equals(producto.getNombre()) &&
+                        existingProducto.getPrecio().equals(producto.getPrecio()) &&
+                        existingProducto.getDescripcion().equals(producto.getDescripcion()) &&
+                        existingProducto.getImagenUrl().equals(producto.getImagenUrl()) &&
+                        existingProducto.getStock() == producto.getStock())
+                .hasElements()
+                .flatMap(exists -> {
+                    if (exists) {
+                        // Si el producto ya existe, lanza un error
+                        return Mono.error(new IllegalArgumentException("El producto ya existe en la base de datos"));
                     } else {
+
+                        // Establece la fecha de creación y actualización del producto
+                        producto.setCreatedAt(LocalDateTime.now());
+                        producto.setUpdatedAt(LocalDateTime.now());
+
+                        // Si el producto no existe, inserta el nuevo producto en la base de datos
                         return r2dbcEntityTemplate.insert(Producto.class).using(producto)
                                 .map(productoGuardado -> toProductoDTO(productoGuardado));
                     }

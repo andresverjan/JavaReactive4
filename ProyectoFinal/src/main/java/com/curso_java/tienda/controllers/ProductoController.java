@@ -29,7 +29,7 @@ public class ProductoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<ResponseData<ProductoDTO>> createProducto(@RequestBody Producto producto) {
-        return productoService.saveProducto(producto)
+        return productoService.createProducto(producto)
                 .map(productoGuardado -> new ResponseData<>("Producto creado exitosamente", productoGuardado));
     }
 
