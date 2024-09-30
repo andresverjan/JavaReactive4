@@ -1,19 +1,15 @@
 package com.angel.react.api.shop.controllers;
 
-import com.angel.react.api.shop.model.PurchaseOrderDetailEntity;
 import com.angel.react.api.shop.model.PurchaseOrderEntity;
 import com.angel.react.api.shop.model.PurchaseOrderFull;
 import com.angel.react.api.shop.service.PurchaseOrderService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.text.ParseException;
-import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/v1/purchase-order")
 public class PurchaseOrderController {
@@ -42,11 +38,6 @@ public class PurchaseOrderController {
     @PostMapping()
     public Mono<PurchaseOrderFull> create(@RequestBody PurchaseOrderFull purchaseOrder){
         return this.purchaseOrderService.create(purchaseOrder);
-    }
-
-    @PutMapping()
-    public Mono<PurchaseOrderEntity> update(@RequestBody PurchaseOrderEntity purchaseOrderEntity){
-        return this.purchaseOrderService.update(purchaseOrderEntity);
     }
 
     @DeleteMapping("/{reference}")

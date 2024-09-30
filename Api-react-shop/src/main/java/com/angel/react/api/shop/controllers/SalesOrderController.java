@@ -3,7 +3,6 @@ package com.angel.react.api.shop.controllers;
 import com.angel.react.api.shop.model.SalesOrderEntity;
 import com.angel.react.api.shop.model.SalesOrderFull;
 import com.angel.react.api.shop.service.SalesOrderService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -11,7 +10,6 @@ import reactor.core.publisher.Mono;
 
 import java.text.ParseException;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/v1/sales-order")
 public class SalesOrderController {

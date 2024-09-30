@@ -18,9 +18,16 @@ public class CartEntity {
     private Long idProduct;
     @Column("nameproduct")
     private String nameProduct;
+    private int quantity;
     @Column("priceproduct")
     private Float priceProduct;
-    private int quantity;
+    @Column("totalpriceproducts")
+    private Float totalPriceProducts;
+    @Column("totaliva")
+    private Float totalIva;
+    @Column("totaldiscount")
+    private Float totalDiscount;
+    private float delivery;
     @Column("idclient")
     private Long idClient;
     @Column("nameclient")

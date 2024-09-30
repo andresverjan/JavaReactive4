@@ -21,4 +21,6 @@ public class StockEntity {
     private String reference;
     @Column("idsalesorder")
     private Long idSalesOrder;
+    @Column("idpurchaseorder")
+    private Long idPurchaseOrder;
 }

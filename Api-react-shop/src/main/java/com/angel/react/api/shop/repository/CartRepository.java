@@ -12,6 +12,8 @@ import reactor.core.publisher.Mono;
 public interface CartRepository extends R2dbcRepository<CartEntity, Long> {
     Flux<CartEntity> findByIdClient(Long idCliente);
     Mono<Void> deleteByIdClient(Long idClient);
-    @Query("SELECT idclient, nameclient, sum(quantity) as totalproducts, sum(priceproduct*quantity) as totalprice, delivery FROM cart where idclient = :idClient group by idclient,nameclient,delivery")
+    @Query("SELECT idclient, nameclient, sum(quantity) as totalproducts, sum(totalpriceproducts) as totalprice, \n" +
+            "sum(totaldiscount) as totaldiscount, sum(totaliva) as totaliva, delivery FROM cart\n" +
+            "where idclient = :idClient group by idclient,nameclient,delivery")
     Mono<CartSummaryEntity> findSummaryByClient(Long idClient);
 }

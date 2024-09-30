@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Builder
 @AllArgsConstructor
@@ -20,7 +19,6 @@ public class ProductEntity {
     private String name;
     private String description;
     private String reference;
-    private int stock;
     private Float price;
     @Column("priceiva")
     private Float priceIva;

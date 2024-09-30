@@ -13,6 +13,10 @@ public class CartSummaryEntity {
     private int totalProducts;
     @Column("totalprice")
     private Float totalPrice;
+    @Column("totaldiscount")
+    private Float totalDiscount;
+    @Column("totaliva")
+    private Float totalIva;
     private Float delivery;
     private String address;
 }

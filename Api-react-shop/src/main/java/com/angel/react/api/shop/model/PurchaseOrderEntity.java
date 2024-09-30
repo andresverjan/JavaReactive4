@@ -1,7 +1,5 @@
 package com.angel.react.api.shop.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
@@ -25,11 +23,13 @@ public class PurchaseOrderEntity {
     @Column("namesupplier")
     private String nameSupplier;
     private int items;
-    private Float total;
-    private Float iva;
-    @Column("ivarate")
-    private int ivaRate;
+    @Column("totalbase")
+    private Float totalBase;
     @Column("totaliva")
     private Float totalIva;
+    @Column("totalpurchase")
+    private Float totalPurchase;
+    @Column("ivarate")
+    private int ivaRate;
     private LocalDate date;
 }

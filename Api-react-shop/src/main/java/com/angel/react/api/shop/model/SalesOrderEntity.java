@@ -19,15 +19,19 @@ public class SalesOrderEntity {
     private String reference;
     private String status;
     @Column("idclient")
-    private int idClient;
+    private Long idClient;
     @Column("nameclient")
     private String nameClient;
     private int items;
-    private Float total;
-    private Float iva;
-    @Column("ivarate")
-    private int ivaRate;
+    @Column("totalbase")
+    private Float totalBase;
     @Column("totaliva")
     private Float totalIva;
+    @Column("totaldiscount")
+    private Float totalDiscount;
+    @Column("totalsale")
+    private Float totalSale;
+    @Column("ivarate")
+    private int ivaRate;
     private LocalDate date;
 }

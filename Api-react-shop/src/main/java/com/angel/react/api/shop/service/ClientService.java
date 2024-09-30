@@ -2,9 +2,9 @@ package com.angel.react.api.shop.service;
 
 import com.angel.react.api.shop.model.ClientEntity;
 import com.angel.react.api.shop.repository.ClientRepository;
-import com.angel.react.api.shop.repository.PersonRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -15,36 +15,52 @@ import reactor.core.publisher.Mono;
 public class ClientService {
 
     private final ClientRepository clientRepository;
-    private final PersonRepository personRepository;
 
     public Flux<ClientEntity> getAll(){
-        return clientRepository.findAll();
+        return clientRepository.findAll()
+                .switchIfEmpty(Mono.fromRunnable(() -> log.info("No clients found")))
+                .doOnComplete(() -> log.info("Find all clients success"))
+                .doOnError(error -> log.error("Error finding all clients: {}", error.getMessage()));
     }
 
     public Mono<ClientEntity> getById(Long id){
-        if(id == null){
-            return Mono.empty();
-        }
         return clientRepository.findById(id)
-                .doOnNext(p -> System.out.println("Persona encontrada, id: " + id));
+                .switchIfEmpty(Mono.fromRunnable(() -> log.info("Client not found, id: {}", id)))
+                .doOnNext(p -> log.info("Client found, id: {}", id))
+                .doOnError(error -> log.error("Error finding the client ID {}: {}", id, error.getMessage()));
     }
 
     public Mono<ClientEntity> create(ClientEntity client){
         return clientRepository.save(client)
-                .doOnNext(p -> System.out.println("Persona creada, id: " + client.getId()));
+                .doOnNext(p -> log.info("Client created, id: {}", client.getId()))
+                .onErrorResume(error -> {
+                            log.error("Error creating the client ID_PERSON {}: {}", client.getIdperson(), error.getMessage());
+                            return Mono.empty();
+                        }
+                );
     }
 
     public Mono<ClientEntity> update(ClientEntity client){
         return clientRepository.save(client)
-                .doOnNext(p -> System.out.println("Persona actualizada, id: " + client.getId()));
+                .doOnNext(p -> log.info("Client update, id: {}", client.getId()))
+                .onErrorResume(error -> {
+                    log.error("Error updating the client ID {}: {}", client.getId(), error.getMessage());
+                    return Mono.empty();
+                });
     }
 
-    public Mono<Void> deleteById(Long id) {
-        if(id == null){
-            return Mono.empty();
-        }
-
-        return clientRepository.deleteById(id)
-                .doOnNext(p -> System.out.println("Persona eliminada, id: " + id));
+    public Mono<ResponseEntity<String>> deleteById(Long id) {
+        return clientRepository.findById(id)
+                .flatMap(item -> clientRepository.deleteById(id)
+                        .then(Mono.fromCallable(() -> {
+                            log.info("Client [{}] deleted", item.getId());
+                            return ResponseEntity.ok("deleted ok");
+                        }))
+                )
+                .switchIfEmpty(Mono.defer(() -> {
+                    log.error("Client ID {} not found, error deleting", id);
+                    return Mono.just(ResponseEntity.notFound().build());
+                }))
+                .doOnError(error -> log.error("Error deleting client ID {}: {}", id, error.getMessage()));
     }
 }

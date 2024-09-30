@@ -2,6 +2,7 @@ package com.angel.react.api.shop.controllers;
 
 import com.angel.react.api.shop.model.PersonEntity;
 import com.angel.react.api.shop.service.PersonService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -37,10 +38,7 @@ public class PersonController {
     }
 
     @DeleteMapping("/{id}")
-    public Mono<PersonEntity> deleteById(@PathVariable Long id){
-        return this.personService.deleteById(id)
-                .doOnSubscribe(s -> System.out.println(" id eliminada"))
-                .doOnError(e -> System.out.println("error"))
-                .then(Mono.empty());
+    public Mono<ResponseEntity<String>> deleteById(@PathVariable Long id){
+        return this.personService.deleteById(id);
     }
 }
