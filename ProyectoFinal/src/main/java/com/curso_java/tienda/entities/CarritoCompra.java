@@ -17,6 +17,12 @@ public class CarritoCompra {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public CarritoCompra(String usuarioId, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.usuarioId = usuarioId;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public String getId() {
         return id;
     }
