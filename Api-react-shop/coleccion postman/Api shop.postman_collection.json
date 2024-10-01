@@ -1182,6 +1182,33 @@
 					"response": []
 				},
 				{
+					"name": "Obtener Top 5 productos mas vendidos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/sales-order/top-five",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"sales-order",
+								"top-five"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Reporte por fecha",
 					"request": {
 						"method": "GET",
