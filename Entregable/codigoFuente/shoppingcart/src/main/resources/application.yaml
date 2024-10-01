@@ -1,0 +1,18 @@
+logging:
+  level:
+    org.springframework.data.r2dbc: DEBUG
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/shoppingcart
+    username: postgres
+    password: 190402
+  jpa:
+    hibernate:
+      ddl-auto: <create | create-drop | update | validate | none>
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+springdoc:
+  api-docs:
+    path: /shoppingcart-doc
+  package-to-scan: package com.bancolombia.shoppingcart.controller
