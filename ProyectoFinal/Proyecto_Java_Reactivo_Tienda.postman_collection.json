@@ -1,0 +1,890 @@
+{
+	"info": {
+		"_postman_id": "d5d0f1ce-8fb1-4c05-bb0d-512557ab53b6",
+		"name": "Proyecto_Java_Reactivo_Tienda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21404121"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "GetAllProductos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/PR_",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"PR_"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateProducto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Ejemplo\",\r\n    \"precio\": 1000.00,\r\n    \"descripcion\": \"Ejemplo\",\r\n    \"imagenUrl\": \"Ejemplo.png\",\r\n    \"stock\": 1000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProducto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Ejemplo 1\",\r\n    \"precio\": 1500.00,\r\n    \"descripcion\": \"Ejemplo 1\",\r\n    \"imagenUrl\": \"Ejemplo.png\",\r\n    \"stock\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/productos/PR_",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"PR_"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/productos/PR_",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"productos",
+								"PR_"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUserById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/usuarios/1234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1234567890"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"2468135790\",\r\n    \"nombre\": \"Usuario Prueba\",\r\n    \"rol\": \"Cliente\",\r\n    \"email\": \"user.prueba@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUsuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Usuario Prueba 2\",\r\n    \"rol\": \"Ambos\",\r\n    \"email\": \"user.prueba2@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/2468135790",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2468135790"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUsuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"2468135790\",\r\n    \"nombre\": \"Usuario Prueba\",\r\n    \"rol\": \"Cliente\",\r\n    \"email\": \"user.prueba@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/usuarios/2468135790",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"2468135790"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "CreateCarrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carritos?clienteId=7196847107",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carritos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "7196847107"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCarritos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carritos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carritos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCarritoById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carritos/CA_5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carritos",
+								"CA_5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCarritoById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carritos/CA_5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carritos",
+								"CA_5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetTotal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrito-productos/total?carritoId=CA_2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrito-productos",
+								"total"
+							],
+							"query": [
+								{
+									"key": "carritoId",
+									"value": "CA_2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProductosByCarritoId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrito-productos/get-all?carritoId=CA_2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrito-productos",
+								"get-all"
+							],
+							"query": [
+								{
+									"key": "carritoId",
+									"value": "CA_2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddProductoToCarrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrito-productos/add?carritoId=CA_2&productoId=PR_1&cantidad=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrito-productos",
+								"add"
+							],
+							"query": [
+								{
+									"key": "carritoId",
+									"value": "CA_2"
+								},
+								{
+									"key": "productoId",
+									"value": "PR_1"
+								},
+								{
+									"key": "cantidad",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProducto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrito-productos/delete?carritoId=CA_2&productoId=PR_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrito-productos",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "carritoId",
+									"value": "CA_2"
+								},
+								{
+									"key": "productoId",
+									"value": "PR_1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAllProductos",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrito-productos/clear?carritoId=CA_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrito-productos",
+								"clear"
+							],
+							"query": [
+								{
+									"key": "carritoId",
+									"value": "CA_1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCantidadProducto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/carrito-productos/update?carritoId=CA_1&productoId=PR_5&nuevaCantidad=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"carrito-productos",
+								"update"
+							],
+							"query": [
+								{
+									"key": "carritoId",
+									"value": "CA_1"
+								},
+								{
+									"key": "productoId",
+									"value": "PR_5"
+								},
+								{
+									"key": "nuevaCantidad",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orden Ventas",
+			"item": [
+				{
+					"name": "CreateOrdenVenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuarioId\": \"1234567890\",\r\n  \"productos\": [\r\n    {\r\n      \"productoId\": \"PR_4\",\r\n      \"cantidad\": 1\r\n    },\r\n    {\r\n      \"productoId\": \"PR_5\",\r\n      \"cantidad\": 1\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ventas/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ventas",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrdenVenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productos\": [\r\n    {\r\n      \"productoId\": \"PR_1\",\r\n      \"cantidad\": 2\r\n    },\r\n    {\r\n      \"productoId\": \"PR_2\",\r\n      \"cantidad\": 2\r\n    },\r\n    {\r\n      \"productoId\": \"PR_3\",\r\n      \"cantidad\": 2\r\n    }\r\n  ],\r\n  \"estado\": \"Editada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ventas/edit/OV_4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ventas",
+								"edit",
+								"OV_4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddProductosOrdenVenta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"productoId\": \"PR_6\",\r\n        \"cantidad\": 1\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ventas/OV_4/add-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ventas",
+								"OV_4",
+								"add-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrdenesVenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ventas/get-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ventas",
+								"get-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProductosOrdenesVenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ventas/OV_4/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ventas",
+								"OV_4",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CancelOrdenVenta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ventas/cancel/OV_4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ventas",
+								"cancel",
+								"OV_4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orden Compras",
+			"item": [
+				{
+					"name": "CreateOrdenCompra",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"empresaId\": \"EM_1\",\r\n  \"vendedorId\": \"1850275937\",\r\n  \"productos\": [\r\n    {\r\n      \"productoId\": \"PR_3\",\r\n      \"cantidad\": 5\r\n    },\r\n    {\r\n      \"productoId\": \"PR_4\",\r\n      \"cantidad\": 7\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ordenes-compras/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordenes-compras",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdaterdenCompra",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n      \"productoId\": \"PR_3\",\r\n      \"cantidad\": 1\r\n    },\r\n    {\r\n      \"productoId\": \"PR_5\",\r\n      \"cantidad\": 1\r\n    }\r\n]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ordenes-compras/update/OC_1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordenes-compras",
+								"update",
+								"OC_1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrdenesCompra",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n      \"productoId\": \"PR_1\",\r\n      \"cantidad\": 11\r\n    },\r\n    {\r\n      \"productoId\": \"PR_2\",\r\n      \"cantidad\": 6\r\n    }\r\n]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ordenes-compras/get-all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordenes-compras",
+								"get-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrdenesProductosCompra",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n      \"productoId\": \"PR_1\",\r\n      \"cantidad\": 11\r\n    },\r\n    {\r\n      \"productoId\": \"PR_2\",\r\n      \"cantidad\": 6\r\n    }\r\n]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ordenes-compras/get-all/OC_1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ordenes-compras",
+								"get-all",
+								"OC_1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empresa",
+			"item": [
+				{
+					"name": "CreateEmpresa",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reportes",
+			"item": [
+				{
+					"name": "ReporteCompras",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reportes/compras?fechaInicio=2024-09-29T22:16:50.300&fechaFin=2024-09-30T00:16:22.038",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reportes",
+								"compras"
+							],
+							"query": [
+								{
+									"key": "fechaInicio",
+									"value": "2024-09-29T22:16:50.300"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2024-09-30T00:16:22.038"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReporteVentas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reportes/ventas?fechaInicio=2024-09-30T00:08:46.878&fechaFin=2024-09-30T00:09:46.878",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reportes",
+								"ventas"
+							],
+							"query": [
+								{
+									"key": "fechaInicio",
+									"value": "2024-09-30T00:08:46.878"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2024-09-30T00:09:46.878"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
