@@ -1,0 +1,1349 @@
+{
+	"info": {
+		"_postman_id": "7acfd0b8-440d-40eb-bcda-747018e8245b",
+		"name": "Api shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Person",
+			"item": [
+				{
+					"name": "CrearPersona",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"name\":\"{{$randomFullName}}\",\r\n    \"age\": 30,\r\n    \"gender\": \"Male\",\r\n    \"address\": \"{{$randomStreetAddress}}\",\r\n    \"document\": \"1090123{{$randomInt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/person",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ObtenerPersona",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/person/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListaPersonas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/person/retrieve",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"retrieve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditarPersona",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 24,\r\n    \"name\": \"Stephen Brakus\",\r\n    \"age\": 30,\r\n    \"gender\": \"Male\",\r\n    \"address\": \"954 Sandrine Pine\",\r\n    \"document\": \"1090123150\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/person",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"person"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EliminarPersona",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/person/25",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"person",
+								"25"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supplier",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"name\":\"{{$randomFullName}}\",\r\n    \"document\": \"50123{{$randomInt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/supplier",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/supplier/1",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"supplier",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/supplier/retrieve",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"supplier",
+								"retrieve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 10,\r\n    \"name\": \"Gwendolyn Lakin\",\r\n    \"document\": \"50123206\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/supplier",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/supplier/3",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"supplier",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idperson\": 23,\r\n    \"status\": \"Active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/client",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/client/23",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/client/retrieve",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"retrieve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 18,\r\n    \"idperson\": 23,\r\n    \"status\": \"Active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/client",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/client/18",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"18"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Crear",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{$randomProductName}}\",\r\n    \"description\": \"{{$randomProductName}}\",\r\n    \"reference\": \"P00{{$randomInt}}\",\r\n    \"price\": 5000,\r\n    \"iva\": 950,\r\n    \"priceIva\": 5950,\r\n    \"ivaRate\": 19,\r\n    \"imageUrl\": \"{{$randomImageUrl}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/product",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/product/29",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"29"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/product/retrieve",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"retrieve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 26,\r\n    \"name\": \"Unbranded Fresh Salad\",\r\n    \"description\": \"Incredible Rubber Bacon\",\r\n    \"reference\": \"P00628\",\r\n    \"price\": 5000.0,\r\n    \"priceIva\": 5950.0,\r\n    \"iva\": 950.0,\r\n    \"ivaRate\": 19,\r\n    \"imageUrl\": \"http://placeimg.com/640/480\",\r\n    \"createdAt\": \"2024-09-27\",\r\n    \"updatedAt\": \"2024-09-30\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/product",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/product/29",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"29"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Purchase order",
+			"item": [
+				{
+					"name": "Crear",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.collectionVariables.unset('var_date');\r",
+									"pm.collectionVariables.unset('var_date');\r",
+									"pm.collectionVariables.set(\"var_date\", moment().format(\"YYYY-MM-DD\"));\r",
+									"pm.collectionVariables.set(\"purchaseReference\", \"PO00\" + _.random(10000,99999));\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"purchaseOrderInfo\": {\r\n        \"reference\": \"{{purchaseReference}}\",\r\n        \"status\": \"credit\",\r\n        \"idSupplier\": 1,\r\n        \"nameSupplier\": \"Supplier medellin\",\r\n        \"items\": 2,\r\n        \"totalBase\": 12800000.0,\r\n        \"totalIva\": 11900.0,\r\n        \"totalPurchase\": 1900.0,\r\n        \"ivaRate\": 19,        \r\n        \"date\": \"{{var_date}}\"\r\n    },\r\n    \"purchaseOrderDetail\": [\r\n        {\r\n            \"idProduct\": 4,\r\n            \"nameProduct\": \"Teclado inalambrico\",\r\n            \"reference\": \"{{purchaseReference}}\",\r\n            \"quantity\": 100,\r\n            \"cost\": 120000.0,\r\n            \"total\": 12000000.0,\r\n            \"iva\": 22800.0,\r\n            \"ivaRate\": 19,\r\n            \"totalIva\": 2280000.0\r\n        },\r\n        {\r\n            \"idProduct\": 7,\r\n            \"nameProduct\": \"Teclado gamer\",\r\n            \"reference\": \"{{purchaseReference}}\",\r\n            \"quantity\": 50,\r\n            \"cost\": 160000.0,\r\n            \"total\": 800000.0,\r\n            \"iva\": 30400.0,\r\n            \"ivaRate\": 19,\r\n            \"totalIva\": 152000.0\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/purchase-order",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"purchase-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener por Referencia",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/purchase-order/details/reference/PO0029665",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"purchase-order",
+								"details",
+								"reference",
+								"PO0029665"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporte por fecha",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/purchase-order/report?dateInit=2024-09-24&dateEnd=2024-09-30",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"purchase-order",
+								"report"
+							],
+							"query": [
+								{
+									"key": "dateInit",
+									"value": "2024-09-24"
+								},
+								{
+									"key": "dateEnd",
+									"value": "2024-09-30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/purchase-order/retrieve",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"purchase-order",
+								"retrieve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar por referencia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/purchase-order/PO0026583",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"purchase-order",
+								"PO0026583"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Crear",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.collectionVariables.unset('var_date');\r",
+									"pm.collectionVariables.set(\"var_date\", moment().format(\"YYYY-MM-DD\"));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"idProduct\": 4,\r\n        \"nameProduct\": \"Teclado inalambrico\",\r\n        \"priceProduct\": 150000.0,\r\n        \"totalPriceProducts\": 750000.0,\r\n        \"totalIva\": 112500.0,\r\n        \"totalDiscount\": 10000.0,\r\n        \"quantity\": 5,\r\n        \"idClient\": 12,\r\n        \"nameClient\": \"Leonardo Vivas\",\r\n        \"delivery\":\"15000\"\r\n    },\r\n    {\r\n        \"idProduct\": 7,\r\n        \"nameProduct\": \"Teclado gamer\",\r\n        \"priceProduct\": 200000.0,\r\n        \"totalPriceProducts\": 200000.0,\r\n        \"totalIva\": 38000.0,\r\n        \"totalDiscount\": 10000.0,\r\n        \"quantity\": 1,\r\n        \"idClient\": 12,\r\n        \"nameClient\": \"Leonardo Vivas\",\r\n        \"delivery\":\"15000\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/cart",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener carrito cliente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/cart/client/12",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"client",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener total carrito cliente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/cart/summary/client/12",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"summary",
+								"client",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/cart/retrieve",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"retrieve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": 76,\r\n        \"idProduct\": 4,\r\n        \"nameProduct\": \"Teclado inalambrico\",\r\n        \"priceProduct\": 5000,\r\n        \"totalPriceProducts\": 25000,\r\n        \"totalIva\": 4750,\r\n        \"totalDiscount\": 500,\r\n        \"quantity\": 2,\r\n        \"idClient\": 12,\r\n        \"nameClient\": \"Leonardo Vivas\",\r\n        \"delivery\":\"15000\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/cart",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/cart/item/5",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"item",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vaciar carrito cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/cart/client/12",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"cart",
+								"client",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sales order",
+			"item": [
+				{
+					"name": "Crear",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const moment = require('moment');\r",
+									"pm.collectionVariables.unset('var_date');\r",
+									"pm.collectionVariables.unset('var_date');\r",
+									"pm.collectionVariables.set(\"var_date\", moment().format(\"YYYY-MM-DD\"));\r",
+									"pm.collectionVariables.set(\"saleReference\", \"SO00\" + _.random(10000,99999));\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"salesOrderInfo\": {\r\n        \"reference\": \"{{saleReference}}\",\r\n        \"status\": \"credit\",\r\n        \"idClient\": 12,\r\n        \"nameClient\": \"Leonardo Vivas\",\r\n        \"items\": 6,\r\n        \"totalBase\": 950000.0,\r\n        \"totalIva\": 150500.0,\r\n        \"totalDiscount\": 20000.0,\r\n        \"totalSale\": 1100500.0,\r\n        \"ivaRate\": 19,\r\n        \"date\": \"{{var_date}}\"\r\n    },\r\n    \"salesOrderDetail\": [\r\n        {\r\n            \"idProduct\": 4,\r\n            \"nameProduct\": \"Teclado inalambrico\",\r\n            \"quantity\": 5,\r\n            \"price\": 150000.0,\r\n            \"total\": 750000.0,\r\n            \"iva\": 22500.0,\r\n            \"ivaRate\": 19,\r\n            \"totalIva\": 112500.0\r\n        },\r\n        {\r\n            \"idProduct\": 7,\r\n            \"nameProduct\": \"Teclado gamer\",\r\n            \"quantity\": 1,\r\n            \"price\": 200000.0,\r\n            \"total\": 200000.0,\r\n            \"iva\": 38000.0,\r\n            \"ivaRate\": 19,\r\n            \"totalIva\": 38000.0\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/sales-order",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"sales-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener por Referencia",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/sales-order/details/reference/SO0072038",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"sales-order",
+								"details",
+								"reference",
+								"SO0072038"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reporte por fecha",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/sales-order/report?dateInit=2024-09-30&dateEnd=2024-09-30",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"sales-order",
+								"report"
+							],
+							"query": [
+								{
+									"key": "dateInit",
+									"value": "2024-09-30"
+								},
+								{
+									"key": "dateEnd",
+									"value": "2024-09-30"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/sales-order/retrieve",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"sales-order",
+								"retrieve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar por referencia",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "session",
+								"value": "{{$randomUUID}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}:{{port}}/api/v1/sales-order/SO0094342",
+							"host": [
+								"{{host}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"v1",
+								"sales-order",
+								"SO0094342"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "{{host}}:{{port}}/actuator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}:{{port}}/actuator",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"actuator"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost",
+			"type": "default"
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "default"
+		},
+		{
+			"key": "var_date",
+			"value": ""
+		},
+		{
+			"key": "purchaseReference",
+			"value": ""
+		},
+		{
+			"key": "saleReference",
+			"value": ""
+		}
+	]
+}
