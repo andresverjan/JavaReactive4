@@ -1,0 +1,19 @@
+spring:
+  r2dbc:
+    url: r2dbc:pool:postgresql://localhost:5432/shoppingcart
+    username: postgres
+    password: postgres
+  application:
+    name: shoppingcart
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true

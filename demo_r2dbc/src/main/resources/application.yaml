@@ -5,3 +5,38 @@ spring:
     password: postgres
   application:
     name: demo
+
+management1:
+  health:
+    probes:
+      enabled: false
+  endpoints:
+    web:
+      base-path: ${BASE_PATH:/documents/api/v1}
+
+management2:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+management4:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true

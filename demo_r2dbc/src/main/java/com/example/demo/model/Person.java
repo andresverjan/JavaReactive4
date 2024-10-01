@@ -10,7 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 
-@Table("PERSON")
+@Table("TBL_PERSON")
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor // Genera un constructor por defecto
