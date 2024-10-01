@@ -163,4 +163,14 @@ public class SalesOrderService {
                 }))
                 .doOnError(error -> log.error("Error deleting sale order ID {}: {}", reference, error.getMessage()));
     }
+
+    public Flux<ProductTopFiveEntity> getStockTopFive() {
+        return salesOrderRepository.findStockTopFive()
+                .switchIfEmpty(Mono.fromRunnable(() -> log.info("Sale not found")))
+                .doOnComplete(() -> log.info("Find top 5 best selling products success"))
+                .onErrorResume(error -> {
+                    log.error("Error Find top 5 best selling products: {}", error.getMessage());
+                    return Mono.empty();
+                });
+    }
 }

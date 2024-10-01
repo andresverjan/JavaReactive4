@@ -1,5 +1,6 @@
 package com.angel.react.api.shop.controllers;
 
+import com.angel.react.api.shop.model.ProductTopFiveEntity;
 import com.angel.react.api.shop.model.SalesOrderEntity;
 import com.angel.react.api.shop.model.SalesOrderFull;
 import com.angel.react.api.shop.service.SalesOrderService;
@@ -44,4 +45,10 @@ public class SalesOrderController {
     public Mono<ResponseEntity<String>> deleteByReference(@PathVariable String reference){
         return salesOrderService.deleteByReference(reference);
     }
+
+    @GetMapping("/top-five")
+    public Flux<ProductTopFiveEntity> getTopFive() {
+        return this.salesOrderService.getStockTopFive();
+    }
+
 }
