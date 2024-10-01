@@ -14,14 +14,14 @@ import java.time.LocalDateTime;
 @Service
 public class OrdenesVentasService {
 
-    private final OrdenesVentasRepository ordenCompraRepository;
+    private final OrdenesVentasRepository ordenVentaRepository;
     private final PersonaRepository personaRepository;
     private final ProductRepository productRepository;
 
 
     public OrdenesVentasService(OrdenesVentasRepository ordenCompraRepository, PersonaRepository personaRepository,
                                 ProductRepository productRepository) {
-        this.ordenCompraRepository = ordenCompraRepository;
+        this.ordenVentaRepository = ordenCompraRepository;
         this.personaRepository = personaRepository;
         this.productRepository = productRepository;
     }
@@ -37,35 +37,48 @@ public class OrdenesVentasService {
                         return Mono.error(new CustomException("No hay suficiente stock del producto, " +
                                 "stock actual " + product.getStock()));
                     }
-                    return Mono.just(product);
+                    product.setStock(product.getStock() - ordenesVentas.getCantidad());
+                    return productRepository.save(product);
                 })
                 .then(Mono.defer(() -> {
                     ordenesVentas.setCreatedAt(LocalDateTime.now());
                     ordenesVentas.setEstado("Creacion");
-                    return ordenCompraRepository.save(ordenesVentas);
+                    return ordenVentaRepository.save(ordenesVentas);
                 }));
     }
 
 
     // Crear una nueva orden de venta
     public Mono<OrdenesVentas> updateOrdenesVentas(int id, OrdenesVentas saleOrder) {
-        return ordenCompraRepository.findById(id)
+        return ordenVentaRepository.findById(id)
                 .switchIfEmpty(Mono.error(new CustomException("Orden no encontrada")))
                 .flatMap(existingSaleOrder -> {
                     if ("Cancelada".equals(existingSaleOrder.getEstado())) {
                         return Mono.error(new CustomException("No se puede editar una orden cancelada"));
                     }
+                    int oldQuantity = existingSaleOrder.getCantidad();
+                    int newQuantity = saleOrder.getCantidad();
                     existingSaleOrder.setProductId(saleOrder.getProductId());
-                    existingSaleOrder.setCantidad(saleOrder.getCantidad());
+                    existingSaleOrder.setCantidad(newQuantity);
                     existingSaleOrder.setUpdateAt(LocalDateTime.now());
                     existingSaleOrder.setEstado("Editada");
-                    return ordenCompraRepository.save(existingSaleOrder);
+                    return productRepository.findById(existingSaleOrder.getProductId())
+                            .flatMap(product -> {
+                                int stockDifference = oldQuantity - newQuantity;
+                                if (product.getStock() + stockDifference < 0) {
+                                    return Mono.error(new CustomException("No hay suficiente stock del producto, " +
+                                            "stock actual " + product.getStock()));
+                                }
+                                product.setStock(product.getStock() + stockDifference);
+                                return productRepository.save(product);
+                            })
+                            .then(ordenVentaRepository.save(existingSaleOrder));
                 });
     }
 
     // Cancelar una orden de venta
     public Mono<String> cancelOrdenesVentas(int id) {
-        return ordenCompraRepository.findById(id)
+        return ordenVentaRepository.findById(id)
                 .switchIfEmpty(Mono.error(new CustomException("Orden no encontrada")))
                 .flatMap(existingSaleOrder -> {
                     if ("Cancelada".equals(existingSaleOrder.getEstado())) {
@@ -73,19 +86,23 @@ public class OrdenesVentasService {
                     }
                     existingSaleOrder.setEstado("Cancelada");
                     existingSaleOrder.setUpdateAt(LocalDateTime.now());
-                    return ordenCompraRepository.save(existingSaleOrder);
-
+                    return productRepository.findById(existingSaleOrder.getProductId())
+                            .flatMap(product -> {
+                                product.setStock(product.getStock() + existingSaleOrder.getCantidad());
+                                return productRepository.save(product);
+                            })
+                            .then(ordenVentaRepository.save(existingSaleOrder));
                 })
                 .then(Mono.just("Orden eliminada"));
     }
 
     // Listar todas las ordenes de venta
     public Flux<OrdenesVentas> listOrdenesVentas() {
-        return ordenCompraRepository.findAll();
+        return ordenVentaRepository.findAll();
     }
 
     // Listar ordenes de venta por producto
     public Flux<OrdenesVentas> listOrdenesVentasByProduct(int productId) {
-        return ordenCompraRepository.findByProductId(productId);
+        return ordenVentaRepository.findByProductId(productId);
     }
 }

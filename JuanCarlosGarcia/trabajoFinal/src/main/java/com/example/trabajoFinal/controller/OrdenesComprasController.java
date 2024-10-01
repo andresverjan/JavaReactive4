@@ -27,7 +27,7 @@ public class OrdenesComprasController {
 
     @PostMapping
     public Mono<ResponseEntity<OrdenesCompra>> createOrdenCompra(@RequestBody OrdenesCompra ordenesCompra) {
-        return ordenesComprasService.createOrder(ordenesCompra)
+        return ordenesComprasService.createOrdenCompra(ordenesCompra)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }

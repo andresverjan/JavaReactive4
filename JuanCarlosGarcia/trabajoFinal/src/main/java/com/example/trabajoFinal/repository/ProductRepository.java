@@ -6,4 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface ProductRepository extends ReactiveCrudRepository<Product, Integer> {
     Mono<Product> findByName(String name);
+    Mono<Product> findById(Integer id);
 }

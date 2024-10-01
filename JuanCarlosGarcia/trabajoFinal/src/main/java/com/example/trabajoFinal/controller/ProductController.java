@@ -33,12 +33,12 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<String>> getProductById(@PathVariable Integer id) {
+    public Mono<ResponseEntity<Product>> getProductById(@PathVariable Integer id) {
         return productService.getProductById(id)
-                .map(product -> ResponseEntity.ok(product.toString()))
+                .map(ResponseEntity::ok)
                 .onErrorResume(e -> Mono.just(ResponseEntity
                         .status(HttpStatus.NOT_FOUND)
-                        .body(e.getMessage())));
+                        .body(null)));
     }
 
     @GetMapping("/name/{name}")
