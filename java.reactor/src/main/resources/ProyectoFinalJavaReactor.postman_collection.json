@@ -34,7 +34,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/product/2",
+							"raw": "http://localhost:8080/product/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -42,7 +42,7 @@
 							"port": "8080",
 							"path": [
 								"product",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -54,7 +54,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/product/name/product2",
+							"raw": "http://localhost:8080/product/name/Cerveza",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -63,7 +63,7 @@
 							"path": [
 								"product",
 								"name",
-								"product2"
+								"Cerveza"
 							]
 						}
 					},
@@ -76,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"product3\",\r\n  \"price\": 3,\r\n  \"description\": \"description3\",\r\n  \"imageUrl\": \"https://example.com/images/product3.jpg\",\r\n  \"stock\": 0\r\n}\r\n",
+							"raw": "{\r\n  \"name\": \"Papitas\",\r\n  \"price\": 1,\r\n  \"description\": \"Mecato\",\r\n  \"imageUrl\": \"https://example.com/images/papitas.jpg\",\r\n  \"stock\": 100\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -104,7 +104,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"product1\",\r\n  \"price\": 20,\r\n  \"description\": \"description1 edit\",\r\n  \"imageUrl\": \"https://example.com/images/product1.jpg\",\r\n  \"stock\": 100\r\n}",
+							"raw": "{\r\n  \"name\": \"Cerveza\",\r\n  \"price\": 20,\r\n  \"description\": \"Bebida Alcoholica\",\r\n  \"imageUrl\": \"https://example.com/images/cerveza.jpg\",\r\n  \"stock\": 100\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -112,7 +112,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/product/1",
+							"raw": "http://localhost:8080/product/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -120,7 +120,7 @@
 							"port": "8080",
 							"path": [
 								"product",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -132,7 +132,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/product/stock/2?quantity=2",
+							"raw": "http://localhost:8080/product/stock/2?quantity=200",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -146,7 +146,7 @@
 							"query": [
 								{
 									"key": "quantity",
-									"value": "2"
+									"value": "200"
 								}
 							]
 						}
@@ -168,7 +168,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/product/3",
+							"raw": "http://localhost:8080/product/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -176,7 +176,7 @@
 							"port": "8080",
 							"path": [
 								"product",
-								"3"
+								"6"
 							]
 						}
 					},
@@ -194,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"quantity\": 1,\r\n  \"productId\": 2\r\n}\r\n",
+							"raw": "{\r\n    \"cartId\": 11,\r\n    \"quantity\": 4,\r\n    \"productId\": 7\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -220,17 +220,8 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"quantity\": 9,\r\n  \"productId\": 1\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/cart/update/product?cartId&productId&quantity",
+							"raw": "http://localhost:8080/cart/update/product?cartId=11&productId=4&quantity=6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -244,15 +235,15 @@
 							"query": [
 								{
 									"key": "cartId",
-									"value": null
+									"value": "11"
 								},
 								{
 									"key": "productId",
-									"value": null
+									"value": "4"
 								},
 								{
 									"key": "quantity",
-									"value": null
+									"value": "6"
 								}
 							]
 						}
@@ -265,7 +256,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cart/9",
+							"raw": "http://localhost:8080/cart/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -273,7 +264,7 @@
 							"port": "8080",
 							"path": [
 								"cart",
-								"9"
+								"11"
 							]
 						}
 					},
@@ -305,7 +296,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cart/product?cartId=1&productId=1",
+							"raw": "http://localhost:8080/cart/product?cartId=11&productId=4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -318,11 +309,11 @@
 							"query": [
 								{
 									"key": "cartId",
-									"value": "1"
+									"value": "11"
 								},
 								{
 									"key": "productId",
-									"value": "1"
+									"value": "4"
 								}
 							]
 						}
@@ -335,7 +326,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cart/checkout?cartId=9&shipment=10",
+							"raw": "http://localhost:8080/cart/checkout?cartId=11&shipment=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -348,7 +339,7 @@
 							"query": [
 								{
 									"key": "cartId",
-									"value": "9"
+									"value": "11"
 								},
 								{
 									"key": "shipment",
@@ -365,7 +356,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cart/sale?cartId=9&shipment=10",
+							"raw": "http://localhost:8080/cart/sale?cartId=11&shipment=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -378,7 +369,7 @@
 							"query": [
 								{
 									"key": "cartId",
-									"value": "9"
+									"value": "11"
 								},
 								{
 									"key": "shipment",
@@ -401,7 +392,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"products\": [\r\n    {\r\n      \"productId\": 1,\r\n      \"quantity\": 3\r\n    },\r\n    {\r\n      \"productId\": 2,\r\n      \"quantity\": 1\r\n    }\r\n  ],\r\n  \"total\": 10\r\n}\r\n",
+							"raw": "{\r\n  \"products\": [\r\n    {\r\n      \"productId\": 4,\r\n      \"quantity\": 6\r\n    },\r\n    {\r\n      \"productId\": 7,\r\n      \"quantity\": 4\r\n    }\r\n  ],\r\n  \"total\": 10\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -447,7 +438,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/purchase-order/report?initDate=2024-10-01T22:00:00&endDate=2024-10-01T23:00:00",
+							"raw": "http://localhost:8080/purchase-order/report?initDate=2024-10-01T10:32:00&endDate=2024-10-01T23:59:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -460,11 +451,11 @@
 							"query": [
 								{
 									"key": "initDate",
-									"value": "2024-10-01T22:00:00"
+									"value": "2024-10-01T10:32:00"
 								},
 								{
 									"key": "endDate",
-									"value": "2024-10-01T23:00:00"
+									"value": "2024-10-01T23:59:00"
 								}
 							]
 						}
@@ -529,7 +520,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sale/1",
+							"raw": "http://localhost:8080/sale/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -537,7 +528,7 @@
 							"port": "8080",
 							"path": [
 								"sale",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -549,7 +540,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sale/product/2",
+							"raw": "http://localhost:8080/sale/product/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -558,7 +549,7 @@
 							"path": [
 								"sale",
 								"product",
-								"2"
+								"7"
 							]
 						}
 					},
@@ -570,7 +561,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sale/1?state=PENDING",
+							"raw": "http://localhost:8080/sale/3?state=SUCCESS",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -578,12 +569,12 @@
 							"port": "8080",
 							"path": [
 								"sale",
-								"1"
+								"3"
 							],
 							"query": [
 								{
 									"key": "state",
-									"value": "PENDING"
+									"value": "SUCCESS"
 								}
 							]
 						}
@@ -596,7 +587,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sale/report/date?initDate=2024-10-01T22:00:00&endDate=2024-10-01T23:00:00",
+							"raw": "http://localhost:8080/sale/report/date?initDate=2024-10-01T23:00:00&endDate=2024-10-01T23:59:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -610,11 +601,11 @@
 							"query": [
 								{
 									"key": "initDate",
-									"value": "2024-10-01T22:00:00"
+									"value": "2024-10-01T23:00:00"
 								},
 								{
 									"key": "endDate",
-									"value": "2024-10-01T23:00:00"
+									"value": "2024-10-01T23:59:00"
 								}
 							]
 						}
@@ -627,7 +618,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/sale/report/top5?initDate=2024-10-01T22:00:00&endDate=2024-10-01T23:00:00",
+							"raw": "http://localhost:8080/sale/report/top5?initDate=2024-10-01T10:00:00&endDate=2024-10-01T23:59:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -641,11 +632,11 @@
 							"query": [
 								{
 									"key": "initDate",
-									"value": "2024-10-01T22:00:00"
+									"value": "2024-10-01T10:00:00"
 								},
 								{
 									"key": "endDate",
-									"value": "2024-10-01T23:00:00"
+									"value": "2024-10-01T23:59:00"
 								}
 							]
 						}
