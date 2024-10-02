@@ -42,7 +42,8 @@ public class CartService {
     }
 
     public Mono<Cart> validatePurchaseCart(Long cartId) {
-        return (cartId == 0 ? Mono.defer(() -> cartRepository.save(new Cart())) : cartRepository.findById(cartId)).switchIfEmpty(Mono.error(new BusinessException(404, "Cart not found")));
+        return (cartId == 0 ? Mono.defer(() -> cartRepository.save(new Cart())) : cartRepository.findById(cartId))
+                .switchIfEmpty(Mono.error(new BusinessException(404, "Cart not found")));
     }
 
     public Mono<CartProductDTO> saveProductOnCart(CartProduct cartProduct, Product product, int quantity) {
@@ -60,14 +61,14 @@ public class CartService {
     }
 
     public Flux<PurchaseCartDTO> getCart(Long id) {
-        return cartProductRepository.findByCartId(id).collectList().flatMapMany(validarCarrito -> {
-            if (validarCarrito.isEmpty()) {
+        return cartProductRepository.findByCartId(id).collectList().flatMapMany(validateCart -> {
+            if (validateCart.isEmpty()) {
                 return Flux.error(new BusinessException(400, "There aren't products on cart"));
             }
-            List<ProductQuantityDTO> productos = validarCarrito.stream().map(cartProduct -> ProductQuantityDTO.builder()
+            List<ProductQuantityDTO> products = validateCart.stream().map(cartProduct -> ProductQuantityDTO.builder()
                             .productId(cartProduct.getProductId()).quantity(cartProduct.getQuantity()).build())
                     .collect(Collectors.toList());
-            return productService.mapperSaleItems(productos).flux();
+            return productService.mapperSaleItems(products).flux();
         });
     }
 
