@@ -36,8 +36,8 @@ public class CartService {
             cartProduct.setCartId(addCart.getId());
             return productService.findProductStock((long) cartProduct.getProductId(), cartProduct.getQuantity()).flatMap(product -> cartProductRepository.findByCartIdAndProductId((long) cartProduct.getCartId(), (long) cartProduct.getProductId()).flatMap(existsCartProduct -> {
                 existsCartProduct.setQuantity(existsCartProduct.getQuantity() + cartProduct.getQuantity());
-                return guardarProductoCarrito(existsCartProduct, product, cartProduct.getQuantity());
-            }).switchIfEmpty(guardarProductoCarrito(cartProduct, product, cartProduct.getQuantity())));
+                return saveProductOnCart(existsCartProduct, product, cartProduct.getQuantity());
+            }).switchIfEmpty(saveProductOnCart(cartProduct, product, cartProduct.getQuantity())));
         });
     }
 
@@ -45,10 +45,17 @@ public class CartService {
         return (cartId == 0 ? Mono.defer(() -> cartRepository.save(new Cart())) : cartRepository.findById(cartId)).switchIfEmpty(Mono.error(new BusinessException(404, "Cart not found")));
     }
 
-    public Mono<CartProductDTO> guardarProductoCarrito(CartProduct cartProduct, Product product, int quantity) {
-        return cartProductRepository.save(cartProduct).flatMap(guardarProducto -> {
-            logger.info("Product saved on cart: {}", guardarProducto);
-            return productService.updateStock((long) product.getId(), product.getStock() - quantity).then(Mono.just(CartProductDTO.builder().cartId((long) cartProduct.getCartId()).product(ProductDTO.builder().id(product.getId()).name(product.getName()).price(product.getPrice()).description(product.getDescription()).imageUrl(product.getImageUrl()).build()).quantity(guardarProducto.getQuantity()).build()));
+    public Mono<CartProductDTO> saveProductOnCart(CartProduct cartProduct, Product product, int quantity) {
+        return cartProductRepository.save(cartProduct).flatMap(productSaved -> {
+            logger.info("Product saved on cart: {}", productSaved);
+            return productService.updateStock((long) product.getId(), product.getStock() - quantity)
+                    .then(Mono.just(CartProductDTO.builder().cartId((long) cartProduct.getCartId())
+                            .product(ProductDTO.builder().id(product.getId()).name(product.getName())
+                                    .price(product.getPrice()).description(product.getDescription())
+                                    .imageUrl(product.getImageUrl())
+                                    .build())
+                            .quantity(productSaved.getQuantity())
+                            .build()));
         });
     }
 
@@ -71,13 +78,13 @@ public class CartService {
                 logger.info("Decreasing stock: {}", updateQuantity);
                 return productService.findProductStock(productoId, -quantity).flatMap(decreaseStock -> {
                     updateQuantity.setQuantity(updateQuantity.getQuantity() - quantity);
-                    return guardarProductoCarrito(updateQuantity, decreaseStock, -quantity);
+                    return saveProductOnCart(updateQuantity, decreaseStock, -quantity);
                 });
             } else {
                 logger.info("Increasing stock: {}", updateQuantity);
                 return productService.findProductStock(productoId, quantity).flatMap(increaseStock -> {
                     updateQuantity.setQuantity(updateQuantity.getQuantity() + quantity);
-                    return guardarProductoCarrito(updateQuantity, increaseStock, quantity);
+                    return saveProductOnCart(updateQuantity, increaseStock, quantity);
                 });
             }
         });
@@ -105,13 +112,15 @@ public class CartService {
     }
 
 
-    public Mono<SaleDTO> saveASale(Long cartId, Double envio) {
-        return cartProductRepository.findByCartId(cartId).collectList().flatMap(carritoProductos -> {
-            if (carritoProductos.isEmpty()) {
+    public Mono<SaleDTO> saveASale(Long cartId, Double shipment) {
+        return cartProductRepository.findByCartId(cartId).collectList().flatMap(cartProducts -> {
+            if (cartProducts.isEmpty()) {
                 return Mono.error(new BusinessException(404, "There are no products in the cart, purchase cannot be made"));
             }
-            List<ProductQuantityDTO> products = carritoProductos.stream().map(cartProduct -> ProductQuantityDTO.builder().productId(cartProduct.getProductId()).quantity(cartProduct.getQuantity()).build()).toList();
-            return productService.getTotal(products, envio)
+            List<ProductQuantityDTO> products = cartProducts.stream().map(cartProduct ->
+                    ProductQuantityDTO.builder().productId(cartProduct.getProductId())
+                            .quantity(cartProduct.getQuantity()).build()).toList();
+            return productService.getTotal(products, shipment)
                     .flatMap(totalAmount -> saleOrderService
                             .createSaleOrder(totalAmount.getTotal())
                             .flatMap(saleOrderSaved -> saleOrderService

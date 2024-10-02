@@ -17,10 +17,6 @@ import com.curso.java.reactor.services.CartService;
 public class CartController {
     private final CartService cartService;
 
-    public CartController(CartService cartService) {
-        this.cartService = cartService;
-    }
-
     @PostMapping
     public Mono<CartProductDTO> addProductsToCart(@RequestBody CartProduct cartProduct) {
         return cartService.addProductsToCart(cartProduct);
@@ -46,7 +42,7 @@ public class CartController {
         return cartService.deleteProductInCart(cartId, productId);
     }
 
-    @PostMapping("/checkout")
+    @GetMapping("/checkout")
     public Mono<totalAmountDTO> checkout(@RequestParam Long cartId, @RequestParam double shipment) {
         return cartService.getTotalOfCart(cartId, shipment);
     }

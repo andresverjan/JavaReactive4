@@ -32,13 +32,13 @@ public class PurchaseOrderService {
         this.productService = productService;
     }
 
-    public Flux<PurchaseOrderDTO>listarOrdenesComra(){
+    public Flux<PurchaseOrderDTO> listPurchaseOrders(){
         return purchaseOrderRepository.findAll()
-                .flatMap(purchaseOrder -> obtenerDetalleCompras((long) purchaseOrder.getId())
-                        .map(detalleCompra -> PurchaseOrderDTO.builder()
+                .flatMap(purchaseOrder -> getPurchaseDetail((long) purchaseOrder.getId())
+                        .map(purchaseDetail -> PurchaseOrderDTO.builder()
                                 .purchaseId((long) purchaseOrder.getId())
                                 .state(purchaseOrder.getState())
-                                .items(detalleCompra.getItems())
+                                .items(purchaseDetail.getItems())
                                 .total(purchaseOrder.getTotal())
                                 .build()
                         )
@@ -48,37 +48,31 @@ public class PurchaseOrderService {
     public Flux<PurchaseOrderDTO> getPurchaseOrdersBetweenDates(String initDate, String endDate){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         LocalDateTime startDate = LocalDateTime.parse(initDate, formatter);
-        LocalDateTime endDateFormated = LocalDateTime.parse(endDate, formatter);
-        return purchaseOrderRepository.findAllByUpdatedAtBetween(startDate, endDateFormated)
-                .flatMap(purchaseOrder -> obtenerDetalleCompras((long) purchaseOrder.getId())
-                        .map(detalleCompra -> PurchaseOrderDTO.builder()
+        LocalDateTime endDateFormatted = LocalDateTime.parse(endDate, formatter);
+        return purchaseOrderRepository.findAllByUpdatedAtBetween(startDate, endDateFormatted)
+                .flatMap(purchaseOrder -> getPurchaseDetail((long) purchaseOrder.getId())
+                        .map(purchaseDetail -> PurchaseOrderDTO.builder()
                                 .purchaseId((long) purchaseOrder.getId())
                                 .state(purchaseOrder.getState())
-                                .items(detalleCompra.getItems())
+                                .items(purchaseDetail.getItems())
                                 .total(purchaseOrder.getTotal())
                                 .build()
                         )
                 );
     }
 
-
-
-
-
-
-
-    public Mono<PurchaseOrderDTO> registrarOrdenCompra(List<ProductQuantityDTO> productos, Double total) {
-        logger.info("Registrando orden de compra con productos: {} y total: {}", productos, total);
-        return crearOrdenCompra(total)
-                .doOnNext(purchaseOrder -> logger.info("Orden de compra creada: {}", purchaseOrder))
+    public Mono<PurchaseOrderDTO> registerPurchaseOrder(List<ProductQuantityDTO> products, Double total) {
+        logger.info("Registering purchase order with products: {} and total: {}", products, total);
+        return createPurchaseOrder(total)
+                .doOnNext(purchaseOrder -> logger.info("Purchase order created: {}", purchaseOrder))
                 .flatMap(purchaseOrder ->
-                        crearOrdenCompraProducto(productos, purchaseOrder.getId())
+                        createPurchaseProductOrder(products, purchaseOrder.getId())
                                 .collectList()
-                                .doOnNext(ordenCompraProductos -> logger.info("Productos de la orden de compra creados: {}", ordenCompraProductos))
-                                .flatMap(ordenCompraProductos ->
-                                        actualizarStockProductos(productos).then(
-                                                productService.mapItemsPurchased(productos)
-                                                        .doOnNext(response -> logger.info("Items mapeados: {}", response))
+                                .doOnNext(purchaseProductsOrder -> logger.info("Purchase order products created: {}", purchaseProductsOrder))
+                                .flatMap(purchaseProductsOrder ->
+                                        updateStockProducts(products).then(
+                                                productService.mapItemsPurchased(products)
+                                                        .doOnNext(response -> logger.info("Items mapped: {}", response))
                                                         .map(response -> PurchaseOrderDTO.builder()
                                                                 .purchaseId((long) purchaseOrder.getId())
                                                                 .items(response.getItems())
@@ -91,46 +85,47 @@ public class PurchaseOrderService {
                 );
     }
 
-    private Mono<PurchaseOrder> crearOrdenCompra(Double total){
+
+    private Mono<PurchaseOrder> createPurchaseOrder(Double total) {
         PurchaseOrder purchaseOrder = PurchaseOrder.builder()
                 .total(total)
-                .state("RECIBIDA")
+                .state("SUCCESS")
                 .build();
         return purchaseOrderRepository.save(purchaseOrder)
-                .doOnSuccess(savedPurchaseOrder -> logger.info("Orden de compra guardada en la base de datos: {}", savedPurchaseOrder))
-                .doOnError(error -> logger.error("Error al guardar la orden de compra: ", error));
+                .doOnSuccess(savedPurchaseOrder -> logger.info("Purchase order saved in the database: {}", savedPurchaseOrder))
+                .doOnError(error -> logger.error("Error saving the purchase order: ", error));
     }
 
-    private Flux<PurchaseOrderProduct> crearOrdenCompraProducto(List<ProductQuantityDTO> productos, int ordenCompraId){
-        return Flux.fromIterable(productos)
-                .flatMap(producto -> {
+    private Flux<PurchaseOrderProduct> createPurchaseProductOrder(List<ProductQuantityDTO> products, int purchaseOrderId){
+        return Flux.fromIterable(products)
+                .flatMap(product -> {
                     PurchaseOrderProduct purchaseOrderProduct = PurchaseOrderProduct.builder()
-                            .purchaseOrderId(ordenCompraId)
-                            .productId(producto.getProductId())
-                            .quantity(producto.getQuantity())
+                            .purchaseOrderId(purchaseOrderId)
+                            .productId(product.getProductId())
+                            .quantity(product.getQuantity())
                             .build();
                     return purchaseOrderProductRepository.save(purchaseOrderProduct);
                 });
     }
 
-    public Mono<Void> actualizarStockProductos(List<ProductQuantityDTO> productos) {
-    return Flux.fromIterable(productos)
-            .flatMap(producto -> productService
-                    .findProductStock((long)producto.getProductId(), -producto.getQuantity())
-                    .flatMap(productoStock -> {
-                        int nuevoStock = productoStock.getStock() + producto.getQuantity();
-                        return productService.updateStock((long) productoStock.getId(), nuevoStock);
+    public Mono<Void> updateStockProducts(List<ProductQuantityDTO> products) {
+    return Flux.fromIterable(products)
+            .flatMap(product -> productService
+                    .findProductStock((long)product.getProductId(), - product.getQuantity())
+                    .flatMap(productStock -> {
+                        int newStock = productStock.getStock() + product.getQuantity();
+                        return productService.updateStock((long) productStock.getId(), newStock);
                     })
             )
             .then();
 }
 
-    public Mono<PurchaseOrderDTO> obtenerDetalleCompras(Long ordenCompraId){
-        return purchaseOrderProductRepository.findByPurchaseOrderId(ordenCompraId)
+    public Mono<PurchaseOrderDTO> getPurchaseDetail(Long purchaseOrderId){
+        return purchaseOrderProductRepository.findByPurchaseOrderId(purchaseOrderId)
                 .flatMap(purchaseOrderProduct ->
                         productService.findProduct((long) purchaseOrderProduct.getProductId())
-                        .map(producto -> ProductQuantityDTO.builder()
-                                .productId(producto.getId())
+                        .map(product -> ProductQuantityDTO.builder()
+                                .productId(product.getId())
                                 .quantity(purchaseOrderProduct.getQuantity())
                                 .build())
                 )
